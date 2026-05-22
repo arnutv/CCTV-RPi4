@@ -184,18 +184,22 @@ Now the dashboard is also reachable from your home network (look for the IP in t
 
 Two formats provided in `enclosure/`:
 
-- **`cctv_enclosure.scad`** — OpenSCAD parametric source (3 parts)
-- **`cctv_enclosure.FCMacro`** — FreeCAD Python macro (same 3 parts)
+- **`cctv_enclosure.scad`** — OpenSCAD parametric source (5 parts)
+- **`cctv_enclosure.FCMacro`** — FreeCAD Python macro (same 5 parts)
 
 Designed to drop inside a **140 × 78 mm outer IP65 junction box** (typical thai weatherproof box). The lens hole and ESP32-CAM mount are drilled directly through the box's own lid.
 
-Parts:
+Parts (3D-printed):
 
 | Part | Print time | Filament | Purpose |
 |---|---|---|---|
 | Electronics tray | 90 min | 28 g | Organises battery + MPPT + boost inside the IP65 box |
-| Solar L-bracket | 60 min | 22 g | Adjustable tilt 15/30/45/60° |
-| Wall mount | 45 min | 18 g | Ball-joint mount for aiming the camera |
+| Wall mount | 45 min | 18 g | Wall plate + ball stalk for camera box mounting |
+| Box socket | 30 min | 12 g | Snaps onto wall mount's ball, sticks to back of box (VHB tape or M3) |
+| Solar bracket | 60 min | 22 g | Wall L-arm + ball stalk for solar panel mounting |
+| Panel socket | 30 min | 14 g | Snaps onto solar bracket's ball, bolts to solar panel frame |
+
+Each ball-joint pair (wall_mount + box_socket, solar_bracket + panel_socket) gives **free aiming in any direction**, locked with a single M3 clamp screw.
 
 **Print in PETG** (or ASA) at 0.2 mm, 4 perimeters, 25 % gyroid infill. No supports needed.
 

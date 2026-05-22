@@ -110,8 +110,110 @@ def electronics_tray():
     return tray
 
 
+# ─── Ball-joint geometry shared by wall_mount + solar_bracket + sockets ────
+BALL_DIA  = 20.0   # ball diameter
+STALK_DIA = 10.0   # stalk diameter
+STALK_H   = 15.0   # stalk length (from base to bottom of ball)
+
+
+def _make_socket(plate_w, plate_d, plate_th=3.0):
+    """Helper: clamping socket on top of an adapter plate.
+    Slit on one side + perpendicular boss with M3 clamp screw hole.
+    Snap the ball in from the top; tighten M3 to lock the angle.
+    """
+    SOCKET_OD = BALL_DIA + 8        # 4 mm wall on each side
+    SOCKET_H  = BALL_DIA / 2 + 6    # taller than half-sphere
+    SLIT_W    = 1.6                 # one nozzle line wide
+    BALL_R    = BALL_DIA / 2 + 0.15 # tiny clearance for snap
+
+    # Adapter plate
+    base = Part.makeBox(plate_w, plate_d, plate_th)
+
+    cup_x, cup_y = plate_w / 2, plate_d / 2
+
+    # Socket housing (cylindrical cup)
+    cup = Part.makeCylinder(SOCKET_OD / 2, SOCKET_H)
+    cup.translate(Vector(cup_x, cup_y, plate_th))
+    base = base.fuse(cup)
+
+    # Hollow ball cavity (sphere)
+    ball_z = plate_th + BALL_DIA / 2 + 1
+    cavity = Part.makeSphere(BALL_R)
+    cavity.translate(Vector(cup_x, cup_y, ball_z))
+    base = base.cut(cavity)
+
+    # Top opening — cone so the stalk can pivot at any angle
+    open_top = Part.makeCone(BALL_R - 1.5, STALK_DIA / 2 + 1, SOCKET_H)
+    open_top.translate(Vector(cup_x, cup_y, ball_z))
+    base = base.cut(open_top)
+
+    # Slit through one side wall (lets the cup flex when clamped)
+    slit = Part.makeBox(SOCKET_OD / 2 + 2, SLIT_W, SOCKET_H + 1)
+    slit.translate(Vector(cup_x, cup_y - SLIT_W / 2, plate_th + 2))
+    base = base.cut(slit)
+
+    # Clamp boss on the opposite side of the slit
+    boss_l, boss_w, boss_h = 18, 8, SOCKET_H - 4
+    boss = Part.makeBox(boss_l, boss_w, boss_h)
+    boss.translate(Vector(cup_x + SOCKET_OD / 2 - 3,
+                          cup_y - boss_w / 2, plate_th + 2))
+    base = base.fuse(boss)
+
+    # M3 clamp screw hole — horizontal, through boss → slit → opposite wall
+    clamp_z = plate_th + 2 + boss_h / 2
+    clamp_hole = Part.makeCylinder(1.7, SOCKET_OD + 6,
+                                   Vector(cup_x + SOCKET_OD / 2 + boss_l - 4,
+                                          cup_y, clamp_z),
+                                   Vector(-1, 0, 0))
+    base = base.cut(clamp_hole)
+
+    # Hex nut pocket on outer face of boss (so M3 nut sits flush)
+    nut_pocket = Part.makeBox(3, 6.2, 2.5)
+    nut_pocket.translate(Vector(cup_x + SOCKET_OD / 2 + boss_l - 4,
+                                cup_y - 3.1, clamp_z - 1.25))
+    base = base.cut(nut_pocket)
+
+    return base
+
+
+def box_socket():
+    """Socket clamp that adheres to the back of the IP65 camera box.
+    Stick with VHB tape (preferred — no holes in box) or M3 screws.
+    Mates with wall_mount's ball; M3 clamp screw locks the angle.
+    """
+    plate_w, plate_d = 55.0, 45.0
+    base = _make_socket(plate_w, plate_d, plate_th=3.0)
+
+    # 4× optional M3 screw holes (or just use 3M VHB tape on the back)
+    for x in (6, plate_w - 6):
+        for y in (6, plate_d - 6):
+            hole = Part.makeCylinder(1.6, 5)
+            hole.translate(Vector(x, y, -1))
+            base = base.cut(hole)
+
+    return base
+
+
+def panel_socket():
+    """Socket clamp that bolts to the back of the solar panel frame.
+    Mates with solar_bracket's ball; M3 clamp screw locks the angle.
+    Use the 4× M4 holes to bolt onto the panel frame's mounting tabs.
+    """
+    plate_w, plate_d = 80.0, 40.0
+    base = _make_socket(plate_w, plate_d, plate_th=4.0)
+
+    # 4× M4 mounting holes for solar panel frame
+    for x in (10, plate_w - 10):
+        for y in (8, plate_d - 8):
+            hole = Part.makeCylinder(2.2, 7)
+            hole.translate(Vector(x, y, -1))
+            base = base.cut(hole)
+
+    return base
+
+
 def solar_bracket():
-    """L-bracket with arc of tilt-angle lock holes (15/30/45/60°)."""
+    """Wall-mount arm with ball stalk at the end. Panel attaches via panel_socket."""
     ARM_L, ARM_W, ARM_TH = 80.0, 25.0, 4.0
 
     # Vertical wall plate
@@ -121,61 +223,60 @@ def solar_bracket():
                                  Vector(0, 1, 0))
         plate = plate.cut(hole)
 
-    # Horizontal arm (panel side)
+    # Horizontal arm extending outward at the top
     arm = Part.makeBox(ARM_W, ARM_L, ARM_TH)
     arm.translate(Vector(0, ARM_TH, 100 - ARM_TH))
-
-    # Pivot hole at far end
-    pivot = Part.makeCylinder(2.75, ARM_TH + 2)
-    pivot.translate(Vector(ARM_W/2, ARM_L - 10 + ARM_TH, 100 - ARM_TH - 1))
-    arm = arm.cut(pivot)
-
-    # Tilt-lock arc (4 holes for snap-to-angle)
-    import math
-    for a_deg in (15, 30, 45, 60):
-        a = math.radians(a_deg)
-        hx = ARM_W/2 + 25 * math.sin(a)
-        hy = ARM_L - 10 - 25 * math.cos(a) + ARM_TH
-        h = Part.makeCylinder(2.25, ARM_TH + 2)
-        h.translate(Vector(hx, hy, 100 - ARM_TH - 1))
-        arm = arm.cut(h)
-
     bracket = plate.fuse(arm)
 
-    # Gusset triangle for strength (between vertical and horizontal)
-    import Part as _P
+    # Gusset triangle for strength
     gusset_pts = [Vector(0, ARM_TH, 100 - ARM_TH),
                   Vector(0, ARM_TH + 25, 100 - ARM_TH),
                   Vector(0, ARM_TH, 100 - ARM_TH - 25),
                   Vector(0, ARM_TH, 100 - ARM_TH)]
-    wire = _P.makePolygon(gusset_pts)
-    face = _P.Face(wire)
+    wire = Part.makePolygon(gusset_pts)
+    face = Part.Face(wire)
     gusset = face.extrude(Vector(ARM_W, 0, 0))
     bracket = bracket.fuse(gusset)
+
+    # Ball stalk at the far end of the arm (pointing UP toward panel)
+    stalk_x = ARM_W / 2
+    stalk_y = ARM_TH + ARM_L - 14
+    stalk_z = 100
+
+    stalk = Part.makeCylinder(STALK_DIA / 2, STALK_H)
+    stalk.translate(Vector(stalk_x, stalk_y, stalk_z))
+    bracket = bracket.fuse(stalk)
+
+    ball = Part.makeSphere(BALL_DIA / 2)
+    ball.translate(Vector(stalk_x, stalk_y,
+                          stalk_z + STALK_H + BALL_DIA / 2 - 2))
+    bracket = bracket.fuse(ball)
 
     return bracket
 
 
 def wall_mount():
-    """Square wall plate + ball-joint stalk that snaps into a socket on the box back."""
+    """Square wall plate + ball stalk. Ball snaps into box_socket on the camera box."""
+    PLATE_W = 80.0
+    PLATE_TH = 4.0
     # Wall plate
-    plate = Part.makeBox(80, 80, 4)
-    # 4× wall screw holes
-    for x in (10, 70):
-        for y in (10, 70):
-            h = Part.makeCylinder(2.5, 6)
+    plate = Part.makeBox(PLATE_W, PLATE_W, PLATE_TH)
+    # 4× wall screw holes (M4) with countersinks on the outside face
+    for x in (10, PLATE_W - 10):
+        for y in (10, PLATE_W - 10):
+            h = Part.makeCylinder(2.5, PLATE_TH + 2)
             h.translate(Vector(x, y, -1))
             plate = plate.cut(h)
-    # Centre pivot
-    pivot = Part.makeCylinder(4, 6)
-    pivot.translate(Vector(40, 40, -1))
-    plate = plate.cut(pivot)
+            cs = Part.makeCone(5, 2.5, 2.5)
+            cs.translate(Vector(x, y, -0.1))
+            plate = plate.cut(cs)
 
-    # Stalk + ball
-    stalk = Part.makeCylinder(5, 15)
-    stalk.translate(Vector(40, 40, 4))
-    ball = Part.makeSphere(10)
-    ball.translate(Vector(40, 40, 19))
+    # Ball stalk
+    stalk = Part.makeCylinder(STALK_DIA / 2, STALK_H)
+    stalk.translate(Vector(PLATE_W / 2, PLATE_W / 2, PLATE_TH))
+    ball = Part.makeSphere(BALL_DIA / 2)
+    ball.translate(Vector(PLATE_W / 2, PLATE_W / 2,
+                          PLATE_TH + STALK_H + BALL_DIA / 2 - 2))
 
     return plate.fuse(stalk).fuse(ball)
 
@@ -202,9 +303,16 @@ doc = App.newDocument(doc_name)
 
 print("Building CCTV enclosure parts…")
 
-add_part(electronics_tray(), "1_Electronics_Tray",  (0,            0,            0))
-add_part(solar_bracket(),    "2_Solar_Bracket",     (BOX_W + 30,   0,            0))
-add_part(wall_mount(),       "3_Wall_Mount",        (BOX_W + 30,   120,          0))
+# Inside the IP65 box
+add_part(electronics_tray(), "1_Electronics_Tray",  (0,           0,            0))
+
+# Wall-to-box ball joint (2 pieces snap together)
+add_part(wall_mount(),       "2_Wall_Mount",        (BOX_W + 30,  120,          0))
+add_part(box_socket(),       "3_Box_Socket",        (BOX_W + 130, 120,          0))
+
+# Wall-to-panel ball joint (2 pieces snap together)
+add_part(solar_bracket(),    "4_Solar_Bracket",     (BOX_W + 30,  0,            0))
+add_part(panel_socket(),     "5_Panel_Socket",      (BOX_W + 130, 0,            0))
 
 doc.recompute()
 
@@ -216,10 +324,12 @@ except Exception:
     pass
 
 print("─" * 70)
-print("Done. 3 parts created. Tree → right-click each → Export…")
+print("Done. 5 parts created. Tree → right-click each → Export…")
 print("  • STEP (.step)  → keep parametric / share with other CAD")
 print("  • Mesh (.stl)   → straight to your 3D printer slicer")
 print("─" * 70)
-print("Tray drops inside a commercial 140×78 mm IP65 junction box.")
-print("Solar bracket and wall mount attach outside the box.")
+print("Ball-joint pairs:")
+print("  wall_mount  + box_socket    → wall  ↔ camera IP65 box")
+print("  solar_bracket + panel_socket → wall ↔ solar panel")
+print("Each pair: snap ball into socket, tighten M3 clamp screw to lock angle.")
 print("─" * 70)

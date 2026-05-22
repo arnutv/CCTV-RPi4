@@ -5,7 +5,13 @@
 // ═══════════════════════════════════════════════════════════════════════════
 
 // ─── PICK ONE PART TO RENDER ──────────────────────────────────────────────
-PART = "all";   // "tray" | "solar_bracket" | "wall_mount" | "all"
+PART = "all";   // "tray" | "wall_mount" | "box_socket" |
+                // "solar_bracket" | "panel_socket" | "all"
+
+// ─── Ball joint geometry (shared between mounts and sockets) ──────────────
+BALL_DIA  = 20;
+STALK_DIA = 10;
+STALK_H   = 15;
 
 // ─── ENCLOSURE BOX (off-the-shelf IP65) ───────────────────────────────────
 // INNER usable dimensions. Default for 140×78 mm outer junction box (typical thai):
@@ -82,55 +88,109 @@ module pcb_clip(pcb_w, pcb_d, h) {
     }
 }
 
-// ─── 2. SOLAR PANEL L-BRACKET (adjustable tilt) ───────────────────────────
-//   Mounts the 6V/10W panel above the camera box at an adjustable angle.
-//   Panel attaches with 4× M4 bolts, bracket attaches to wall with 2× M5.
+// ─── Helper: clamping socket on an adapter plate (ball joint receptacle) ──
+module _socket(plate_w, plate_d, plate_th=3) {
+    socket_od = BALL_DIA + 8;
+    socket_h  = BALL_DIA/2 + 6;
+    slit_w    = 1.6;
+    ball_r    = BALL_DIA/2 + 0.15;
+    cup_x = plate_w/2; cup_y = plate_d/2;
+    ball_z = plate_th + BALL_DIA/2 + 1;
+
+    difference() {
+        union() {
+            // Adapter plate
+            cube([plate_w, plate_d, plate_th]);
+            // Socket cup
+            translate([cup_x, cup_y, plate_th])
+                cylinder(d=socket_od, h=socket_h);
+            // Clamp boss
+            translate([cup_x + socket_od/2 - 3, cup_y - 4, plate_th + 2])
+                cube([18, 8, socket_h - 4]);
+        }
+        // Ball cavity
+        translate([cup_x, cup_y, ball_z]) sphere(r=ball_r);
+        // Cone opening at top
+        translate([cup_x, cup_y, ball_z])
+            cylinder(d1=ball_r*2 - 3, d2=STALK_DIA + 2, h=socket_h);
+        // Slit (flex line)
+        translate([cup_x, cup_y - slit_w/2, plate_th + 2])
+            cube([socket_od/2 + 2, slit_w, socket_h + 1]);
+        // M3 clamp screw hole (horizontal through boss)
+        translate([cup_x + socket_od/2 + 18, cup_y, plate_th + 2 + (socket_h - 4)/2])
+            rotate([0, -90, 0])
+                cylinder(d=3.4, h=socket_od + 24);
+        // Hex nut pocket
+        translate([cup_x + socket_od/2 + 14, cup_y - 3.1, plate_th + 2 + (socket_h - 4)/2 - 1.25])
+            cube([3, 6.2, 2.5]);
+    }
+}
+
+// ─── 2. WALL MOUNT (wall plate + ball stalk) ──────────────────────────────
+//   Pairs with box_socket to give a freely-aimable ball joint at the box.
+module wall_mount() {
+    plate_w = 80;
+    plate_th = 4;
+    difference() {
+        cube([plate_w, plate_w, plate_th]);
+        for (x = [10, plate_w - 10], y = [10, plate_w - 10]) {
+            translate([x, y, -1]) cylinder(d=5, h=plate_th + 2);
+            // Countersink
+            translate([x, y, -0.1]) cylinder(d1=10, d2=5, h=2.5);
+        }
+    }
+    translate([plate_w/2, plate_w/2, plate_th]) {
+        cylinder(d=STALK_DIA, h=STALK_H);
+        translate([0, 0, STALK_H + BALL_DIA/2 - 2]) sphere(d=BALL_DIA);
+    }
+}
+
+// ─── 3. BOX SOCKET (sticks to back of IP65 box, holds wall_mount's ball) ──
+module box_socket() {
+    plate_w = 55; plate_d = 45;
+    difference() {
+        _socket(plate_w, plate_d, plate_th=3);
+        // 4× optional mounting screw holes
+        for (x = [6, plate_w - 6], y = [6, plate_d - 6])
+            translate([x, y, -1]) cylinder(d=3.2, h=5);
+    }
+}
+
+// ─── 4. SOLAR BRACKET (wall arm + ball stalk for panel mounting) ──────────
+//   Pairs with panel_socket. Replaces the previous tilt-lock design.
 module solar_bracket() {
-    arm_l  = 80;     // bracket arm length
+    arm_l  = 80;
     arm_w  = 25;
     arm_th = 4;
 
     // Vertical wall plate
     difference() {
         cube([arm_w, arm_th, 100]);
-        // Wall mount holes (M5)
-        for (z=[15, 85])
-            translate([arm_w/2, -1, z])
-                rotate([-90, 0, 0]) cylinder(d=5.5, h=6);
+        for (z = [15, 85])
+            translate([arm_w/2, -1, z]) rotate([-90, 0, 0]) cylinder(d=5.5, h=6);
     }
-    // Horizontal arm (panel side)
-    translate([0, arm_th, 100 - arm_th])
-        difference() {
-            cube([arm_w, arm_l, arm_th]);
-            // Tilt pivot hole (M5 — panel angle adjusts here)
-            translate([arm_w/2, arm_l - 10, -1])
-                cylinder(d=5.5, h=arm_th + 2);
-            // Tilt-lock arc of holes (15°, 30°, 45°, 60°)
-            for (a = [15, 30, 45, 60])
-                translate([arm_w/2 + 25*sin(a), arm_l - 10 - 25*cos(a), -1])
-                    cylinder(d=4.5, h=arm_th + 2);
-        }
-    // Gusset between vertical and horizontal (strength)
+    // Horizontal arm
+    translate([0, arm_th, 100 - arm_th]) cube([arm_w, arm_l, arm_th]);
+    // Gusset
     translate([0, arm_th, 100 - arm_th])
         rotate([0, -90, 0])
             linear_extrude(arm_w)
                 polygon([[0,0], [25,0], [0,-25]]);
+    // Ball stalk at far end of arm (pointing UP)
+    translate([arm_w/2, arm_th + arm_l - 14, 100]) {
+        cylinder(d=STALK_DIA, h=STALK_H);
+        translate([0, 0, STALK_H + BALL_DIA/2 - 2]) sphere(d=BALL_DIA);
+    }
 }
 
-// ─── 3. WALL MOUNT (sits behind the IP65 box, articulating) ───────────────
-//   2-piece pivoting wall bracket so the camera can be aimed.
-module wall_mount() {
-    // Wall plate (4× screw holes)
+// ─── 5. PANEL SOCKET (bolts to back of solar panel, holds bracket's ball) ─
+module panel_socket() {
+    plate_w = 80; plate_d = 40;
     difference() {
-        cube([80, 80, 4]);
-        for (x=[10, 70], y=[10, 70])
-            translate([x, y, -1]) cylinder(d=5, h=6);    // M4 wall screws
-        translate([40, 40, -1]) cylinder(d=8, h=6);       // pivot hole
-    }
-    // Ball-joint stalk (snaps into matching socket on box back)
-    translate([40, 40, 4]) {
-        cylinder(d=10, h=15);
-        translate([0, 0, 15]) sphere(d=20);
+        _socket(plate_w, plate_d, plate_th=4);
+        // 4× M4 mounting holes for the solar panel frame
+        for (x = [10, plate_w - 10], y = [8, plate_d - 8])
+            translate([x, y, -1]) cylinder(d=4.4, h=6);
     }
 }
 
@@ -138,11 +198,15 @@ module wall_mount() {
 //                              LAY OUT FOR EXPORT
 // ═══════════════════════════════════════════════════════════════════════════
 if (PART == "tray")               electronics_tray();
-else if (PART == "solar_bracket") solar_bracket();
 else if (PART == "wall_mount")    wall_mount();
+else if (PART == "box_socket")    box_socket();
+else if (PART == "solar_bracket") solar_bracket();
+else if (PART == "panel_socket")  panel_socket();
 else {
     // "all" → show every part spread out for preview
     electronics_tray();
-    translate([BOX_W + 20, 0, 0]) solar_bracket();
-    translate([BOX_W + 70, 0, 0]) wall_mount();
+    translate([BOX_W + 30,  120,    0]) wall_mount();
+    translate([BOX_W + 130, 120,    0]) box_socket();
+    translate([BOX_W + 30,    0,    0]) solar_bracket();
+    translate([BOX_W + 130,   0,    0]) panel_socket();
 }
