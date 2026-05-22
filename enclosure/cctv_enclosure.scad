@@ -5,7 +5,8 @@
 // ═══════════════════════════════════════════════════════════════════════════
 
 // ─── PICK ONE PART TO RENDER ──────────────────────────────────────────────
-PART = "all";   // "tray" | "bezel" | "lid_seal" | "solar_bracket" | "wall_mount" | "all"
+PART = "all";   // "tray" | "tray_cover" | "bezel" | "lid_seal" |
+                // "solar_bracket" | "wall_mount" | "ip65_box" | "ip65_lid" | "all"
 
 // ─── ENCLOSURE BOX (off-the-shelf IP65, ~$6 on AliExpress/Amazon) ─────────
 // Inner usable dims of a "158×90×65 mm IP65 ABS junction box" (Hammond 1554G clone)
@@ -25,6 +26,12 @@ SMA_DIA  = 6.5;                                 // SMA antenna mounting hole
 WALL = 1.6;         // wall thickness (4 perimeters @ 0.4mm nozzle)
 SLOP = 0.3;         // fit tolerance
 $fn = 64;
+
+// ─── IP65 PRINTED-BOX SPECIFIC ────────────────────────────────────────────
+BOX_WALL_TH   = 3.0;  // printed wall thickness for box / lid
+BOX_LID_TH    = 4.0;  // lid plate thickness
+GASKET_LIP    = 2.5;  // raised rim on top edge of box (gasket alignment)
+GASKET_RIM_W  = 2.0;  // width of gasket rim
 
 // ═══════════════════════════════════════════════════════════════════════════
 //                                  PARTS
@@ -185,19 +192,168 @@ module wall_mount() {
     }
 }
 
+// ─── 6. IP65 BOX (full printable body) ────────────────────────────────────
+//   Print with opening UP for clean vertical walls.
+//   Use M3 brass heat-set inserts in the 4 corner bosses for the lid screws.
+module ip65_box() {
+    OW = BOX_W + 2 * BOX_WALL_TH;     // 154
+    OD = BOX_D + 2 * BOX_WALL_TH;     // 86
+    OH = BOX_H + BOX_WALL_TH;          // 58
+
+    difference() {
+        union() {
+            // Outer shell (hollow box, open top)
+            difference() {
+                cube([OW, OD, OH]);
+                translate([BOX_WALL_TH, BOX_WALL_TH, BOX_WALL_TH])
+                    cube([BOX_W, BOX_D, BOX_H + 1]);
+            }
+            // Gasket alignment rim on top edge
+            translate([BOX_WALL_TH, BOX_WALL_TH, OH])
+                difference() {
+                    cube([BOX_W, BOX_D, GASKET_LIP]);
+                    translate([GASKET_RIM_W, GASKET_RIM_W, -0.5])
+                        cube([BOX_W - 2*GASKET_RIM_W,
+                              BOX_D - 2*GASKET_RIM_W,
+                              GASKET_LIP + 1]);
+                }
+            // 4× corner screw bosses
+            for (x = [BOX_WALL_TH + 5, OW - BOX_WALL_TH - 5],
+                 y = [BOX_WALL_TH + 5, OD - BOX_WALL_TH - 5])
+                translate([x, y, BOX_WALL_TH])
+                    cylinder(d=8, h=BOX_H);
+            // 4× tray floor standoffs
+            for (x = [BOX_WALL_TH + 6, BOX_WALL_TH + BOX_W - 10],
+                 y = [BOX_WALL_TH + 6, BOX_WALL_TH + BOX_D - 10])
+                translate([x, y, BOX_WALL_TH])
+                    cylinder(d=6, h=4);
+        }
+        // M3 brass insert pockets (corner bosses)
+        for (x = [BOX_WALL_TH + 5, OW - BOX_WALL_TH - 5],
+             y = [BOX_WALL_TH + 5, OD - BOX_WALL_TH - 5])
+            translate([x, y, BOX_H - 8 + BOX_WALL_TH])
+                cylinder(d=4, h=10);
+        // Tray standoff M3 self-tap holes
+        for (x = [BOX_WALL_TH + 6, BOX_WALL_TH + BOX_W - 10],
+             y = [BOX_WALL_TH + 6, BOX_WALL_TH + BOX_D - 10])
+            translate([x, y, BOX_WALL_TH])
+                cylinder(d=2.8, h=6);
+        // PG7 cable gland (top wall)
+        translate([OW/2, OD + 1, OH - 15])
+            rotate([90, 0, 0])
+                cylinder(d=12, h=BOX_WALL_TH + 3);
+        // SMA antenna hole (right wall)
+        translate([OW + 1, OD/2, OH/2])
+            rotate([0, -90, 0])
+                cylinder(d=6.5, h=BOX_WALL_TH + 3);
+        // Drain hole (bottom wall)
+        translate([OW/2, -1, 8])
+            rotate([-90, 0, 0])
+                cylinder(d=3, h=BOX_WALL_TH + 3);
+        // Wall mount holes (through back, with countersink)
+        for (x = [12, OW - 12], y = [12, OD - 12]) {
+            translate([x, y, -1]) cylinder(d=5, h=BOX_WALL_TH + 2);
+            translate([x, y, -0.1]) cylinder(d1=10, d2=5, h=2.5);
+        }
+    }
+}
+
+// ─── 7. IP65 LID (full printable, with integrated camera bezel) ───────────
+//   Drops over the box's gasket rim. M3 countersunk screws into box bosses.
+module ip65_lid() {
+    OW = BOX_W + 2 * BOX_WALL_TH;
+    OD = BOX_D + 2 * BOX_WALL_TH;
+
+    lens_x = OW / 2;
+    lens_y = OD / 2 - 4;
+
+    difference() {
+        union() {
+            // Lid plate
+            cube([OW, OD, BOX_LID_TH]);
+            // Sun shroud (cone above lens)
+            translate([lens_x, lens_y, BOX_LID_TH])
+                cylinder(d1=22, d2=18, h=7);
+            // ESP32-CAM mounting bosses (rear / inside face)
+            for (x = [3, ESP_W - 3], y = [3, ESP_D - 3])
+                translate([OW/2 - ESP_W/2 + x,
+                           OD/2 - ESP_D/2 + y, -5])
+                    cylinder(d=5, h=5);
+        }
+        // Recess to fit over the box gasket rim
+        translate([BOX_WALL_TH + 0.2, BOX_WALL_TH + 0.2, -0.5])
+            cube([BOX_W - 0.4, BOX_D - 0.4, GASKET_LIP]);
+        // 4× corner countersunk M3 through holes
+        for (x = [BOX_WALL_TH + 5, OW - BOX_WALL_TH - 5],
+             y = [BOX_WALL_TH + 5, OD - BOX_WALL_TH - 5]) {
+            translate([x, y, -1]) cylinder(d=3.4, h=BOX_LID_TH + 2);
+            translate([x, y, BOX_LID_TH - 1.8]) cylinder(d1=3.4, d2=7, h=1.8);
+        }
+        // ESP32-CAM mount M2.5 holes
+        for (x = [3, ESP_W - 3], y = [3, ESP_D - 3])
+            translate([OW/2 - ESP_W/2 + x, OD/2 - ESP_D/2 + y, -6])
+                cylinder(d=2.6, h=BOX_LID_TH + 8);
+        // Lens through hole
+        translate([lens_x, lens_y, -1])
+            cylinder(d=LENS_DIA + SLOP, h=BOX_LID_TH + 15);
+        // Status LED window
+        translate([lens_x - 12, lens_y, -1])
+            cylinder(d=3, h=BOX_LID_TH + 2);
+    }
+}
+
+// ─── 8. TRAY COVER (snap-on, holds batteries + organises cables) ──────────
+//   Snaps over the 4 cable routing posts on the electronics tray.
+//   Has ventilation grid, LED viewing window, and cable routing slot.
+module tray_cover() {
+    cover_w  = BOX_W - 4;
+    cover_d  = BOX_D - 4;
+    cover_th = 2.5;
+
+    difference() {
+        union() {
+            cube([cover_w, cover_d, cover_th]);
+            // Lift tab on front edge
+            translate([cover_w/2 - 7.5, -3, 0])
+                cube([15, 4, cover_th]);
+        }
+        // 4× snap holes (over tray posts)
+        for (x = [10, cover_w - 14], y = [10, cover_d - 14])
+            translate([x, y, -1]) cylinder(d=4.4, h=cover_th + 2);
+        // Vent grid (6×3 holes, 3 mm dia, 8 mm pitch)
+        for (vc = [0:5], vr = [0:2]) {
+            vx = cover_w - 60 + vc * 8;
+            vy = cover_d - 30 + vr * 8;
+            if (vx > 4 && vx < cover_w - 4 && vy > 4 && vy < cover_d - 4)
+                translate([vx, vy, -1]) cylinder(d=3, h=cover_th + 2);
+        }
+        // LED viewing window (over MPPT module)
+        translate([90, 6, -1]) cube([22, 10, cover_th + 2]);
+        // Cable routing slot (rear edge)
+        translate([cover_w/2 - 20, cover_d - 8, -1])
+            cube([40, 4, cover_th + 2]);
+    }
+}
+
 // ═══════════════════════════════════════════════════════════════════════════
 //                              LAY OUT FOR EXPORT
 // ═══════════════════════════════════════════════════════════════════════════
-if (PART == "tray")          electronics_tray();
-else if (PART == "bezel")    camera_bezel();
-else if (PART == "lid_seal") lid_seal();
+if (PART == "tray")               electronics_tray();
+else if (PART == "tray_cover")    tray_cover();
+else if (PART == "bezel")         camera_bezel();
+else if (PART == "lid_seal")      lid_seal();
 else if (PART == "solar_bracket") solar_bracket();
 else if (PART == "wall_mount")    wall_mount();
+else if (PART == "ip65_box")      ip65_box();
+else if (PART == "ip65_lid")      ip65_lid();
 else {
     // "all" → show every part spread out for preview
     electronics_tray();
+    translate([0, -BOX_D - 20, 0]) tray_cover();
     translate([0, BOX_D + 20, 0]) camera_bezel();
     translate([70, BOX_D + 20, 0]) lid_seal();
     translate([BOX_W + 20, 0, 0]) solar_bracket();
     translate([BOX_W + 70, 0, 0]) wall_mount();
+    translate([BOX_W + 250, 0, 0]) ip65_box();
+    translate([BOX_W + 250, BOX_D + 40, 0]) ip65_lid();
 }
