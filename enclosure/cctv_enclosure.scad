@@ -5,8 +5,7 @@
 // ═══════════════════════════════════════════════════════════════════════════
 
 // ─── PICK ONE PART TO RENDER ──────────────────────────────────────────────
-PART = "all";   // "tray" | "tray_cover" | "bezel" | "lid_seal" |
-                // "solar_bracket" | "wall_mount" | "all"
+PART = "all";   // "tray" | "solar_bracket" | "wall_mount" | "all"
 
 // ─── ENCLOSURE BOX (off-the-shelf IP65) ───────────────────────────────────
 // INNER usable dimensions. Default for 140×78 mm outer junction box (typical thai):
@@ -83,61 +82,7 @@ module pcb_clip(pcb_w, pcb_d, h) {
     }
 }
 
-// ─── 2. CAMERA BEZEL (lens window + ESP32-CAM mount) ──────────────────────
-//   Replaces the front face of the box. Has a sealed window for the lens
-//   and screw bosses for the ESP32-CAM PCB.
-module camera_bezel() {
-    bezel_w = 60;
-    bezel_d = 50;
-    bezel_h = 8;
-    lens_offset_x = bezel_w/2;
-    lens_offset_y = bezel_d/2 - 4;   // lens is offset from PCB centre
-
-    difference() {
-        union() {
-            // Front plate (sits flush against IP65 lid)
-            cube([bezel_w, bezel_d, 2]);
-            // Lens shroud (sticks out 6mm, creates a sun-hood)
-            translate([lens_offset_x, lens_offset_y, 2])
-                cylinder(d1=22, d2=18, h=6);
-            // ESP32-CAM mounting bosses (rear)
-            for (x=[3, ESP_W-3], y=[3, ESP_D-3])
-                translate([bezel_w/2 - ESP_W/2 + x,
-                           bezel_d/2 - ESP_D/2 + y, -bezel_h])
-                    cylinder(d=5, h=bezel_h + 2);
-            // O-ring seal channel around lens (for waterproofing)
-            translate([lens_offset_x, lens_offset_y, 1.5])
-                difference() {
-                    cylinder(d=20, h=1);
-                    cylinder(d=17, h=2);
-                }
-        }
-        // Lens hole (through everything)
-        translate([lens_offset_x, lens_offset_y, -bezel_h-1])
-            cylinder(d=LENS_DIA + SLOP, h=bezel_h + 12);
-        // ESP32-CAM mount screw holes (M2.5)
-        for (x=[3, ESP_W-3], y=[3, ESP_D-3])
-            translate([bezel_w/2 - ESP_W/2 + x,
-                       bezel_d/2 - ESP_D/2 + y, -bezel_h-1])
-                cylinder(d=2.6, h=bezel_h + 3);
-        // Status LED window (small hole below lens)
-        translate([lens_offset_x - 12, lens_offset_y, -1])
-            cylinder(d=3, h=4);
-    }
-}
-
-// ─── 3. LID GASKET PRESS (TPU print, optional) ────────────────────────────
-//   A thin TPU ring that compresses against the IP65 box lid gasket
-//   when the bezel is screwed on. Belts-and-braces sealing.
-module lid_seal() {
-    bezel_w = 60; bezel_d = 50;
-    difference() {
-        cube([bezel_w, bezel_d, 1.5]);
-        translate([2, 2, -1]) cube([bezel_w-4, bezel_d-4, 3]);
-    }
-}
-
-// ─── 4. SOLAR PANEL L-BRACKET (adjustable tilt) ───────────────────────────
+// ─── 2. SOLAR PANEL L-BRACKET (adjustable tilt) ───────────────────────────
 //   Mounts the 6V/10W panel above the camera box at an adjustable angle.
 //   Panel attaches with 4× M4 bolts, bracket attaches to wall with 2× M5.
 module solar_bracket() {
@@ -172,7 +117,7 @@ module solar_bracket() {
                 polygon([[0,0], [25,0], [0,-25]]);
 }
 
-// ─── 5. WALL MOUNT (sits behind the IP65 box, articulating) ───────────────
+// ─── 3. WALL MOUNT (sits behind the IP65 box, articulating) ───────────────
 //   2-piece pivoting wall bracket so the camera can be aimed.
 module wall_mount() {
     // Wall plate (4× screw holes)
@@ -189,54 +134,15 @@ module wall_mount() {
     }
 }
 
-// ─── 6. TRAY COVER (snap-on, holds batteries + organises cables) ─────────
-//   Snaps over the 4 cable routing posts on the electronics tray.
-//   Has ventilation grid, LED viewing window, and cable routing slot.
-module tray_cover() {
-    cover_w  = BOX_W - 4;
-    cover_d  = BOX_D - 4;
-    cover_th = 2.5;
-
-    difference() {
-        union() {
-            cube([cover_w, cover_d, cover_th]);
-            // Lift tab on front edge
-            translate([cover_w/2 - 7.5, -3, 0])
-                cube([15, 4, cover_th]);
-        }
-        // 4× snap holes (over tray posts)
-        for (x = [10, cover_w - 14], y = [10, cover_d - 14])
-            translate([x, y, -1]) cylinder(d=4.4, h=cover_th + 2);
-        // Vent grid (6×3 holes, 3 mm dia, 8 mm pitch)
-        for (vc = [0:5], vr = [0:2]) {
-            vx = cover_w - 60 + vc * 8;
-            vy = cover_d - 30 + vr * 8;
-            if (vx > 4 && vx < cover_w - 4 && vy > 4 && vy < cover_d - 4)
-                translate([vx, vy, -1]) cylinder(d=3, h=cover_th + 2);
-        }
-        // LED viewing window (over MPPT module)
-        translate([90, 6, -1]) cube([22, 10, cover_th + 2]);
-        // Cable routing slot (rear edge)
-        translate([cover_w/2 - 20, cover_d - 8, -1])
-            cube([40, 4, cover_th + 2]);
-    }
-}
-
 // ═══════════════════════════════════════════════════════════════════════════
 //                              LAY OUT FOR EXPORT
 // ═══════════════════════════════════════════════════════════════════════════
 if (PART == "tray")               electronics_tray();
-else if (PART == "tray_cover")    tray_cover();
-else if (PART == "bezel")         camera_bezel();
-else if (PART == "lid_seal")      lid_seal();
 else if (PART == "solar_bracket") solar_bracket();
 else if (PART == "wall_mount")    wall_mount();
 else {
     // "all" → show every part spread out for preview
     electronics_tray();
-    translate([0, -BOX_D - 20, 0]) tray_cover();
-    translate([0, BOX_D + 20, 0]) camera_bezel();
-    translate([70, BOX_D + 20, 0]) lid_seal();
     translate([BOX_W + 20, 0, 0]) solar_bracket();
     translate([BOX_W + 70, 0, 0]) wall_mount();
 }

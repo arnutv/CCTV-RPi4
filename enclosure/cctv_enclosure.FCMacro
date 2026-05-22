@@ -110,64 +110,6 @@ def electronics_tray():
     return tray
 
 
-def camera_bezel():
-    """Front faceplate with sealed lens window + ESP32-CAM screw bosses."""
-    BW, BD, BH = 60.0, 50.0, 8.0
-    lx, ly = BW / 2, BD / 2 - 4   # lens offset (ESP32-CAM lens is off-centre)
-
-    # Faceplate
-    plate = Part.makeBox(BW, BD, 2)
-
-    # Lens shroud (cone — acts as small sun-hood and shadow guard)
-    shroud = Part.makeCone(11, 9, 6)              # r1=11, r2=9, h=6
-    shroud.translate(Vector(lx, ly, 2))
-    plate = plate.fuse(shroud)
-
-    # O-ring groove around the lens, on the inside face
-    groove_outer = Part.makeCylinder(10, 1)
-    groove_inner = Part.makeCylinder(8.5, 1)
-    groove_outer.translate(Vector(lx, ly, 0.5))
-    groove_inner.translate(Vector(lx, ly, 0.5))
-    plate = plate.fuse(groove_outer.cut(groove_inner))
-
-    # ESP32-CAM screw bosses (rear-side, 4 corners of PCB)
-    for x in (3, ESP_W - 3):
-        for y in (3, ESP_D - 3):
-            boss = Part.makeCylinder(2.5, BH + 2)
-            boss.translate(Vector(BW/2 - ESP_W/2 + x,
-                                  BD/2 - ESP_D/2 + y, -BH))
-            plate = plate.fuse(boss)
-
-    # Lens hole — punch all the way through
-    lens_hole = Part.makeCylinder((LENS_DIA + SLOP)/2, BH + 14)
-    lens_hole.translate(Vector(lx, ly, -BH - 1))
-    plate = plate.cut(lens_hole)
-
-    # ESP32-CAM screw holes (M2.5)
-    for x in (3, ESP_W - 3):
-        for y in (3, ESP_D - 3):
-            hole = Part.makeCylinder(1.3, BH + 3)
-            hole.translate(Vector(BW/2 - ESP_W/2 + x,
-                                  BD/2 - ESP_D/2 + y, -BH - 1))
-            plate = plate.cut(hole)
-
-    # Status LED window (3 mm hole, beside the lens)
-    led = Part.makeCylinder(1.5, 4)
-    led.translate(Vector(lx - 12, ly, -1))
-    plate = plate.cut(led)
-
-    return plate
-
-
-def lid_seal():
-    """Thin flat ring — print in TPU (Shore 95A) for a compressible gasket."""
-    BW, BD = 60.0, 50.0
-    outer = Part.makeBox(BW, BD, 1.5)
-    inner = Part.makeBox(BW - 4, BD - 4, 3)
-    inner.translate(Vector(2, 2, -1))
-    return outer.cut(inner)
-
-
 def solar_bracket():
     """L-bracket with arc of tilt-angle lock holes (15/30/45/60°)."""
     ARM_L, ARM_W, ARM_TH = 80.0, 25.0, 4.0
@@ -238,60 +180,6 @@ def wall_mount():
     return plate.fuse(stalk).fuse(ball)
 
 
-def tray_cover():
-    """Snap-on cover for electronics_tray.
-
-    Holds 18650s in their holder, organises cables, has ventilation holes
-    plus a viewing window for MPPT/boost status LEDs. Snaps over the tray's
-    4 cable routing posts (no screws needed).
-    """
-    cover_w  = BOX_W - 4      # matches tray base
-    cover_d  = BOX_D - 4
-    cover_th = 2.5
-
-    # Base plate
-    cover = Part.makeBox(cover_w, cover_d, cover_th)
-
-    # 4× snap holes over tray's cable routing posts (posts are 4 mm dia)
-    post_positions = [
-        (10,             10),
-        (cover_w - 14,   10),
-        (10,             cover_d - 14),
-        (cover_w - 14,   cover_d - 14),
-    ]
-    for px, py in post_positions:
-        ph = Part.makeCylinder(2.2, cover_th + 2)   # 4.4 mm dia, slight clearance
-        ph.translate(Vector(px, py, -1))
-        cover = cover.cut(ph)
-
-    # Vent hole grid (3 mm dia each, 8 mm pitch, 6×3 grid over MPPT/boost area)
-    for vc in range(6):
-        for vr in range(3):
-            vx = cover_w - 60 + vc * 8
-            vy = cover_d - 30 + vr * 8
-            if 4 < vx < cover_w - 4 and 4 < vy < cover_d - 4:
-                vh = Part.makeCylinder(1.5, cover_th + 2)
-                vh.translate(Vector(vx, vy, -1))
-                cover = cover.cut(vh)
-
-    # LED viewing window over MPPT module (rectangular cutout)
-    led_win = Part.makeBox(22, 10, cover_th + 2)
-    led_win.translate(Vector(90, 6, -1))
-    cover = cover.cut(led_win)
-
-    # Cable routing slot (long edge nearest the camera, for wires going up)
-    slot = Part.makeBox(40, 4, cover_th + 2)
-    slot.translate(Vector(cover_w / 2 - 20, cover_d - 8, -1))
-    cover = cover.cut(slot)
-
-    # Lift tab — small finger-grip protrusion to help remove cover
-    tab = Part.makeBox(15, 4, cover_th)
-    tab.translate(Vector(cover_w / 2 - 7.5, -3, 0))
-    cover = cover.fuse(tab)
-
-    return cover
-
-
 # ═══════════════════════════════════════════════════════════════════════════
 #  BUILD DOCUMENT
 # ═══════════════════════════════════════════════════════════════════════════
@@ -314,13 +202,9 @@ doc = App.newDocument(doc_name)
 
 print("Building CCTV enclosure parts…")
 
-# Print these 6 parts; drop them into your commercial 140×78 mm IP65 box
 add_part(electronics_tray(), "1_Electronics_Tray",  (0,            0,            0))
-add_part(tray_cover(),       "2_Tray_Cover",        (0,            -BOX_D - 20,  0))
-add_part(camera_bezel(),     "3_Camera_Bezel",      (0,            BOX_D + 20,   0))
-add_part(lid_seal(),         "4_Lid_Seal_TPU",      (80,           BOX_D + 20,   0))
-add_part(solar_bracket(),    "5_Solar_Bracket",     (BOX_W + 30,   0,            0))
-add_part(wall_mount(),       "6_Wall_Mount",        (BOX_W + 30,   120,          0))
+add_part(solar_bracket(),    "2_Solar_Bracket",     (BOX_W + 30,   0,            0))
+add_part(wall_mount(),       "3_Wall_Mount",        (BOX_W + 30,   120,          0))
 
 doc.recompute()
 
@@ -332,10 +216,10 @@ except Exception:
     pass
 
 print("─" * 70)
-print("Done. 6 parts created. Tree → right-click each → Export…")
+print("Done. 3 parts created. Tree → right-click each → Export…")
 print("  • STEP (.step)  → keep parametric / share with other CAD")
 print("  • Mesh (.stl)   → straight to your 3D printer slicer")
 print("─" * 70)
-print("All parts drop into a commercial 140×78 mm IP65 junction box")
-print("(inner usable area 134×72 mm assuming 3 mm walls).")
+print("Tray drops inside a commercial 140×78 mm IP65 junction box.")
+print("Solar bracket and wall mount attach outside the box.")
 print("─" * 70)
