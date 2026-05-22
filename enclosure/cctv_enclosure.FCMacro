@@ -54,12 +54,6 @@ MT3608_W, MT3608_D         = 36.0, 17.0         # boost converter
 WALL = 1.6        # 4 perimeters at 0.4 mm nozzle
 SLOP = 0.3        # fit clearance
 
-# IP65 printed-box specific (used when you want to print the whole enclosure)
-BOX_WALL_TH  = 3.0    # box / lid wall thickness (printed)
-BOX_LID_TH   = 4.0    # lid plate thickness
-GASKET_LIP   = 2.5    # raised rim inside box top edge (gasket alignment)
-GASKET_RIM_W = 2.0    # width of gasket rim
-
 # ═══════════════════════════════════════════════════════════════════════════
 #  PART BUILDERS  —  each returns a single Part.Shape
 # ═══════════════════════════════════════════════════════════════════════════
@@ -244,181 +238,6 @@ def wall_mount():
     return plate.fuse(stalk).fuse(ball)
 
 
-def ip65_box():
-    """Full printable IP65 enclosure body.
-
-    Inner dimensions match the off-the-shelf box (148×80×55 mm), so the existing
-    electronics_tray fits as-is. Floor standoffs match the tray's M3 mount holes.
-    Print orientation: opening faces UP for clean vertical walls (no supports).
-    Use M3 heat-set brass inserts in the 4 corner bosses for lid screws.
-    """
-    OW = BOX_W + 2 * BOX_WALL_TH        # 154
-    OD = BOX_D + 2 * BOX_WALL_TH        # 86
-    OH = BOX_H + BOX_WALL_TH             # 58 (open top — lid covers it)
-
-    # Outer shell
-    box = Part.makeBox(OW, OD, OH)
-
-    # Hollow inside (cut from top)
-    cavity = Part.makeBox(BOX_W, BOX_D, BOX_H + 1)
-    cavity.translate(Vector(BOX_WALL_TH, BOX_WALL_TH, BOX_WALL_TH))
-    box = box.cut(cavity)
-
-    # Gasket alignment rim on top edge (lid drops over it)
-    rim_outer = Part.makeBox(BOX_W, BOX_D, GASKET_LIP)
-    rim_outer.translate(Vector(BOX_WALL_TH, BOX_WALL_TH, OH))
-    rim_cavity = Part.makeBox(BOX_W - 2 * GASKET_RIM_W,
-                              BOX_D - 2 * GASKET_RIM_W,
-                              GASKET_LIP + 1)
-    rim_cavity.translate(Vector(BOX_WALL_TH + GASKET_RIM_W,
-                                BOX_WALL_TH + GASKET_RIM_W,
-                                OH - 0.5))
-    box = box.fuse(rim_outer.cut(rim_cavity))
-
-    # 4× corner screw bosses (M3 brass insert holes for lid attachment)
-    boss_d, boss_h = 8.0, BOX_H
-    corner_offset  = BOX_WALL_TH + 5
-    boss_positions = [
-        (corner_offset, corner_offset),
-        (OW - corner_offset, corner_offset),
-        (corner_offset, OD - corner_offset),
-        (OW - corner_offset, OD - corner_offset),
-    ]
-    for bx, by in boss_positions:
-        boss = Part.makeCylinder(boss_d / 2, boss_h)
-        boss.translate(Vector(bx, by, BOX_WALL_TH))
-        box = box.fuse(boss)
-        # M3 brass insert pocket — 4 mm dia × 7 mm deep, opening upward
-        insert = Part.makeCylinder(2.0, 8)
-        insert.translate(Vector(bx, by, boss_h + BOX_WALL_TH - 8))
-        box = box.cut(insert)
-
-    # 4× floor standoffs (match electronics_tray's M3 mount holes)
-    standoff_d, standoff_h = 6.0, 4.0
-    tray_holes = [
-        (BOX_WALL_TH + 6,            BOX_WALL_TH + 6),
-        (BOX_WALL_TH + BOX_W - 10,   BOX_WALL_TH + 6),
-        (BOX_WALL_TH + 6,            BOX_WALL_TH + BOX_D - 10),
-        (BOX_WALL_TH + BOX_W - 10,   BOX_WALL_TH + BOX_D - 10),
-    ]
-    for tx, ty in tray_holes:
-        so = Part.makeCylinder(standoff_d / 2, standoff_h)
-        so.translate(Vector(tx, ty, BOX_WALL_TH))
-        box = box.fuse(so)
-        so_hole = Part.makeCylinder(1.4, standoff_h + 1)
-        so_hole.translate(Vector(tx, ty, BOX_WALL_TH))
-        box = box.cut(so_hole)
-
-    # PG7 cable gland hole — top wall (Y = OD face), 12 mm dia
-    gland_pos = Vector(OW / 2, OD - 1, OH - 15)
-    box = box.cut(Part.makeCylinder(6, BOX_WALL_TH + 3,
-                                    gland_pos, Vector(0, 1, 0)))
-
-    # SMA antenna hole — right side wall (X = OW face), 6.5 mm dia
-    sma_pos = Vector(OW - 1, OD / 2, OH / 2)
-    box = box.cut(Part.makeCylinder(3.25, BOX_WALL_TH + 3,
-                                    sma_pos, Vector(1, 0, 0)))
-
-    # Drain hole — bottom wall (Y = 0 face), 3 mm dia
-    drain_pos = Vector(OW / 2, -1, 8)
-    box = box.cut(Part.makeCylinder(1.5, BOX_WALL_TH + 3,
-                                    drain_pos, Vector(0, 1, 0)))
-
-    # 4× wall mounting holes through the back face (Z = 0)
-    mount_positions = [
-        (12, 12),
-        (OW - 12, 12),
-        (12, OD - 12),
-        (OW - 12, OD - 12),
-    ]
-    for mx, my in mount_positions:
-        # M4 through-hole
-        through = Part.makeCylinder(2.5, BOX_WALL_TH + 2)
-        through.translate(Vector(mx, my, -1))
-        box = box.cut(through)
-        # Countersink on outside (back face)
-        cs = Part.makeCone(5, 2.5, 2.5)
-        cs.translate(Vector(mx, my, -1))
-        box = box.cut(cs)
-
-    return box
-
-
-def ip65_lid():
-    """Full printable lid with integrated camera bezel features.
-
-    Replaces camera_bezel for users printing the entire enclosure.
-    Drops over the box's gasket rim with a 0.4 mm slip-fit clearance.
-    Lid plate has 4× countersunk M3 corner holes to screw into the box's
-    brass-insert bosses (TPU gasket goes between).
-    """
-    OW = BOX_W + 2 * BOX_WALL_TH
-    OD = BOX_D + 2 * BOX_WALL_TH
-    LID_TH = BOX_LID_TH
-
-    # Lid plate
-    lid = Part.makeBox(OW, OD, LID_TH)
-
-    # Recess on bottom face to fit over box's gasket rim
-    REC_DEPTH = GASKET_LIP - 0.5   # 0.5 mm clearance for gasket compression
-    rec = Part.makeBox(BOX_W - 0.4, BOX_D - 0.4, REC_DEPTH + 0.5)
-    rec.translate(Vector(BOX_WALL_TH + 0.2, BOX_WALL_TH + 0.2, -0.5))
-    lid = lid.cut(rec)
-
-    # 4× corner countersunk M3 holes (match box's screw bosses)
-    corner_offset = BOX_WALL_TH + 5
-    corner_positions = [
-        (corner_offset, corner_offset),
-        (OW - corner_offset, corner_offset),
-        (corner_offset, OD - corner_offset),
-        (OW - corner_offset, OD - corner_offset),
-    ]
-    for cx, cy in corner_positions:
-        # Through-hole for M3 shaft
-        through = Part.makeCylinder(1.7, LID_TH + 2)
-        through.translate(Vector(cx, cy, -1))
-        lid = lid.cut(through)
-        # Countersink on top of lid (M3 head sits flush)
-        cs = Part.makeCone(3.5, 1.75, 1.8)
-        cs.translate(Vector(cx, cy, LID_TH - 1.8))
-        lid = lid.cut(cs)
-
-    # Camera area — centered on lid
-    lens_x = OW / 2
-    lens_y = OD / 2 - 4   # ESP32-CAM lens offset from PCB centre
-
-    # Sun shroud (cone extending up from top face)
-    shroud = Part.makeCone(11, 9, 7)
-    shroud.translate(Vector(lens_x, lens_y, LID_TH))
-    lid = lid.fuse(shroud)
-
-    # ESP32-CAM mounting bosses on bottom (inside) face
-    boss_h = 5
-    for x in (3, ESP_W - 3):
-        for y in (3, ESP_D - 3):
-            boss = Part.makeCylinder(2.5, boss_h)
-            boss.translate(Vector(OW / 2 - ESP_W / 2 + x,
-                                  OD / 2 - ESP_D / 2 + y, -boss_h))
-            lid = lid.fuse(boss)
-            # M2.5 thread / self-tap hole
-            hole = Part.makeCylinder(1.3, boss_h + LID_TH + 1)
-            hole.translate(Vector(OW / 2 - ESP_W / 2 + x,
-                                  OD / 2 - ESP_D / 2 + y, -boss_h - 1))
-            lid = lid.cut(hole)
-
-    # Lens through-hole (seal externally with clear acrylic disc + silicone)
-    lens_hole = Part.makeCylinder((LENS_DIA + SLOP) / 2, LID_TH + 15)
-    lens_hole.translate(Vector(lens_x, lens_y, -1))
-    lid = lid.cut(lens_hole)
-
-    # Status LED viewing window (3 mm dia, beside the lens)
-    led = Part.makeCylinder(1.5, LID_TH + 2)
-    led.translate(Vector(lens_x - 12, lens_y, -1))
-    lid = lid.cut(led)
-
-    return lid
-
-
 def tray_cover():
     """Snap-on cover for electronics_tray.
 
@@ -495,19 +314,13 @@ doc = App.newDocument(doc_name)
 
 print("Building CCTV enclosure parts…")
 
-# ── Off-the-shelf-box workflow (uses commercial IP65 box, ~$6) ──────────
+# Print these 6 parts; drop them into your commercial 140×78 mm IP65 box
 add_part(electronics_tray(), "1_Electronics_Tray",  (0,            0,            0))
 add_part(tray_cover(),       "2_Tray_Cover",        (0,            -BOX_D - 20,  0))
 add_part(camera_bezel(),     "3_Camera_Bezel",      (0,            BOX_D + 20,   0))
 add_part(lid_seal(),         "4_Lid_Seal_TPU",      (80,           BOX_D + 20,   0))
-
-# ── Mounting accessories (work with either workflow) ───────────────────
 add_part(solar_bracket(),    "5_Solar_Bracket",     (BOX_W + 30,   0,            0))
 add_part(wall_mount(),       "6_Wall_Mount",        (BOX_W + 30,   120,          0))
-
-# ── Fully-printed enclosure workflow (no commercial box needed) ────────
-add_part(ip65_box(),         "7_IP65_Box",          (BOX_W + 250,  0,            0))
-add_part(ip65_lid(),         "8_IP65_Lid",          (BOX_W + 250,  BOX_D + 40,   0))
 
 doc.recompute()
 
@@ -519,11 +332,10 @@ except Exception:
     pass
 
 print("─" * 70)
-print("Done. 8 parts created. Tree → right-click each → Export…")
+print("Done. 6 parts created. Tree → right-click each → Export…")
 print("  • STEP (.step)  → keep parametric / share with other CAD")
 print("  • Mesh (.stl)   → straight to your 3D printer slicer")
 print("─" * 70)
-print("Workflows:")
-print("  Off-the-shelf box  →  print parts 1-6  +  buy a $6 IP65 junction box")
-print("  Fully 3D-printed   →  print parts 1, 2, 5, 6, 7, 8  (no purchase)")
+print("All parts drop into a commercial 140×78 mm IP65 junction box")
+print("(inner usable area 134×72 mm assuming 3 mm walls).")
 print("─" * 70)

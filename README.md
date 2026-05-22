@@ -184,15 +184,18 @@ Now the dashboard is also reachable from your home network (look for the IP in t
 
 Two formats provided in `enclosure/`:
 
-- **`cctv_enclosure.scad`** — OpenSCAD parametric source (5 parts)
-- **`cctv_enclosure.FCMacro`** — FreeCAD Python macro (same 5 parts, paste into Macro → Macros)
+- **`cctv_enclosure.scad`** — OpenSCAD parametric source (6 parts)
+- **`cctv_enclosure.FCMacro`** — FreeCAD Python macro (same 6 parts)
+
+Designed for a **140 × 78 mm outer IP65 junction box** (typical thai weatherproof box). The parts drop inside; the box itself is purchased, not printed.
 
 Parts:
 
 | Part | Print time | Filament | Purpose |
 |---|---|---|---|
-| Electronics tray | 90 min | 28 g | Organizes battery + MPPT + boost inside IP65 box |
-| Camera bezel | 30 min | 10 g | Replaces front face, holds lens with sun-hood + O-ring seal |
+| Electronics tray | 90 min | 28 g | Organises battery + MPPT + boost inside the IP65 box |
+| Tray cover | 30 min | 10 g | Snap-on cover — holds 18650 in place, vents, LED viewing window |
+| Camera bezel | 30 min | 10 g | Lens window + ESP32-CAM mount, sun hood, O-ring groove |
 | Lid seal (TPU) | 15 min | 3 g | Extra gasket — optional for rainy climates |
 | Solar L-bracket | 60 min | 22 g | Adjustable tilt 15/30/45/60° |
 | Wall mount | 45 min | 18 g | Ball-joint mount for aiming the camera |
