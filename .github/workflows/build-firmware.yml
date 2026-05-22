@@ -1,0 +1,105 @@
+name: Build ESP32-CAM Firmware
+
+on:
+  push:
+    branches: [main, master]
+    paths:
+      - 'CCTV-Camera/**'
+      - '.github/workflows/build-firmware.yml'
+  pull_request:
+    paths:
+      - 'CCTV-Camera/**'
+  workflow_dispatch:        # allow manual "Run workflow" button on Actions tab
+    inputs:
+      cam_id:
+        description: 'Camera ID to bake into firmware (1-6)'
+        required: false
+        default: '1'
+      cam_name:
+        description: 'Camera name to bake in (e.g. "Front Door")'
+        required: false
+        default: 'Front Door'
+
+jobs:
+  build:
+    name: Compile for AI-Thinker ESP32-CAM
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Install Arduino CLI
+        uses: arduino/setup-arduino-cli@v2
+
+      - name: Configure Arduino CLI for ESP32
+        run: |
+          arduino-cli config init
+          arduino-cli config add board_manager.additional_urls \
+            https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json
+          arduino-cli core update-index
+
+      - name: Install ESP32 core (pinned to 1.0.6)
+        run: arduino-cli core install esp32:esp32@1.0.6
+
+      - name: Override cam_config.h with workflow inputs (manual runs only)
+        if: github.event_name == 'workflow_dispatch'
+        run: |
+          sed -i 's|^#define CAM_ID .*|#define CAM_ID   ${{ inputs.cam_id }}|'          CCTV-Camera/cam_config.h
+          sed -i 's|^#define CAM_NAME .*|#define CAM_NAME "${{ inputs.cam_name }}"|'    CCTV-Camera/cam_config.h
+          echo "── cam_config.h after override ──"
+          head -25 CCTV-Camera/cam_config.h
+
+      - name: Compile sketch
+        run: |
+          mkdir -p build
+          arduino-cli compile \
+            --fqbn esp32:esp32:esp32cam \
+            --build-property "build.partitions=huge_app" \
+            --build-property "upload.maximum_size=3145728" \
+            --output-dir build \
+            --warnings default \
+            CCTV-Camera/
+
+      - name: Show binary sizes
+        run: |
+          echo "── Built files ──"
+          ls -lh build/
+          echo ""
+          echo "── Flash usage ──"
+          arduino-cli compile \
+            --fqbn esp32:esp32:esp32cam \
+            --build-property "build.partitions=huge_app" \
+            --show-properties=size \
+            CCTV-Camera/ 2>/dev/null | grep -E "Sketch|Global" || true
+
+      - name: Upload firmware artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: CCTV-Camera-firmware-cam${{ inputs.cam_id || '1' }}
+          path: |
+            build/*.bin
+            build/*.elf
+          retention-days: 90
+          if-no-files-found: error
+
+      - name: Job summary
+        run: |
+          {
+            echo "## Build Summary"
+            echo ""
+            echo "| | |"
+            echo "|---|---|"
+            echo "| Board | AI-Thinker ESP32-CAM (esp32:esp32:esp32cam) |"
+            echo "| Core  | esp32@1.0.6 (pinned) |"
+            echo "| Sketch | CCTV-Camera/CCTV-Camera.ino |"
+            echo "| CAM_ID  | ${{ inputs.cam_id || '1 (default)' }} |"
+            echo "| CAM_NAME | ${{ inputs.cam_name || 'Front Door (default)' }} |"
+            echo ""
+            echo "Download the .bin from the **Artifacts** section at the top of this page."
+            echo "Then flash with [esptool](https://github.com/espressif/esptool):"
+            echo ""
+            echo '```bash'
+            echo 'esptool.py --chip esp32 --port COM3 --baud 460800 write_flash -z 0x10000 CCTV-Camera.ino.bin'
+            echo '```'
+          } >> $GITHUB_STEP_SUMMARY

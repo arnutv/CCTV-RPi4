@@ -1,0 +1,91 @@
+CCTV-Camera Wiring Diagram  (Recommended tier:  6V/10W panel + 2× 18650)
+═══════════════════════════════════════════════════════════════════════════
+
+                              ┌────────────────────┐
+                              │   6V / 10W SOLAR   │
+                              │   panel  (mounted  │
+                              │   above box on     │
+                              │   L-bracket)       │
+                              └─────────┬──────────┘
+                                        │  red(+) / black(−)
+                                        │  ~30 cm cable
+                                        │
+                              [PG7 cable gland in box top]
+                                        │
+                                        ▼
+                            ┌───────────────────────┐
+                            │  CN3791 MPPT Charger  │
+                            │   IN+   IN−   OUT+/−  │
+                            │   ●─────●─────●──●    │
+                            └───────────────────────┘
+                                              │ │
+                                              ▼ ▼
+                            ┌───────────────────────┐
+                            │  2× 18650 in PARALLEL │
+                            │   3.0–4.2 V  6000 mAh │
+                            │ (+) ────────────── (−)│
+                            └───────────────────────┘
+                                              │ │
+                                              ▼ ▼
+                            ┌───────────────────────┐
+                            │  MT3608 Boost → 5 V   │
+                            │   IN+   IN−   OUT+/−  │
+                            │     adjust pot to 5.0V│
+                            │     BEFORE connecting │
+                            │     the ESP32!        │
+                            └─────────┬─────────────┘
+                                      │ 5 V  +  GND
+                                      ▼
+                            ┌───────────────────────┐
+                            │     ESP32-CAM         │
+                            │   5V  GND  U0R  U0T   │
+                            │   ●   ●     ─   ─     │
+                            │  (use 5V pin, NOT 3V) │
+                            │                       │
+                            │   SD card slot:       │
+                            │   ┌───────┐           │
+                            │   │ 16 GB │           │
+                            │   └───────┘           │
+                            └───────────────────────┘
+                                      │
+                                      └──→ Camera lens (front of box,
+                                            sealed with O-ring + clear disc)
+
+                            ┌───────────────────────┐
+                            │   SMA antenna (side)  │
+                            │   2.4 GHz 2 dBi omni  │
+                            │   ↑ extends WiFi      │
+                            │     range ~3×         │
+                            └───────────────────────┘
+                            (solder pigtail to ESP32-CAM
+                             U.FL pad — see notes below)
+
+
+WIRE GAUGE & LENGTHS
+─────────────────────
+  Solar → MPPT     :  20 AWG, 30 cm    (any colour, polarity matters)
+  MPPT → Battery   :  20 AWG, 5 cm     (RED to +, BLACK to −)
+  Battery → Boost  :  20 AWG, 5 cm
+  Boost → ESP32    :  22 AWG, 8 cm     (twist pair to reduce noise)
+
+OPTIONAL ADD-ONS
+─────────────────────
+  Power LED        :  3 mm green, 1 kΩ resistor, across 5 V rail.
+                       Visible through 3 mm hole next to lens.
+  Reset button     :  Tactile switch from ESP32-CAM RST to GND,
+                       through a 6 mm waterproof button in the box side.
+  Battery cut-off  :  1S BMS protection module BETWEEN battery and boost.
+                       Stops over-discharge below 2.5 V (saves 18650 cells).
+  External antenna :  Cut the 0Ω resistor on ESP32-CAM near U.FL connector
+                       (re-route from PCB antenna to U.FL → SMA pigtail).
+
+
+WATERPROOFING CHECKLIST
+─────────────────────
+  □  IP65 box lid has rubber gasket — don't lose it
+  □  PG7 cable gland on top, tightened with O-ring (silicone seal too)
+  □  Lens disc glued to bezel with clear silicone (5 mm bead all round)
+  □  SMA antenna connector has rubber washer + nut tight
+  □  Box mounted with cable openings facing DOWN (drip away from gland)
+  □  Add a 3 mm "weep hole" on the bottom for condensation, covered
+     with breathable PTFE membrane sticker (Gore vent ~$0.50 each)

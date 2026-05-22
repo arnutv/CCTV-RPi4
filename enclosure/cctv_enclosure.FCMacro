@@ -1,0 +1,278 @@
+# -*- coding: utf-8 -*-
+# ═══════════════════════════════════════════════════════════════════════════
+#  CCTV-Camera Enclosure  —  FreeCAD Python Macro
+# ═══════════════════════════════════════════════════════════════════════════
+#  Generates 5 parts inside the active FreeCAD document, ready for STEP/STL export:
+#       1. Electronics tray (organises battery + MPPT + boost inside IP65 box)
+#       2. Camera bezel    (sealed lens window + ESP32-CAM mount)
+#       3. Lid seal        (optional TPU gasket — print in flexible filament)
+#       4. Solar bracket   (L-bracket with adjustable tilt angle)
+#       5. Wall mount      (articulating ball joint behind the box)
+#
+#  HOW TO USE
+#  ──────────
+#   1. Open FreeCAD
+#   2. Menu:  Macro  →  Macros…  →  "Create"  →  name it "cctv_enclosure"
+#   3. Paste the entire contents of this file into the editor
+#   4. Click "Execute"  (or F6)
+#   5. Five Solids appear in the tree, spread out in the 3-D view
+#   6. Right-click each one  →  Export…  →  choose STEP (.step) or Mesh (STL)
+#
+#  PARAMETRIC EDITS
+#  ────────────────
+#  Change any value in the PARAMETERS block below, then re-run the macro.
+#  Boolean ops are deterministic, so the parts will rebuild identically.
+#
+#  TESTED ON
+#  ─────────
+#  FreeCAD 0.21, 0.22, 1.0   (no external workbenches required, vanilla install)
+# ═══════════════════════════════════════════════════════════════════════════
+
+import FreeCAD as App
+import FreeCADGui as Gui
+import Part
+from FreeCAD import Vector
+
+# ─── PARAMETERS ───────────────────────────────────────────────────────────
+# IP65 box internal usable dimensions (Hammond 1554G / generic 158×90×65)
+BOX_W = 148.0     # inner length
+BOX_D =  80.0     # inner depth
+BOX_H =  55.0     # inner height (lid-to-base)
+
+# Electronics — real measured sizes
+ESP_W, ESP_D, ESP_H        = 40.5, 27.0,  4.5   # ESP32-CAM PCB
+LENS_DIA                   =  8.5               # camera lens barrel
+HOLDER_W, HOLDER_D, HOLDER_H = 75.0, 36.0, 19.0 # 2× 18650 holder
+CN3791_W, CN3791_D         = 30.0, 20.0         # MPPT charger
+MT3608_W, MT3608_D         = 36.0, 17.0         # boost converter
+
+# Print tolerances
+WALL = 1.6        # 4 perimeters at 0.4 mm nozzle
+SLOP = 0.3        # fit clearance
+
+# ═══════════════════════════════════════════════════════════════════════════
+#  PART BUILDERS  —  each returns a single Part.Shape
+# ═══════════════════════════════════════════════════════════════════════════
+
+def make_pcb_clip(pcb_w, pcb_d, h):
+    """Two-finger clip that grips a small PCB by its short edges."""
+    outer = Part.makeBox(pcb_w + WALL*2 + SLOP*2,
+                         pcb_d + WALL*2 + SLOP*2, h)
+    inner = Part.makeBox(pcb_w + SLOP*2, pcb_d + SLOP*2, h - 1.5)
+    inner.translate(Vector(WALL, WALL, 1.6))
+    # Window in the middle so you can lift the PCB out
+    window = Part.makeBox(12, pcb_d + WALL*4 + SLOP*2 + 2, h)
+    window.translate(Vector((pcb_w + WALL*2)/2 - 6, -1, 3))
+    return outer.cut(inner).cut(window)
+
+
+def electronics_tray():
+    """Floor tray that holds battery + MPPT + boost in fixed positions."""
+    # Base plate
+    tray = Part.makeBox(BOX_W - 4, BOX_D - 4, 2)
+
+    # Battery holder pocket (open box, 4 walls + floor channel)
+    pocket_outer = Part.makeBox(HOLDER_W + SLOP*2, HOLDER_D + SLOP*2, 10)
+    pocket_outer.translate(Vector(4, 4, 2))
+    pocket_inner = Part.makeBox(HOLDER_W + SLOP*2 - WALL*2,
+                                HOLDER_D + SLOP*2 - WALL*2, 10)
+    pocket_inner.translate(Vector(4 + WALL, 4 + WALL, 4))
+    tray = tray.fuse(pocket_outer.cut(pocket_inner))
+
+    # MPPT clip (right of battery)
+    mppt_clip = make_pcb_clip(CN3791_W, CN3791_D, 8)
+    mppt_clip.translate(Vector(4 + HOLDER_W + 6, 4, 2))
+    tray = tray.fuse(mppt_clip)
+
+    # Boost converter clip (right of MPPT, stacked behind)
+    boost_clip = make_pcb_clip(MT3608_W, MT3608_D, 8)
+    boost_clip.translate(Vector(4 + HOLDER_W + 6, 4 + CN3791_D + 5, 2))
+    tray = tray.fuse(boost_clip)
+
+    # Cable routing posts in 4 corners
+    for x in (10, BOX_W - 14):
+        for y in (10, BOX_D - 14):
+            post = Part.makeCylinder(2.0, 12)
+            post.translate(Vector(x, y, 2))
+            tray = tray.fuse(post)
+
+    # M3 mounting holes through to the box-floor standoffs
+    for x in (6, BOX_W - 10):
+        for y in (6, BOX_D - 10):
+            hole = Part.makeCylinder(1.7, 5)
+            hole.translate(Vector(x, y, -1))
+            tray = tray.cut(hole)
+
+    return tray
+
+
+def camera_bezel():
+    """Front faceplate with sealed lens window + ESP32-CAM screw bosses."""
+    BW, BD, BH = 60.0, 50.0, 8.0
+    lx, ly = BW / 2, BD / 2 - 4   # lens offset (ESP32-CAM lens is off-centre)
+
+    # Faceplate
+    plate = Part.makeBox(BW, BD, 2)
+
+    # Lens shroud (cone — acts as small sun-hood and shadow guard)
+    shroud = Part.makeCone(11, 9, 6)              # r1=11, r2=9, h=6
+    shroud.translate(Vector(lx, ly, 2))
+    plate = plate.fuse(shroud)
+
+    # O-ring groove around the lens, on the inside face
+    groove_outer = Part.makeCylinder(10, 1)
+    groove_inner = Part.makeCylinder(8.5, 1)
+    groove_outer.translate(Vector(lx, ly, 0.5))
+    groove_inner.translate(Vector(lx, ly, 0.5))
+    plate = plate.fuse(groove_outer.cut(groove_inner))
+
+    # ESP32-CAM screw bosses (rear-side, 4 corners of PCB)
+    for x in (3, ESP_W - 3):
+        for y in (3, ESP_D - 3):
+            boss = Part.makeCylinder(2.5, BH + 2)
+            boss.translate(Vector(BW/2 - ESP_W/2 + x,
+                                  BD/2 - ESP_D/2 + y, -BH))
+            plate = plate.fuse(boss)
+
+    # Lens hole — punch all the way through
+    lens_hole = Part.makeCylinder((LENS_DIA + SLOP)/2, BH + 14)
+    lens_hole.translate(Vector(lx, ly, -BH - 1))
+    plate = plate.cut(lens_hole)
+
+    # ESP32-CAM screw holes (M2.5)
+    for x in (3, ESP_W - 3):
+        for y in (3, ESP_D - 3):
+            hole = Part.makeCylinder(1.3, BH + 3)
+            hole.translate(Vector(BW/2 - ESP_W/2 + x,
+                                  BD/2 - ESP_D/2 + y, -BH - 1))
+            plate = plate.cut(hole)
+
+    # Status LED window (3 mm hole, beside the lens)
+    led = Part.makeCylinder(1.5, 4)
+    led.translate(Vector(lx - 12, ly, -1))
+    plate = plate.cut(led)
+
+    return plate
+
+
+def lid_seal():
+    """Thin flat ring — print in TPU (Shore 95A) for a compressible gasket."""
+    BW, BD = 60.0, 50.0
+    outer = Part.makeBox(BW, BD, 1.5)
+    inner = Part.makeBox(BW - 4, BD - 4, 3)
+    inner.translate(Vector(2, 2, -1))
+    return outer.cut(inner)
+
+
+def solar_bracket():
+    """L-bracket with arc of tilt-angle lock holes (15/30/45/60°)."""
+    ARM_L, ARM_W, ARM_TH = 80.0, 25.0, 4.0
+
+    # Vertical wall plate
+    plate = Part.makeBox(ARM_W, ARM_TH, 100)
+    for z in (15, 85):
+        hole = Part.makeCylinder(2.75, 6, Vector(ARM_W/2, -1, z),
+                                 Vector(0, 1, 0))
+        plate = plate.cut(hole)
+
+    # Horizontal arm (panel side)
+    arm = Part.makeBox(ARM_W, ARM_L, ARM_TH)
+    arm.translate(Vector(0, ARM_TH, 100 - ARM_TH))
+
+    # Pivot hole at far end
+    pivot = Part.makeCylinder(2.75, ARM_TH + 2)
+    pivot.translate(Vector(ARM_W/2, ARM_L - 10 + ARM_TH, 100 - ARM_TH - 1))
+    arm = arm.cut(pivot)
+
+    # Tilt-lock arc (4 holes for snap-to-angle)
+    import math
+    for a_deg in (15, 30, 45, 60):
+        a = math.radians(a_deg)
+        hx = ARM_W/2 + 25 * math.sin(a)
+        hy = ARM_L - 10 - 25 * math.cos(a) + ARM_TH
+        h = Part.makeCylinder(2.25, ARM_TH + 2)
+        h.translate(Vector(hx, hy, 100 - ARM_TH - 1))
+        arm = arm.cut(h)
+
+    bracket = plate.fuse(arm)
+
+    # Gusset triangle for strength (between vertical and horizontal)
+    import Part as _P
+    gusset_pts = [Vector(0, ARM_TH, 100 - ARM_TH),
+                  Vector(0, ARM_TH + 25, 100 - ARM_TH),
+                  Vector(0, ARM_TH, 100 - ARM_TH - 25),
+                  Vector(0, ARM_TH, 100 - ARM_TH)]
+    wire = _P.makePolygon(gusset_pts)
+    face = _P.Face(wire)
+    gusset = face.extrude(Vector(ARM_W, 0, 0))
+    bracket = bracket.fuse(gusset)
+
+    return bracket
+
+
+def wall_mount():
+    """Square wall plate + ball-joint stalk that snaps into a socket on the box back."""
+    # Wall plate
+    plate = Part.makeBox(80, 80, 4)
+    # 4× wall screw holes
+    for x in (10, 70):
+        for y in (10, 70):
+            h = Part.makeCylinder(2.5, 6)
+            h.translate(Vector(x, y, -1))
+            plate = plate.cut(h)
+    # Centre pivot
+    pivot = Part.makeCylinder(4, 6)
+    pivot.translate(Vector(40, 40, -1))
+    plate = plate.cut(pivot)
+
+    # Stalk + ball
+    stalk = Part.makeCylinder(5, 15)
+    stalk.translate(Vector(40, 40, 4))
+    ball = Part.makeSphere(10)
+    ball.translate(Vector(40, 40, 19))
+
+    return plate.fuse(stalk).fuse(ball)
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+#  BUILD DOCUMENT
+# ═══════════════════════════════════════════════════════════════════════════
+
+def add_part(shape, label, offset):
+    """Add a shape to the active document with a label, at given offset."""
+    shape.translate(Vector(*offset))
+    obj = App.ActiveDocument.addObject("Part::Feature", label)
+    obj.Shape = shape
+    obj.Label = label
+    return obj
+
+# Fresh document each run
+doc_name = "CCTV_Enclosure"
+try:
+    App.closeDocument(doc_name)
+except Exception:
+    pass
+doc = App.newDocument(doc_name)
+
+print("Building CCTV enclosure parts…")
+
+add_part(electronics_tray(), "1_Electronics_Tray",  (0,            0,            0))
+add_part(camera_bezel(),     "2_Camera_Bezel",      (0,            BOX_D + 20,   0))
+add_part(lid_seal(),         "3_Lid_Seal_TPU",      (80,           BOX_D + 20,   0))
+add_part(solar_bracket(),    "4_Solar_Bracket",     (BOX_W + 30,   0,            0))
+add_part(wall_mount(),       "5_Wall_Mount",        (BOX_W + 30,   120,          0))
+
+doc.recompute()
+
+# Frame the view on all parts
+try:
+    Gui.ActiveDocument.ActiveView.viewIsometric()
+    Gui.SendMsgToActiveView("ViewFit")
+except Exception:
+    pass
+
+print("─" * 60)
+print("Done. 5 parts created. Tree → right-click each → Export…")
+print("  • STEP (.step)  → keep parametric / share with other CAD")
+print("  • Mesh (.stl)   → straight to your 3D printer slicer")
+print("─" * 60)

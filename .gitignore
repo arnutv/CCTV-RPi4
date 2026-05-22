@@ -1,0 +1,54 @@
+# ── OS / Editor ───────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*.swo
+~$*
+*.tmp
+
+# ── IDE ───────────────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.code-workspace
+
+# ── Claude Code workspace ─────────────────────────────────────────────────
+.claude/
+
+# ── Arduino IDE build artifacts ───────────────────────────────────────────
+build/
+*.bin
+*.elf
+*.hex
+*.map
+
+# ── PlatformIO ────────────────────────────────────────────────────────────
+.pio/
+.pioenvs/
+.piolibdeps/
+
+# ── Python ────────────────────────────────────────────────────────────────
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+venv/
+.venv/
+
+# ── FreeCAD ──────────────────────────────────────────────────────────────
+*.FCStd1
+*.FCBak
+
+# ── Logs / Backups ────────────────────────────────────────────────────────
+*.log
+*.bak
+*.old
+
+# ── Local secrets / config overrides ──────────────────────────────────────
+.env
+secrets.h
+cam_config.local.h
+
+# ── Recordings (when RPi sync'd to dev machine) ──────────────────────────
+cctv_recordings/
+recordings/

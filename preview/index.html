@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CCTV Dashboard — Preview</title>
+<style>
+:root{
+  --bg:#f0f4f8;--surface:#ffffff;--surface2:#f6f8fa;
+  --border:#d0d7de;--border2:#96a3b0;
+  --text:#1c2128;--dim:#57606a;
+  --blue:#0969da;--green:#1a7f37;--red:#cf222e;--amber:#9a6700;
+  --radius:10px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Courier New',monospace;font-size:13px;line-height:1.5}
+
+/* ── Header ── */
+.hdr{position:sticky;top:0;z-index:50;background:var(--surface);
+  border-bottom:1px solid var(--border);padding:10px 20px;
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.hdr-logo{display:flex;align-items:center;gap:10px}
+.logo-icon{font-size:20px}
+.logo-text{color:var(--blue);font-size:15px;font-weight:bold;letter-spacing:.3px}
+.logo-sub{color:var(--dim);font-size:11px}
+.hdr-stats{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.stat{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--dim);white-space:nowrap}
+.stat.warm{color:var(--amber)}
+.disk-wrap{display:flex;align-items:center;gap:5px}
+.disk-track{width:64px;height:6px;background:var(--bg);border:1px solid var(--border);border-radius:3px;overflow:hidden}
+.disk-bar{height:100%;background:var(--green);transition:width 1s}
+.hdr-btns{display:flex;gap:6px}
+.hbtn{padding:5px 14px;border-radius:6px;border:none;cursor:pointer;font-family:monospace;font-size:12px;text-decoration:none;transition:opacity .15s}
+.hbtn:hover{opacity:.85}
+.hbtn-mon{background:var(--blue);color:#fff}
+.hbtn-rfs{background:var(--surface2);color:var(--text);border:1px solid var(--border)}
+
+/* ── Section ── */
+.wrap{max-width:1380px;margin:0 auto;padding:18px 18px 0}
+.sec-title{font-size:10px;text-transform:uppercase;letter-spacing:1.8px;color:var(--dim);
+  margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.sec-title::after{content:'';flex:1;height:1px;background:var(--border)}
+
+/* ── Camera grid 3×2 ── */
+.cam-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:28px}
+.cam-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:border-color .2s,box-shadow .2s}
+.cam-card:hover{border-color:#0969da40;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.cam-card.alert{border-color:var(--red);box-shadow:0 0 0 1px var(--red);animation:calert .7s infinite}
+@keyframes calert{0%,100%{border-color:var(--red)}50%{border-color:transparent}}
+
+/* Card header */
+.card-hd{padding:9px 13px;background:linear-gradient(135deg,var(--surface2) 0%,var(--surface) 100%);
+  border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;gap:6px}
+.card-title{display:flex;align-items:baseline;gap:5px}
+.card-name{font-weight:bold;font-size:13px}
+.card-id{font-size:10px;color:var(--dim)}
+.card-badges{display:flex;align-items:center;gap:5px}
+
+/* Dot */
+.dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.dot-live  {background:var(--green);animation:dpulse 2s infinite}
+.dot-motion{background:var(--red);animation:dblink .5s infinite}
+.dot-off   {background:#b0b8c1}
+@keyframes dpulse{0%,100%{opacity:1}50%{opacity:.2}}
+@keyframes dblink{0%,100%{opacity:1}50%{opacity:.08}}
+
+/* Pills */
+.pill{padding:2px 8px;border-radius:10px;font-size:10px;font-weight:bold}
+.pill-live  {background:#dafbe1;color:#1a7f37;border:1px solid #aef0b5}
+.pill-motion{background:#ffebe9;color:#cf222e;border:1px solid #ffcecb}
+.pill-off   {background:var(--surface2);color:var(--dim);border:1px solid var(--border)}
+.pill-rec   {background:#ffebe9;color:#cf222e;border:1px solid #ffcecb}
+
+/* Stream */
+.stream{background:#000;aspect-ratio:4/3;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.stream::after{content:'\26F6';position:absolute;top:7px;right:8px;
+  color:rgba(255,255,255,.5);font-size:17px;opacity:0;
+  transition:opacity .2s;pointer-events:none;z-index:2}
+.stream:hover::after{opacity:1}
+.stream-img{width:100%;height:100%;object-fit:cover;display:block}
+.nosig{display:flex;flex-direction:column;align-items:center;justify-content:center;color:#222;font-size:11px;letter-spacing:1.5px;gap:8px;height:100%;width:100%}
+.nosig-icon{font-size:28px;opacity:.3}
+
+/* ── Camera expand modal ── */
+.cx-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.92);
+  z-index:300;align-items:center;justify-content:center;padding:20px}
+.cx-modal.open{display:flex;animation:cxfade .18s ease}
+@keyframes cxfade{from{opacity:0;transform:scale(.97)}to{opacity:1;transform:scale(1)}}
+.cx-box{background:var(--surface);border:1px solid var(--border);border-radius:12px;
+  overflow:hidden;display:flex;flex-direction:column;width:min(95vw,1100px)}
+.cx-hd{padding:11px 16px;
+  background:linear-gradient(135deg,var(--surface2) 0%,var(--surface) 100%);
+  border-bottom:1px solid var(--border);
+  display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.cx-title{display:flex;align-items:baseline;gap:7px}
+.cx-name{font-weight:bold;font-size:15px}
+.cx-id{font-size:11px;color:var(--dim)}
+.cx-badges{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.cx-stream{background:#000;width:100%;aspect-ratio:4/3;max-height:65vh;
+  position:relative;overflow:hidden}
+.cx-stream>div{width:100%;height:100%}
+.cx-ft{padding:10px 16px;border-top:1px solid var(--border);
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+.cx-close{padding:6px 14px;border-radius:6px;background:var(--surface2);
+  color:var(--text);border:1px solid var(--border);cursor:pointer;
+  font-family:monospace;font-size:12px;transition:opacity .15s}
+.cx-close:hover{opacity:.8}
+
+/* Mock stream overlay effect */
+.stream-mock{width:100%;height:100%;position:relative;overflow:hidden}
+.stream-mock::after{content:'';position:absolute;inset:0;
+  background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.03) 2px,rgba(0,0,0,.03) 4px);
+  pointer-events:none}
+.cam-img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.92) contrast(1.05)}
+
+/* Card footer */
+.card-ft{padding:8px 13px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px;border-top:1px solid var(--border)}
+.batt{display:flex;align-items:center;gap:6px}
+.batt-track{width:38px;height:8px;background:var(--bg);border:1px solid var(--border);border-radius:2px;overflow:hidden}
+.batt-fill{height:100%;background:linear-gradient(90deg,var(--red) 0%,var(--amber) 45%,var(--green) 100%)}
+.batt-pct{font-size:11px;color:var(--dim);min-width:28px}
+.btns{display:flex;gap:4px}
+.btn{padding:4px 8px;border-radius:5px;border:none;cursor:pointer;font-size:11px;font-family:monospace;transition:opacity .15s}
+.btn:hover{opacity:.8}
+.btn-g{background:#dafbe1;color:#1a7f37;border:1px solid #aef0b5}
+.btn-r{background:#ffebe9;color:#cf222e;border:1px solid #ffcecb}
+.btn-b{background:#ddf4ff;color:#0969da;border:1px solid #80ccff}
+.btn-d{background:var(--surface2);color:var(--text);border:1px solid var(--border)}
+
+/* ── Storage bar ── */
+.store-bar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.store-chip{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:7px 13px;font-size:11px;display:flex;align-items:center;gap:7px}
+.store-label{color:var(--dim)}.store-val{color:var(--text);font-weight:bold}
+
+/* ── Recordings ── */
+.rec-section{padding-bottom:24px}
+.rec-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.tab{padding:5px 13px;border-radius:6px;border:1px solid var(--border);background:var(--surface);color:var(--dim);cursor:pointer;font-size:12px;font-family:monospace;transition:all .15s}
+.tab.on{background:var(--blue);color:#fff;border-color:var(--blue)}
+.tab:hover:not(.on){border-color:var(--border2);color:var(--text)}
+.rec-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:10px}
+.rec-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;overflow:hidden;cursor:pointer;transition:border-color .18s,transform .15s}
+.rec-card:hover{border-color:var(--blue);transform:translateY(-2px)}
+.rec-thumb{background:#111;aspect-ratio:4/3;overflow:hidden;display:flex;align-items:center;justify-content:center;position:relative}
+.rec-thumb img{width:100%;height:100%;object-fit:cover}
+.rec-body{padding:8px 10px}
+.rec-time{font-size:10px;color:var(--blue);margin-bottom:2px}
+.rec-cam{font-size:10px;color:var(--dim)}
+.rec-meta{font-size:11px;color:var(--text);margin-top:4px}
+.rec-del{float:right;background:var(--red);color:#fff;border:none;border-radius:3px;cursor:pointer;font-size:9px;padding:2px 5px}
+
+/* ── Page nav ── */
+.page-nav{display:flex;gap:0;background:var(--surface2);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:20px;align-self:flex-start}
+.page-btn{padding:8px 20px;border:none;background:transparent;color:var(--dim);cursor:pointer;font-family:monospace;font-size:13px;border-right:1px solid var(--border);transition:all .15s}
+.page-btn:last-child{border-right:none}
+.page-btn.active{background:var(--blue);color:#fff}
+.page-btn:hover:not(.active){background:var(--surface);color:var(--text)}
+
+/* ── Display page ── */
+.display-page{display:none;background:#000;height:100vh;overflow:hidden;position:fixed;inset:0;z-index:100}
+.display-page.show{display:block}
+.disp-grid{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(2,50vh);gap:2px;background:#0d0d0d;width:100vw;height:100vh}
+.disp-cell{position:relative;background:#050505;overflow:hidden}
+.disp-cell img{width:100%;height:100%;object-fit:cover;display:block}
+.disp-nosig{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#1a1a1a;font-size:clamp(10px,1.3vw,18px);gap:8px;letter-spacing:3px}
+.disp-overlay{position:absolute;bottom:0;left:0;right:0;padding:24px 12px 9px;background:linear-gradient(to top,rgba(0,0,0,.88),transparent);display:flex;justify-content:space-between;align-items:flex-end}
+.disp-name{color:#fff;font-size:clamp(10px,1.1vw,15px);font-weight:bold;text-shadow:0 1px 4px rgba(0,0,0,.9)}
+.disp-right{display:flex;align-items:center;gap:7px}
+.disp-rec{font-size:clamp(9px,.9vw,12px);color:#f85149;font-weight:bold}
+.disp-batt{font-size:clamp(9px,.9vw,12px);color:rgba(255,255,255,.55)}
+.disp-dot{width:8px;height:8px;border-radius:50%}
+.disp-dot.live{background:#3fb950;box-shadow:0 0 6px #3fb950;animation:dpulse 2s infinite}
+.disp-dot.motion{background:#f85149;box-shadow:0 0 9px #f85149;animation:dblink .5s infinite}
+.disp-dot.off{background:#292929}
+.disp-cell.alert{outline:3px solid #f85149;outline-offset:-3px;animation:aring .7s infinite}
+@keyframes aring{0%,100%{outline-color:#f85149}50%{outline-color:transparent}}
+.disp-hud-clock{position:fixed;top:10px;right:14px;z-index:110;color:rgba(255,255,255,.5);font-size:clamp(12px,1.1vw,17px);letter-spacing:.5px;font-family:monospace}
+.disp-hud-temp{position:fixed;top:10px;left:14px;z-index:110;font-size:14px;color:rgba(255,255,255,.4);font-family:monospace}
+.disp-hud-cams{position:fixed;top:32px;left:14px;z-index:110;font-size:11px;color:rgba(255,255,255,.22);font-family:monospace}
+.disp-nav{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);z-index:110;display:flex;gap:8px}
+.disp-nbtn{padding:6px 16px;border-radius:6px;cursor:pointer;font-family:monospace;font-size:12px;text-decoration:none;border:1px solid rgba(255,255,255,.12);background:rgba(13,17,23,.9);color:#e6edf3;backdrop-filter:blur(4px)}
+.disp-nbtn:hover{background:rgba(31,111,235,.85);border-color:#1f6feb}
+
+@media(max-width:1020px){
+  .cam-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:560px){
+  .cam-grid{grid-template-columns:1fr}
+  .wrap{padding:12px}
+  .hdr{padding:8px 12px}
+}
+</style></head>
+<body>
+
+<!-- Page switcher -->
+<div id="dashboard-page">
+
+<!-- ── Header ── -->
+<header class="hdr">
+  <div class="hdr-logo">
+    <span class="logo-icon">📷</span>
+    <div>
+      <div class="logo-text">CCTV System</div>
+      <div class="logo-sub">RPi 4 · 5 cameras · 192.168.4.1</div>
+    </div>
+  </div>
+  <div class="hdr-stats">
+    <div class="stat warm"><span>🌡</span><span>58°C</span></div>
+    <div class="stat"><span>⏳</span><span>14.2h uptime</span></div>
+    <div class="stat"><span>🌐</span><span>192.168.1.45</span></div>
+    <div class="stat">
+      <div class="disk-wrap">
+        <span>💾</span>
+        <div class="disk-track"><div class="disk-bar" style="width:34%"></div></div>
+        <span style="color:var(--dim)">85.2 GB free</span>
+      </div>
+    </div>
+  </div>
+  <div class="hdr-btns">
+    <a class="hbtn hbtn-mon" href="#" onclick="showDisplay();return false">⛶ Monitor</a>
+    <button class="hbtn hbtn-rfs">↺ Refresh</button>
+  </div>
+</header>
+
+<!-- ── Cameras ── -->
+<div class="wrap">
+  <div class="sec-title">📷 Live Cameras <span style="font-size:11px;text-transform:none;letter-spacing:0;color:var(--green);margin-left:4px">(4/5 online)</span></div>
+  <div class="cam-grid">
+
+    <!-- Camera 1 — LIVE -->
+    <div class="cam-card">
+      <div class="card-hd">
+        <div class="card-title">
+          <span class="card-name">Front Door</span>
+          <span class="card-id">#1</span>
+        </div>
+        <div class="card-badges">
+          <span class="dot dot-live"></span>
+          <span class="pill pill-live">LIVE</span>
+        </div>
+      </div>
+      <div class="stream" onclick="camExpand(1)" title="Click to enlarge">
+        <div class="stream-mock" style="background:linear-gradient(135deg,#0a1628 0%,#0d2040 40%,#091525 100%);width:100%;height:100%;display:flex;align-items:center;justify-content:center">
+          <div style="text-align:center;color:#1a3a5c">
+            <div style="font-size:36px;opacity:.4">🚪</div>
+            <div style="font-size:10px;letter-spacing:2px;margin-top:6px;opacity:.3">MJPEG STREAM</div>
+          </div>
+        </div>
+      </div>
+      <div class="card-ft">
+        <div class="batt">
+          <div class="batt-track"><div class="batt-fill" style="width:82%"></div></div>
+          <span class="batt-pct">82%</span>
+        </div>
+        <div class="btns">
+          <button class="btn btn-g">⏺</button>
+          <button class="btn btn-r">⏹</button>
+          <button class="btn btn-b">📷</button>
+          <button class="btn btn-d">🔗</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Camera 2 — MOTION + REC -->
+    <div class="cam-card alert">
+      <div class="card-hd">
+        <div class="card-title">
+          <span class="card-name">Back Yard</span>
+          <span class="card-id">#2</span>
+        </div>
+        <div class="card-badges">
+          <span class="dot dot-motion"></span>
+          <span class="pill pill-motion">MOTION</span>
+          <span class="pill pill-rec">REC</span>
+        </div>
+      </div>
+      <div class="stream" onclick="camExpand(2)" title="Click to enlarge">
+        <div style="background:linear-gradient(135deg,#1a0a08 0%,#2a1008 40%,#150a05 100%);width:100%;height:100%;display:flex;align-items:center;justify-content:center">
+          <div style="text-align:center;color:#4a2010">
+            <div style="font-size:36px;opacity:.5">🌳</div>
+            <div style="font-size:10px;letter-spacing:2px;margin-top:6px;opacity:.4">MJPEG STREAM</div>
+          </div>
+        </div>
+      </div>
+      <div class="card-ft">
+        <div class="batt">
+          <div class="batt-track"><div class="batt-fill" style="width:65%"></div></div>
+          <span class="batt-pct">65%</span>
+        </div>
+        <div class="btns">
+          <button class="btn btn-g">⏺</button>
+          <button class="btn btn-r">⏹</button>
+          <button class="btn btn-b">📷</button>
+          <button class="btn btn-d">🔗</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Camera 3 — LIVE + REC -->
+    <div class="cam-card">
+      <div class="card-hd">
+        <div class="card-title">
+          <span class="card-name">Garage</span>
+          <span class="card-id">#3</span>
+        </div>
+        <div class="card-badges">
+          <span class="dot dot-live"></span>
+          <span class="pill pill-live">LIVE</span>
+          <span class="pill pill-rec">REC</span>
+        </div>
+      </div>
+      <div class="stream" onclick="camExpand(3)" title="Click to enlarge">
+        <div style="background:linear-gradient(135deg,#0f1a0a 0%,#182808 40%,#0c1408 100%);width:100%;height:100%;display:flex;align-items:center;justify-content:center">
+          <div style="text-align:center;color:#2a4010">
+            <div style="font-size:36px;opacity:.4">🏠</div>
+            <div style="font-size:10px;letter-spacing:2px;margin-top:6px;opacity:.3">MJPEG STREAM</div>
+          </div>
+        </div>
+      </div>
+      <div class="card-ft">
+        <div class="batt">
+          <div class="batt-track"><div class="batt-fill" style="width:91%"></div></div>
+          <span class="batt-pct">91%</span>
+        </div>
+        <div class="btns">
+          <button class="btn btn-g">⏺</button>
+          <button class="btn btn-r">⏹</button>
+          <button class="btn btn-b">📷</button>
+          <button class="btn btn-d">🔗</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Camera 4 — OFFLINE -->
+    <div class="cam-card">
+      <div class="card-hd">
+        <div class="card-title">
+          <span class="card-name">Side Gate</span>
+          <span class="card-id">#4</span>
+        </div>
+        <div class="card-badges">
+          <span class="dot dot-off"></span>
+          <span class="pill pill-off">OFFLINE</span>
+        </div>
+      </div>
+      <div class="stream" onclick="camExpand(4)" title="Click to enlarge">
+        <div class="nosig">
+          <span class="nosig-icon">📷</span>
+          NO SIGNAL
+        </div>
+      </div>
+      <div class="card-ft">
+        <div class="batt">
+          <div class="batt-track"><div class="batt-fill" style="width:0%"></div></div>
+          <span class="batt-pct" style="color:#555">--%</span>
+        </div>
+        <div class="btns">
+          <button class="btn btn-g" disabled style="opacity:.4">⏺</button>
+          <button class="btn btn-r" disabled style="opacity:.4">⏹</button>
+          <button class="btn btn-b" disabled style="opacity:.4">📷</button>
+          <button class="btn btn-d">🔗</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Camera 5 — LIVE -->
+    <div class="cam-card">
+      <div class="card-hd">
+        <div class="card-title">
+          <span class="card-name">Driveway</span>
+          <span class="card-id">#5</span>
+        </div>
+        <div class="card-badges">
+          <span class="dot dot-live"></span>
+          <span class="pill pill-live">LIVE</span>
+        </div>
+      </div>
+      <div class="stream" onclick="camExpand(5)" title="Click to enlarge">
+        <div style="background:linear-gradient(135deg,#0d1520 0%,#121e30 40%,#0a1018 100%);width:100%;height:100%;display:flex;align-items:center;justify-content:center">
+          <div style="text-align:center;color:#1a2a40">
+            <div style="font-size:36px;opacity:.4">🛣️</div>
+            <div style="font-size:10px;letter-spacing:2px;margin-top:6px;opacity:.3">MJPEG STREAM</div>
+          </div>
+        </div>
+      </div>
+      <div class="card-ft">
+        <div class="batt">
+          <div class="batt-track"><div class="batt-fill" style="width:74%"></div></div>
+          <span class="batt-pct">74%</span>
+        </div>
+        <div class="btns">
+          <button class="btn btn-g">⏺</button>
+          <button class="btn btn-r">⏹</button>
+          <button class="btn btn-b">📷</button>
+          <button class="btn btn-d">🔗</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Camera 6 — LIVE -->
+    <div class="cam-card">
+      <div class="card-hd">
+        <div class="card-title">
+          <span class="card-name">Hallway</span>
+          <span class="card-id">#6</span>
+        </div>
+        <div class="card-badges">
+          <span class="dot dot-live"></span>
+          <span class="pill pill-live">LIVE</span>
+        </div>
+      </div>
+      <div class="stream" onclick="camExpand(6)" title="Click to enlarge">
+        <div style="background:linear-gradient(135deg,#101010,#1a1a1a,#0d0d0d);width:100%;height:100%;display:flex;align-items:center;justify-content:center">
+          <div style="text-align:center;color:#2a2a2a">
+            <div style="font-size:36px;opacity:.4">🚶</div>
+            <div style="font-size:10px;letter-spacing:2px;margin-top:6px;opacity:.3">MJPEG STREAM</div>
+          </div>
+        </div>
+      </div>
+      <div class="card-ft">
+        <div class="batt">
+          <div class="batt-track"><div class="batt-fill" style="width:55%"></div></div>
+          <span class="batt-pct">55%</span>
+        </div>
+        <div class="btns">
+          <button class="btn btn-g">⏺</button>
+          <button class="btn btn-r">⏹</button>
+          <button class="btn btn-b">📷</button>
+          <button class="btn btn-d">🔗</button>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /cam-grid -->
+
+  <!-- ── Recordings ── -->
+  <div class="rec-section">
+    <div class="sec-title">📁 Recordings</div>
+
+    <div class="store-bar">
+      <div class="store-chip"><span>💾</span><span class="store-label">RPi storage</span><span class="store-val">85.2 GB free / 128 GB</span></div>
+      <div class="store-chip"><span>🗂</span><span class="store-label">SD card</span><span class="store-val" style="color:var(--dim)">on each camera</span></div>
+      <div class="store-chip"><span>📅</span><span class="store-label">Est. remaining</span><span class="store-val" style="color:#1a7f37">~23 days</span></div>
+      <div class="store-chip"><span>🗑</span><span class="store-label">Auto-cleanup</span><span class="store-val">after 30 days</span></div>
+      <button class="hbtn" style="background:#ffebe9;color:#cf222e;border:1px solid #ffcecb;font-size:11px;padding:5px 12px;margin-left:auto" onclick="alert('Preview mode — no sessions deleted.')">🗑 Clean now</button>
+    </div>
+
+    <div class="rec-tabs">
+      <span class="tab on">ALL</span>
+      <span class="tab">Front Door</span>
+      <span class="tab">Back Yard</span>
+      <span class="tab">Garage</span>
+      <span class="tab">Side Gate</span>
+      <span class="tab">Driveway</span>
+      <span class="tab">Hallway</span>
+    </div>
+
+    <div class="rec-grid">
+      <!-- Recording cards -->
+      <div class="rec-card">
+        <div class="rec-thumb" style="background:linear-gradient(135deg,#1a0a08,#2a1008)">
+          <div style="color:#3a2010;font-size:24px">🌳</div>
+        </div>
+        <div class="rec-body">
+          <div class="rec-time">2026-05-21 21:14:32</div>
+          <div class="rec-cam">Back Yard <button class="rec-del">🗑</button></div>
+          <div class="rec-meta">🎞 147 fr &nbsp; 4.2 MB</div>
+        </div>
+      </div>
+      <div class="rec-card">
+        <div class="rec-thumb" style="background:linear-gradient(135deg,#0f1a0a,#182808)">
+          <div style="color:#2a3a10;font-size:24px">🏠</div>
+        </div>
+        <div class="rec-body">
+          <div class="rec-time">2026-05-21 20:58:11</div>
+          <div class="rec-cam">Garage <button class="rec-del">🗑</button></div>
+          <div class="rec-meta">🎞 150 fr &nbsp; 3.9 MB</div>
+        </div>
+      </div>
+      <div class="rec-card">
+        <div class="rec-thumb" style="background:linear-gradient(135deg,#0a1628,#0d2040)">
+          <div style="color:#1a3050;font-size:24px">🚪</div>
+        </div>
+        <div class="rec-body">
+          <div class="rec-time">2026-05-21 19:42:05</div>
+          <div class="rec-cam">Front Door <button class="rec-del">🗑</button></div>
+          <div class="rec-meta">🎞 143 fr &nbsp; 3.7 MB</div>
+        </div>
+      </div>
+      <div class="rec-card">
+        <div class="rec-thumb" style="background:linear-gradient(135deg,#1a0a08,#2a1008)">
+          <div style="color:#3a2010;font-size:24px">🌳</div>
+        </div>
+        <div class="rec-body">
+          <div class="rec-time">2026-05-21 18:30:44</div>
+          <div class="rec-cam">Back Yard <button class="rec-del">🗑</button></div>
+          <div class="rec-meta">🎞 150 fr &nbsp; 4.5 MB</div>
+        </div>
+      </div>
+      <div class="rec-card">
+        <div class="rec-thumb" style="background:linear-gradient(135deg,#0d1520,#121e30)">
+          <div style="color:#1a2a40;font-size:24px">🛣️</div>
+        </div>
+        <div class="rec-body">
+          <div class="rec-time">2026-05-21 17:15:22</div>
+          <div class="rec-cam">Driveway <button class="rec-del">🗑</button></div>
+          <div class="rec-meta">🎞 138 fr &nbsp; 3.1 MB</div>
+        </div>
+      </div>
+      <div class="rec-card">
+        <div class="rec-thumb" style="background:linear-gradient(135deg,#0a1628,#0d2040)">
+          <div style="color:#1a3050;font-size:24px">🚪</div>
+        </div>
+        <div class="rec-body">
+          <div class="rec-time">2026-05-21 15:08:59</div>
+          <div class="rec-cam">Front Door <button class="rec-del">🗑</button></div>
+          <div class="rec-meta">🎞 150 fr &nbsp; 4.1 MB</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /wrap -->
+
+<!-- ── Camera expand modal ── -->
+<div class="cx-modal" id="cx-modal" onclick="if(event.target===this)camClose()">
+  <div class="cx-box">
+    <div class="cx-hd">
+      <div class="cx-title">
+        <span class="cx-name" id="cx-name"></span>
+        <span class="cx-id" id="cx-id"></span>
+      </div>
+      <div class="cx-badges">
+        <span class="dot" id="cx-dot"></span>
+        <span class="pill" id="cx-pill"></span>
+        <span class="pill pill-rec" id="cx-rec" style="display:none">REC</span>
+        <button class="cx-close" onclick="camClose()">✕ Close</button>
+      </div>
+    </div>
+    <div class="cx-stream" id="cx-stream"></div>
+    <div class="cx-ft">
+      <div class="batt">
+        <div class="batt-track" style="width:52px">
+          <div class="batt-fill" id="cx-bfill" style="width:0%"></div>
+        </div>
+        <span class="batt-pct" id="cx-bpct">--%</span>
+      </div>
+      <div style="font-size:11px;color:var(--dim)">Esc or click outside to close</div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /dashboard -->
+
+
+<!-- ══════════════════ DISPLAY PAGE ══════════════════ -->
+<div class="display-page" id="display-page">
+  <div id="disp-clock" class="disp-hud-clock"></div>
+  <div class="disp-hud-temp">CPU 58°C</div>
+  <div class="disp-hud-cams">5 cameras</div>
+
+  <div class="disp-grid">
+    <!-- Cell 1 — Front Door LIVE -->
+    <div class="disp-cell">
+      <div style="background:linear-gradient(135deg,#0a1628,#0d2040,#091525);width:100%;height:100%;display:flex;align-items:center;justify-content:center">
+        <div style="text-align:center;color:#1a3a5c"><div style="font-size:48px;opacity:.25">🚪</div><div style="font-size:11px;letter-spacing:3px;margin-top:8px;opacity:.2">LIVE STREAM</div></div>
+      </div>
+      <div class="disp-overlay">
+        <span class="disp-name">Front Door</span>
+        <div class="disp-right">
+          <span class="disp-batt">82%</span>
+          <span class="disp-dot live"></span>
+        </div>
+      </div>
+    </div>
+    <!-- Cell 2 — Back Yard MOTION -->
+    <div class="disp-cell alert">
+      <div style="background:linear-gradient(135deg,#1a0a08,#2a1008,#150a05);width:100%;height:100%;display:flex;align-items:center;justify-content:center">
+        <div style="text-align:center;color:#4a2010"><div style="font-size:48px;opacity:.3">🌳</div><div style="font-size:11px;letter-spacing:3px;margin-top:8px;opacity:.25">LIVE STREAM</div></div>
+      </div>
+      <div class="disp-overlay">
+        <span class="disp-name">Back Yard</span>
+        <div class="disp-right">
+          <span class="disp-rec">⏺ REC</span>
+          <span class="disp-batt">65%</span>
+          <span class="disp-dot motion"></span>
+        </div>
+      </div>
+    </div>
+    <!-- Cell 3 — Garage LIVE+REC -->
+    <div class="disp-cell">
+      <div style="background:linear-gradient(135deg,#0f1a0a,#182808,#0c1408);width:100%;height:100%;display:flex;align-items:center;justify-content:center">
+        <div style="text-align:center;color:#2a4010"><div style="font-size:48px;opacity:.25">🏠</div><div style="font-size:11px;letter-spacing:3px;margin-top:8px;opacity:.2">LIVE STREAM</div></div>
+      </div>
+      <div class="disp-overlay">
+        <span class="disp-name">Garage</span>
+        <div class="disp-right">
+          <span class="disp-rec">⏺ REC</span>
+          <span class="disp-batt">91%</span>
+          <span class="disp-dot live"></span>
+        </div>
+      </div>
+    </div>
+    <!-- Cell 4 — Side Gate OFFLINE -->
+    <div class="disp-cell">
+      <div class="disp-nosig">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="2" y="7" width="20" height="15" rx="2"/><polyline points="17 2 12 7 7 2"/></svg>
+        NO SIGNAL
+      </div>
+      <div class="disp-overlay">
+        <span class="disp-name">Side Gate</span>
+        <div class="disp-right">
+          <span class="disp-dot off"></span>
+        </div>
+      </div>
+    </div>
+    <!-- Cell 5 — Driveway LIVE -->
+    <div class="disp-cell">
+      <div style="background:linear-gradient(135deg,#0d1520,#121e30,#0a1018);width:100%;height:100%;display:flex;align-items:center;justify-content:center">
+        <div style="text-align:center;color:#1a2a40"><div style="font-size:48px;opacity:.25">🛣️</div><div style="font-size:11px;letter-spacing:3px;margin-top:8px;opacity:.2">LIVE STREAM</div></div>
+      </div>
+      <div class="disp-overlay">
+        <span class="disp-name">Driveway</span>
+        <div class="disp-right">
+          <span class="disp-batt">74%</span>
+          <span class="disp-dot live"></span>
+        </div>
+      </div>
+    </div>
+    <!-- Cell 6 — Hallway LIVE -->
+    <div class="disp-cell">
+      <div style="background:linear-gradient(135deg,#101010,#1a1a1a,#0d0d0d);width:100%;height:100%;display:flex;align-items:center;justify-content:center">
+        <div style="text-align:center;color:#2a2a2a"><div style="font-size:48px;opacity:.25">🚶</div><div style="font-size:11px;letter-spacing:3px;margin-top:8px;opacity:.2">LIVE STREAM</div></div>
+      </div>
+      <div class="disp-overlay">
+        <span class="disp-name">Hallway</span>
+        <div class="disp-right">
+          <span class="disp-batt">55%</span>
+          <span class="disp-dot live"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <nav class="disp-nav">
+    <a class="disp-nbtn" href="#" onclick="hideDisplay();return false">☰ Dashboard</a>
+    <button class="disp-nbtn">⛶ Fullscreen</button>
+  </nav>
+</div>
+
+<script>
+/* Clock */
+function tick(){
+  var n=new Date();
+  var el=document.getElementById('disp-clock');
+  if(el) el.textContent=n.toLocaleDateString('en-GB')+' '+
+    n.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+}
+tick();setInterval(tick,1000);
+
+/* Tab switching */
+document.querySelectorAll('.tab').forEach(function(t){
+  t.addEventListener('click',function(){
+    document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on')});
+    t.classList.add('on');
+  });
+});
+
+/* Page switching */
+function showDisplay(){
+  document.getElementById('display-page').classList.add('show');
+  document.body.style.overflow='hidden';
+}
+function hideDisplay(){
+  document.getElementById('display-page').classList.remove('show');
+  document.body.style.overflow='';
+}
+
+/* Camera expand */
+function camExpand(n){
+  var cards=[...document.querySelectorAll('.cam-card')];
+  var card=cards.find(function(c){
+    return c.querySelector('.card-id').textContent==='#'+n;
+  });
+  if(!card)return;
+  /* Name & id */
+  document.getElementById('cx-name').textContent=
+    card.querySelector('.card-name').textContent;
+  document.getElementById('cx-id').textContent=
+    card.querySelector('.card-id').textContent;
+  /* Status dot — first dot in card */
+  var dot=card.querySelector('.dot');
+  document.getElementById('cx-dot').className=dot.className;
+  /* Status pill — first non-rec pill */
+  var pills=[...card.querySelectorAll('.pill')];
+  var statusPill=pills.find(function(p){return !p.classList.contains('pill-rec')});
+  if(statusPill){
+    document.getElementById('cx-pill').className=statusPill.className;
+    document.getElementById('cx-pill').textContent=statusPill.textContent;
+  }
+  /* REC pill */
+  var recPill=pills.find(function(p){return p.classList.contains('pill-rec')});
+  document.getElementById('cx-rec').style.display=recPill?'inline':'none';
+  /* Battery */
+  document.getElementById('cx-bfill').style.width=
+    card.querySelector('.batt-fill').style.width;
+  document.getElementById('cx-bpct').textContent=
+    card.querySelector('.batt-pct').textContent;
+  /* Clone stream content into modal */
+  var streamEl=card.querySelector('.stream');
+  var cx=document.getElementById('cx-stream');
+  cx.innerHTML=streamEl.innerHTML;
+  /* Show */
+  document.getElementById('cx-modal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function camClose(){
+  document.getElementById('cx-modal').classList.remove('open');
+  document.body.style.overflow='';
+}
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape'){
+    if(document.getElementById('cx-modal').classList.contains('open')){
+      camClose();return;
+    }
+  }
+});
+</script>
+</body></html>
