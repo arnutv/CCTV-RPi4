@@ -8,11 +8,14 @@
 PART = "all";   // "tray" | "tray_cover" | "bezel" | "lid_seal" |
                 // "solar_bracket" | "wall_mount" | "ip65_box" | "ip65_lid" | "all"
 
-// ─── ENCLOSURE BOX (off-the-shelf IP65, ~$6 on AliExpress/Amazon) ─────────
-// Inner usable dims of a "158×90×65 mm IP65 ABS junction box" (Hammond 1554G clone)
-BOX_W  = 148;       // inside width  (lengthwise)
-BOX_D  = 80;        // inside depth  (top → bottom mounted)
-BOX_H  = 55;        // inside height (front → back, lid-to-base)
+// ─── ENCLOSURE BOX (off-the-shelf IP65) ───────────────────────────────────
+// INNER usable dimensions. Default for 140×78 mm outer junction box (typical thai):
+//   140 - 2*3 mm walls = 134 mm inner length
+//    78 - 2*3 mm walls =  72 mm inner depth
+// Edit to match your box (always use INNER measurements).
+BOX_W  = 134;       // inside width  (lengthwise)
+BOX_D  = 72;        // inside depth  (top → bottom mounted)
+BOX_H  = 50;        // inside height (front → back, lid-to-base)
 
 // ─── ELECTRONICS (real measured sizes) ────────────────────────────────────
 ESP_W  = 40.5;  ESP_D = 27;   ESP_H = 4.5;     // ESP32-CAM PCB

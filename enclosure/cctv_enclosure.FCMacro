@@ -34,10 +34,14 @@ import Part
 from FreeCAD import Vector
 
 # ─── PARAMETERS ───────────────────────────────────────────────────────────
-# IP65 box internal usable dimensions (Hammond 1554G / generic 158×90×65)
-BOX_W = 148.0     # inner length
-BOX_D =  80.0     # inner depth
-BOX_H =  55.0     # inner height (lid-to-base)
+# IP65 box INNER usable dimensions
+# Default for 140 × 78 mm outer box (typical thai junction box):
+#   140 - 2*3 mm walls = 134 mm inner length
+#    78 - 2*3 mm walls =  72 mm inner depth
+# Adjust these to your specific box (always use INNER measurements).
+BOX_W = 134.0     # inner length  (was 148 for 158x90 box)
+BOX_D =  72.0     # inner depth   (was  80 for 158x90 box)
+BOX_H =  50.0     # inner height (lid-to-base, ~25mm needed minimum)
 
 # Electronics — real measured sizes
 ESP_W, ESP_D, ESP_H        = 40.5, 27.0,  4.5   # ESP32-CAM PCB
