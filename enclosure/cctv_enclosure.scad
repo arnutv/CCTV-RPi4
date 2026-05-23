@@ -1,16 +1,15 @@
 // ═══════════════════════════════════════════════════════════════════════════
 //  CCTV-Camera — Enclosure parts (combined preview file)
 //  For single-part STL export use the individual files:
-//    tray.scad       — Electronics tray  (open → F6 → Export STL)
-//    wall_mount.scad — Wall mount plate  (open → F6 → Export STL)
+//    tray.scad           — Electronics tray  (open → F6 → Export STL)
+//    solar_bracket.scad  — Solar panel arm   (open → F6 → Export STL)
 //
-//  This file is useful for an "all parts" preview or if you prefer
-//  to pick a part here with the PART variable below.
-//  All dimensions in mm. Tested in PETG (preferred for UV/outdoor) or PLA+.
+//  This file lets you preview both parts together or pick one with PART.
+//  All dimensions in mm. Print in PETG (preferred) or PLA+.
 // ═══════════════════════════════════════════════════════════════════════════
 
 // ─── PICK ONE PART TO RENDER ──────────────────────────────────────────────
-PART = "all";   // "tray" | "wall_mount" | "all"
+PART = "all";   // "tray" | "solar_bracket" | "all"
 
 // ─── IP65 BOX INNER DIMENSIONS ────────────────────────────────────────────
 BOX_W = 134;   // inside width  (140 mm outer − 2×3 mm walls)
@@ -21,9 +20,11 @@ HOLDER_W = 75;  HOLDER_D = 36;
 CN3791_W = 30;  CN3791_D = 20;
 MT3608_W = 36;  MT3608_D = 17;
 
-// ─── WALL MOUNT PLATE ─────────────────────────────────────────────────────
-PLATE_W  = 80;
-PLATE_TH =  4;
+// ─── SOLAR BRACKET ────────────────────────────────────────────────────────
+ARM_L   = 80;
+ARM_W   = 25;
+ARM_TH  =  4;
+PLATE_H = 100;
 
 // ─── PRINT TOLERANCES ─────────────────────────────────────────────────────
 WALL = 1.6;
@@ -74,26 +75,45 @@ module electronics_tray() {
     }
 }
 
-// ─── 2. WALL MOUNT PLATE ──────────────────────────────────────────────────
-module wall_mount() {
+// ─── 2. SOLAR BRACKET ─────────────────────────────────────────────────────
+module solar_bracket() {
+    // Vertical wall plate
     difference() {
-        cube([PLATE_W, PLATE_W, PLATE_TH]);
-        for (x = [10, PLATE_W - 10], y = [10, PLATE_W - 10]) {
-            translate([x, y, -1])
-                cylinder(d=5.5, h=PLATE_TH + 2);
-            translate([x, y, -0.1])
-                cylinder(d1=10.5, d2=5.5, h=3.2);
+        cube([ARM_W, ARM_TH, PLATE_H]);
+        for (z = [15, PLATE_H - 15]) {
+            translate([ARM_W/2, -1, z])
+                rotate([-90, 0, 0])
+                    cylinder(d=5.5, h=ARM_TH + 2);
+            translate([ARM_W/2, -0.1, z])
+                rotate([-90, 0, 0])
+                    cylinder(d1=10.5, d2=5.5, h=3.2);
         }
     }
+
+    // Horizontal arm
+    translate([0, ARM_TH, PLATE_H - ARM_TH])
+        difference() {
+            cube([ARM_W, ARM_L, ARM_TH]);
+            // 4× M4 panel mounting holes near far end
+            for (xp = [5, ARM_W - 5], yp = [ARM_L - 20, ARM_L - 8])
+                translate([xp, yp, -1])
+                    cylinder(d=4.5, h=ARM_TH + 2);
+        }
+
+    // Triangular gusset
+    translate([0, ARM_TH, PLATE_H - ARM_TH])
+        rotate([0, -90, 0])
+            linear_extrude(ARM_W)
+                polygon([[0, 0], [25, 0], [0, -25]]);
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
 //                            LAY OUT FOR EXPORT
 // ═══════════════════════════════════════════════════════════════════════════
-if      (PART == "tray")        electronics_tray();
-else if (PART == "wall_mount")  wall_mount();
+if      (PART == "tray")           electronics_tray();
+else if (PART == "solar_bracket")  solar_bracket();
 else {
     // "all" — both parts side by side for preview
     electronics_tray();
-    translate([BOX_W + 30, 0, 0]) wall_mount();
+    translate([BOX_W + 30, 0, 0]) solar_bracket();
 }

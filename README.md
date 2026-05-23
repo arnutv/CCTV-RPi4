@@ -187,7 +187,7 @@ Files in `enclosure/` — two formats, each part also has its own standalone fil
 | File | Contents |
 |---|---|
 | `tray.scad` | Electronics tray — open, F6, export STL |
-| `wall_mount.scad` | Wall mount plate — open, F6, export STL |
+| `solar_bracket.scad` | Solar panel arm — open, F6, export STL |
 | `cctv_enclosure.scad` | Both parts in one file (`PART = "all"` preview) |
 | `cctv_enclosure.FCMacro` | FreeCAD Python macro — same 2 parts |
 
@@ -198,7 +198,7 @@ Parts (3D-printed):
 | Part | File | Print time | Filament | Purpose |
 |---|---|---|---|---|
 | Electronics tray | `tray.scad` | 90 min | 28 g | Holds battery + MPPT + boost inside the IP65 box |
-| Wall mount plate | `wall_mount.scad` | 25 min | 10 g | 80×80 mm plate screws to wall; box attaches to front with VHB tape or M3 screws |
+| Solar bracket | `solar_bracket.scad` | 55 min | 20 g | L-arm screws to wall (2× M5); solar panel bolts to far end of arm (4× M4) |
 
 **Print in PETG** (or ASA) at 0.2 mm, 4 perimeters, 25 % gyroid infill. No supports needed.
 
@@ -228,7 +228,7 @@ CCTV-RPi4/
 │   └── serve.ps1               # Tiny PowerShell HTTP server
 ├── enclosure/                   # 3D-printable parts
 │   ├── tray.scad               # Electronics tray — standalone, open → F6 → STL
-│   ├── wall_mount.scad         # Wall mount plate — standalone, open → F6 → STL
+│   ├── solar_bracket.scad      # Solar panel arm  — standalone, open → F6 → STL
 │   ├── cctv_enclosure.scad     # Combined preview (both parts, PART variable)
 │   ├── cctv_enclosure.FCMacro  # FreeCAD Python macro (same 2 parts)
 │   └── wiring.txt              # ASCII wiring + waterproofing notes

@@ -4,7 +4,7 @@
 # ═══════════════════════════════════════════════════════════════════════════
 #  Generates 2 parts inside the active FreeCAD document, ready for STEP/STL export:
 #       1. Electronics tray  (organises battery + MPPT + boost inside IP65 box)
-#       2. Wall mount plate  (80×80 mm flat plate — screws to wall, box attaches to front)
+#       2. Solar bracket     (L-arm that screws to wall, panel bolts to far end)
 #
 #  HOW TO USE
 #  ──────────
@@ -18,11 +18,10 @@
 #  PARAMETRIC EDITS
 #  ────────────────
 #  Change any value in the PARAMETERS block below, then re-run the macro.
-#  Boolean ops are deterministic, so the parts will rebuild identically.
 #
 #  TESTED ON
 #  ─────────
-#  FreeCAD 0.21, 0.22, 1.0   (no external workbenches required, vanilla install)
+#  FreeCAD 0.21, 0.22, 1.0   (no external workbenches required)
 # ═══════════════════════════════════════════════════════════════════════════
 
 import FreeCAD as App
@@ -32,27 +31,26 @@ from FreeCAD import Vector
 
 # ─── PARAMETERS ───────────────────────────────────────────────────────────
 # IP65 box INNER usable dimensions
-# Default for 140 × 78 mm outer box (typical thai junction box):
-#   140 - 2*3 mm walls = 134 mm inner length
-#    78 - 2*3 mm walls =  72 mm inner depth
-BOX_W = 134.0   # inner length
-BOX_D =  72.0   # inner depth
+BOX_W = 134.0   # inner length (140 mm outer − 2×3 mm walls)
+BOX_D =  72.0   # inner depth  ( 78 mm outer − 2×3 mm walls)
 
 # Electronics — real measured sizes (mm)
 HOLDER_W, HOLDER_D = 75.0, 36.0   # 2× 18650 battery holder
 CN3791_W, CN3791_D = 30.0, 20.0   # MPPT charger PCB
 MT3608_W, MT3608_D = 36.0, 17.0   # boost converter PCB
 
-# Wall mount plate
-PLATE_W  = 80.0
-PLATE_TH =  4.0
+# Solar bracket
+ARM_L   = 80.0    # horizontal arm length
+ARM_W   = 25.0    # arm + plate width
+ARM_TH  =  4.0    # arm + plate thickness
+PLATE_H = 100.0   # vertical plate height
 
 # Print tolerances
 WALL = 1.6
 SLOP = 0.3
 
 # ═══════════════════════════════════════════════════════════════════════════
-#  PART BUILDERS  —  each returns a single Part.Shape
+#  PART BUILDERS
 # ═══════════════════════════════════════════════════════════════════════════
 
 def make_pcb_clip(pcb_w, pcb_d, h):
@@ -105,22 +103,46 @@ def electronics_tray():
     return tray
 
 
-def wall_mount():
-    """Flat 80×80 mm wall plate — mount the camera box directly to its front face."""
-    plate = Part.makeBox(PLATE_W, PLATE_W, PLATE_TH)
+def solar_bracket():
+    """L-shaped wall arm. Vertical plate screws to wall; panel bolts to arm end."""
+    # Vertical wall plate with 2× M5 countersunk wall holes
+    plate = Part.makeBox(ARM_W, ARM_TH, PLATE_H)
+    for z in (15, PLATE_H - 15):
+        # M5 clearance hole (⌀5.5) through plate depth
+        h = Part.makeCylinder(2.75, ARM_TH + 2,
+                              Vector(ARM_W/2, -1, z), Vector(0, 1, 0))
+        plate = plate.cut(h)
+        # 90° countersink on the back face
+        cs = Part.makeCone(5.25, 2.75, 3.2,
+                           Vector(ARM_W/2, -0.1, z), Vector(0, 1, 0))
+        plate = plate.cut(cs)
 
-    for x in (10, PLATE_W - 10):
-        for y in (10, PLATE_W - 10):
-            # M5 clearance hole (⌀5.5)
-            h = Part.makeCylinder(2.75, PLATE_TH + 2)
-            h.translate(Vector(x, y, -1))
-            plate = plate.cut(h)
-            # 90° countersink on the back face
-            cs = Part.makeCone(5.25, 2.75, 3.2)
-            cs.translate(Vector(x, y, -0.1))
-            plate = plate.cut(cs)
+    # Horizontal arm at top of plate
+    arm = Part.makeBox(ARM_W, ARM_L, ARM_TH)
+    arm.translate(Vector(0, ARM_TH, PLATE_H - ARM_TH))
 
-    return plate
+    # 4× M4 panel mounting holes (⌀4.5) near far end of arm
+    for xp in (5, ARM_W - 5):
+        for yp in (ARM_L - 20, ARM_L - 8):
+            hole = Part.makeCylinder(2.25, ARM_TH + 2)
+            hole.translate(Vector(xp, ARM_TH + yp, PLATE_H - ARM_TH - 1))
+            arm = arm.cut(hole)
+
+    bracket = plate.fuse(arm)
+
+    # Triangular gusset
+    gusset_pts = [
+        Vector(0,     ARM_TH, PLATE_H - ARM_TH),
+        Vector(0,     ARM_TH + 25, PLATE_H - ARM_TH),
+        Vector(0,     ARM_TH, PLATE_H - ARM_TH - 25),
+        Vector(0,     ARM_TH, PLATE_H - ARM_TH),   # close polygon
+    ]
+    wire    = Part.makePolygon(gusset_pts)
+    face    = Part.Face(wire)
+    gusset  = face.extrude(Vector(ARM_W, 0, 0))
+    bracket = bracket.fuse(gusset)
+
+    return bracket
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -134,7 +156,6 @@ def add_part(shape, label, offset):
     obj.Label = label
     return obj
 
-# Fresh document each run
 doc_name = "CCTV_Enclosure"
 try:
     App.closeDocument(doc_name)
@@ -144,8 +165,8 @@ doc = App.newDocument(doc_name)
 
 print("Building CCTV enclosure parts…")
 
-add_part(electronics_tray(), "1_Electronics_Tray",  (0,          0, 0))
-add_part(wall_mount(),       "2_Wall_Mount",         (BOX_W + 30, 0, 0))
+add_part(electronics_tray(), "1_Electronics_Tray", (0,          0, 0))
+add_part(solar_bracket(),    "2_Solar_Bracket",    (BOX_W + 30, 0, 0))
 
 doc.recompute()
 
@@ -160,8 +181,7 @@ print("Done. 2 parts created. Tree → right-click each → Export…")
 print("  • STEP (.step)  — keep parametric / share with other CAD")
 print("  • Mesh (.stl)   — straight to your 3D printer slicer")
 print("─" * 60)
-print("Assembly note:")
-print("  Screw wall_mount to wall with 4× M5 countersunk screws.")
-print("  Attach IP65 camera box to the front face with VHB tape")
-print("  or M3 screws through the box back panel.")
+print("Assembly:")
+print("  solar_bracket : screw vertical plate to wall with 2× M5.")
+print("  Rest panel on top of arm, bolt through 4× M4 holes at end.")
 print("─" * 60)
