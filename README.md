@@ -182,24 +182,23 @@ Now the dashboard is also reachable from your home network (look for the IP in t
 
 ## Enclosure & 3D printing
 
-Two formats provided in `enclosure/`:
+Files in `enclosure/` — two formats, each part also has its own standalone file:
 
-- **`cctv_enclosure.scad`** — OpenSCAD parametric source (5 parts)
-- **`cctv_enclosure.FCMacro`** — FreeCAD Python macro (same 5 parts)
+| File | Contents |
+|---|---|
+| `tray.scad` | Electronics tray — open, F6, export STL |
+| `wall_mount.scad` | Wall mount plate — open, F6, export STL |
+| `cctv_enclosure.scad` | Both parts in one file (`PART = "all"` preview) |
+| `cctv_enclosure.FCMacro` | FreeCAD Python macro — same 2 parts |
 
 Designed to drop inside a **140 × 78 mm outer IP65 junction box** (typical thai weatherproof box). The lens hole and ESP32-CAM mount are drilled directly through the box's own lid.
 
 Parts (3D-printed):
 
-| Part | Print time | Filament | Purpose |
-|---|---|---|---|
-| Electronics tray | 90 min | 28 g | Organises battery + MPPT + boost inside the IP65 box |
-| Wall mount | 45 min | 18 g | Wall plate + ball stalk for camera box mounting |
-| Box socket | 30 min | 12 g | Snaps onto wall mount's ball, sticks to back of box (VHB tape or M3) |
-| Solar bracket | 60 min | 22 g | Wall L-arm + ball stalk for solar panel mounting |
-| Panel socket | 30 min | 14 g | Snaps onto solar bracket's ball, bolts to solar panel frame |
-
-Each ball-joint pair (wall_mount + box_socket, solar_bracket + panel_socket) gives **free aiming in any direction**, locked with a single M3 clamp screw.
+| Part | File | Print time | Filament | Purpose |
+|---|---|---|---|---|
+| Electronics tray | `tray.scad` | 90 min | 28 g | Holds battery + MPPT + boost inside the IP65 box |
+| Wall mount plate | `wall_mount.scad` | 25 min | 10 g | 80×80 mm plate screws to wall; box attaches to front with VHB tape or M3 screws |
 
 **Print in PETG** (or ASA) at 0.2 mm, 4 perimeters, 25 % gyroid infill. No supports needed.
 
@@ -228,8 +227,10 @@ CCTV-RPi4/
 │   ├── index.html              # Static mock dashboard
 │   └── serve.ps1               # Tiny PowerShell HTTP server
 ├── enclosure/                   # 3D-printable parts
-│   ├── cctv_enclosure.scad     # OpenSCAD parametric source
-│   ├── cctv_enclosure.FCMacro  # FreeCAD Python macro
+│   ├── tray.scad               # Electronics tray — standalone, open → F6 → STL
+│   ├── wall_mount.scad         # Wall mount plate — standalone, open → F6 → STL
+│   ├── cctv_enclosure.scad     # Combined preview (both parts, PART variable)
+│   ├── cctv_enclosure.FCMacro  # FreeCAD Python macro (same 2 parts)
 │   └── wiring.txt              # ASCII wiring + waterproofing notes
 ├── .github/workflows/
 │   └── build-firmware.yml      # Cloud-builds ESP32 firmware, exports .bin
