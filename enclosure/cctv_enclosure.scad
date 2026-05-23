@@ -19,6 +19,7 @@ BOX_D =  72;   // inside depth  ( 78 mm outer − 2×3 mm walls)
 HOLDER_W = 75;  HOLDER_D = 36;
 CN3791_W = 30;  CN3791_D = 20;
 MT3608_W = 36;  MT3608_D = 17;
+BMS_W    = 20;  BMS_D    = 10;   // 1S BMS (DW01A+FS8205A, 20×10 mm)
 
 // ─── SOLAR BRACKET ────────────────────────────────────────────────────────
 ARM_L   = 80;
@@ -60,11 +61,15 @@ module electronics_tray() {
                               HOLDER_D + SLOP*2 - WALL*2, 10]);
                 }
 
+            // Right column: MPPT (top) → Boost (middle) → BMS (bottom)
             translate([4 + HOLDER_W + 6, 4, 2])
                 pcb_clip(CN3791_W, CN3791_D, 6);
 
             translate([4 + HOLDER_W + 6, 4 + CN3791_D + 5, 2])
                 pcb_clip(MT3608_W, MT3608_D, 6);
+
+            translate([4 + HOLDER_W + 6, 4 + CN3791_D + 5 + MT3608_D + 5, 2])
+                pcb_clip(BMS_W, BMS_D, 6);
 
             for (x = [10, BOX_W - 14], y = [10, BOX_D - 14])
                 translate([x, y, 2]) cylinder(d=4, h=12);

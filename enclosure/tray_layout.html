@@ -141,7 +141,23 @@ h1 { font-size: 15px; font-weight: 700; color: #1a1a1a; margin-bottom: 2px; }
     <text x="484" y="236" font-size="10" fill="#f57c00" text-anchor="middle">36 × 17 mm</text>
 
     <!-- ═══════════════════════════════════════════════════════════════
-         5. CABLE ROUTING POSTS  ⌀4 mm  h=12 mm
+         5. BMS MODULE  (1S DW01A+FS8205A, 20×10 mm)
+         outer : (405,259) 95×55
+         PCB   : (411,265) 82×42
+         y_mm  = 4 + 20 + 5 + 17 + 5 = 51 mm
+    ════════════════════════════════════════════════════════════════ -->
+    <rect x="405" y="259" width="95"  height="55"
+          fill="#e1bee7" stroke="#6a1b9a" stroke-width="1.5"/>
+    <rect x="411" y="265" width="82"  height="42"
+          fill="#f9f9f9" stroke="#ab47bc" stroke-width="1" stroke-dasharray="5,3"/>
+
+    <text x="452" y="283" font-size="12" font-weight="bold" fill="#4a148c"
+          text-anchor="middle">BMS 1S</text>
+    <text x="452" y="296" font-size="11" fill="#6a1b9a" text-anchor="middle">DW01A</text>
+    <text x="452" y="308" font-size="10" fill="#7b1fa2" text-anchor="middle">20 × 10 mm</text>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         7. CABLE ROUTING POSTS  ⌀4 mm  h=12 mm
          at (10,10) (120,10) (10,58) (120,58) in mm → r=8 px
     ════════════════════════════════════════════════════════════════ -->
     <circle cx="105" cy="95"  r="8" fill="#ffe082" stroke="#f9a825" stroke-width="1.5"/>
@@ -159,7 +175,7 @@ h1 { font-size: 15px; font-weight: 700; color: #1a1a1a; margin-bottom: 2px; }
           text-anchor="middle" dominant-baseline="middle">P</text>
 
     <!-- ═══════════════════════════════════════════════════════════════
-         6. M3 MOUNTING HOLES  ⌀3.4 mm  (to box standoffs)
+         8. M3 MOUNTING HOLES  ⌀3.4 mm  (to box standoffs)
          at (6,6) (124,6) (6,62) (124,62) → r=7 px
     ════════════════════════════════════════════════════════════════ -->
     <g stroke="#555" stroke-width="1.5">
@@ -176,20 +192,20 @@ h1 { font-size: 15px; font-weight: 700; color: #1a1a1a; margin-bottom: 2px; }
     </g>
 
     <!-- ═══════════════════════════════════════════════════════════════
-         7. WIRING CHANNEL LABEL
+         9. WIRING CHANNEL LABEL
          6 mm gap between battery right edge and module clips
     ════════════════════════════════════════════════════════════════ -->
-    <!-- Vertical gap band: x=383 to x=405, y=71 to y=327 -->
-    <rect x="383" y="71" width="22" height="200"
+    <!-- Vertical gap band: x=383 to x=405, covers all 3 clips -->
+    <rect x="383" y="71" width="22" height="243"
           fill="none" stroke="#bbb" stroke-width="0.8" stroke-dasharray="3,3"/>
-    <text x="394" y="175" font-size="8.5" fill="#aaa" text-anchor="middle"
-          transform="rotate(-90,394,175)">wiring</text>
+    <text x="394" y="197" font-size="8.5" fill="#aaa" text-anchor="middle"
+          transform="rotate(-90,394,197)">wiring</text>
 
-    <!-- Empty space label (bottom of tray, below boost converter) -->
-    <text x="484" y="284" font-size="10" fill="#bbb" text-anchor="middle">spare space</text>
+    <!-- Small spare space below BMS -->
+    <text x="552" y="322" font-size="9" fill="#ccc" text-anchor="middle">spare</text>
 
     <!-- ═══════════════════════════════════════════════════════════════
-         8. DIMENSION LINES
+         10. DIMENSION LINES
     ════════════════════════════════════════════════════════════════ -->
 
     <!-- Tray width: 130 mm — below tray -->
@@ -255,6 +271,10 @@ h1 { font-size: 15px; font-weight: 700; color: #1a1a1a; margin-bottom: 2px; }
       MT3608 Boost clip (36 × 17 mm PCB)
     </div>
     <div class="leg">
+      <div class="sw" style="background:#e1bee7;border-color:#6a1b9a"></div>
+      BMS 1S DW01A (20 × 10 mm) — over-discharge + short-circuit protect
+    </div>
+    <div class="leg">
       <svg width="14" height="14" style="flex-shrink:0">
         <circle cx="7" cy="7" r="6" fill="#ffe082" stroke="#f9a825" stroke-width="1.5"/>
         <text x="7" y="7" font-size="6" font-weight="bold" fill="#5d4037"
@@ -272,7 +292,10 @@ h1 { font-size: 15px; font-weight: 700; color: #1a1a1a; margin-bottom: 2px; }
     </div>
   </div>
 
-  <p style="margin-top:14px;font-size:10px;color:#aaa">
+  <p style="margin-top:14px;font-size:11px;color:#555;background:#f5f5f5;padding:8px 12px;border-radius:6px;font-family:monospace;letter-spacing:.3px">
+    Solar → <span style="color:#1565c0">CN3791</span> (charge) → 18650×2 → <span style="color:#6a1b9a">BMS</span> (protect) → <span style="color:#e65100">MT3608</span> (5V) → ESP32-CAM
+  </p>
+  <p style="margin-top:8px;font-size:10px;color:#aaa">
     Print in PETG at 0.2 mm · 4 perimeters · 25 % gyroid infill · No supports
   </p>
 </div>

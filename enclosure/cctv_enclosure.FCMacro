@@ -3,7 +3,7 @@
 #  CCTV-Camera Enclosure  —  FreeCAD Python Macro
 # ═══════════════════════════════════════════════════════════════════════════
 #  Generates 2 parts inside the active FreeCAD document, ready for STEP/STL export:
-#       1. Electronics tray  (organises battery + MPPT + boost inside IP65 box)
+#       1. Electronics tray  (battery + MPPT + boost + BMS inside IP65 box)
 #       2. Solar bracket     (L-arm that screws to wall, panel bolts to far end)
 #
 #  HOW TO USE
@@ -38,6 +38,9 @@ BOX_D =  72.0   # inner depth  ( 78 mm outer − 2×3 mm walls)
 HOLDER_W, HOLDER_D = 75.0, 36.0   # 2× 18650 battery holder
 CN3791_W, CN3791_D = 30.0, 20.0   # MPPT charger PCB
 MT3608_W, MT3608_D = 36.0, 17.0   # boost converter PCB
+BMS_W,    BMS_D    = 20.0, 10.0   # 1S BMS module (DW01A+FS8205A, 20×10 mm)
+
+COL_X = 4 + HOLDER_W + 6          # X of right clip column = 85 mm
 
 # Solar bracket
 ARM_L   = 80.0    # horizontal arm length
@@ -76,15 +79,20 @@ def electronics_tray():
     pocket_inner.translate(Vector(4 + WALL, 4 + WALL, 4))
     tray = tray.fuse(pocket_outer.cut(pocket_inner))
 
-    # MPPT clip
+    # MPPT clip (right column, top)
     mppt = make_pcb_clip(CN3791_W, CN3791_D, 8)
-    mppt.translate(Vector(4 + HOLDER_W + 6, 4, 2))
+    mppt.translate(Vector(COL_X, 4, 2))
     tray = tray.fuse(mppt)
 
-    # Boost converter clip
+    # Boost converter clip (right column, middle)
     boost = make_pcb_clip(MT3608_W, MT3608_D, 8)
-    boost.translate(Vector(4 + HOLDER_W + 6, 4 + CN3791_D + 5, 2))
+    boost.translate(Vector(COL_X, 4 + CN3791_D + 5, 2))
     tray = tray.fuse(boost)
+
+    # BMS clip (right column, bottom — under boost)
+    bms = make_pcb_clip(BMS_W, BMS_D, 8)
+    bms.translate(Vector(COL_X, 4 + CN3791_D + 5 + MT3608_D + 5, 2))
+    tray = tray.fuse(bms)
 
     # Cable routing posts
     for x in (10, BOX_W - 14):

@@ -64,10 +64,11 @@ A complete, self-hosted DIY CCTV system using **6 ESP32-CAM modules** and a **Ra
 | 6 V 10 W solar panel | 250×200 mm | $9 |
 | CN3791 MPPT charger | 1S Li-ion output | $3 |
 | 2× 18650 Li-ion | Samsung 30Q or similar (3000 mAh) | $8 |
+| 1S BMS module | DW01A+FS8205A, 20×10 mm (over-discharge + short-circuit) | $1 |
 | MT3608 boost converter | 5 V output | $1 |
 | IP65 junction box | 158×90×65 mm | $6 |
 | Misc (PG7 gland, lens disc, screws) | | ~$3 |
-| **Subtotal per camera** | | **~$46** |
+| **Subtotal per camera** | | **~$47** |
 
 ### Hub
 
