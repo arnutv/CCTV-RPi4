@@ -5,13 +5,17 @@
 // ═══════════════════════════════════════════════════════════════════════════
 
 // ─── PICK ONE PART TO RENDER ──────────────────────────────────────────────
-PART = "all";   // "tray" | "wall_mount" | "box_socket" |
-                // "solar_bracket" | "panel_socket" | "all"
+PART = "all";   // "tray" | "wall_mount" | "box_socket_bottom" | "panel_socket_bottom" |
+                // "socket_top_half" | "solar_bracket" | "all"
 
-// ─── Ball joint geometry (shared between mounts and sockets) ──────────────
+// ─── Ball joint geometry (shared between all mounts and sockets) ──────────
 BALL_DIA  = 20;
 STALK_DIA = 10;
 STALK_H   = 15;
+SOCKET_BLOCK_W = 50;
+SOCKET_BLOCK_D = 30;
+SOCKET_BLOCK_H = 12;     // each half is this thick
+SOCKET_BOLT_OFFSET = 15;
 
 // ─── ENCLOSURE BOX (off-the-shelf IP65) ───────────────────────────────────
 // INNER usable dimensions. Default for 140×78 mm outer junction box (typical thai):
@@ -88,41 +92,51 @@ module pcb_clip(pcb_w, pcb_d, h) {
     }
 }
 
-// ─── Helper: clamping socket on an adapter plate (ball joint receptacle) ──
-module _socket(plate_w, plate_d, plate_th=3) {
-    socket_od = BALL_DIA + 8;
-    socket_h  = BALL_DIA/2 + 6;
-    slit_w    = 1.6;
-    ball_r    = BALL_DIA/2 + 0.15;
-    cup_x = plate_w/2; cup_y = plate_d/2;
-    ball_z = plate_th + BALL_DIA/2 + 1;
+// ─── Universal TOP half of clam-shell socket ──────────────────────────────
+//   Used for BOTH the box and panel ball joints — print TWO copies.
+module socket_top_half() {
+    W = SOCKET_BLOCK_W; D = SOCKET_BLOCK_D; H = SOCKET_BLOCK_H;
+    ball_r = BALL_DIA/2 + 0.15;
+
+    difference() {
+        cube([W, D, H]);
+        // Hemisphere cavity (opens DOWN)
+        translate([W/2, D/2, 0]) sphere(r=ball_r);
+        // Conical stalk pivot opening
+        translate([W/2, D/2, ball_r - 1])
+            cylinder(d1=STALK_DIA + 2, d2=STALK_DIA + 10, h=H - ball_r + 2);
+        // 2× M4 through holes + socket-head countersinks
+        for (xoff = [-SOCKET_BOLT_OFFSET, SOCKET_BOLT_OFFSET]) {
+            translate([W/2 + xoff, D/2, -1]) cylinder(d=4.4, h=H + 2);
+            translate([W/2 + xoff, D/2, H - 4]) cylinder(d=7, h=4);
+        }
+    }
+}
+
+// ─── Helper: BOTTOM half of clam-shell socket + adapter plate ─────────────
+module _bottom_socket(plate_w, plate_d, plate_th=4) {
+    W = SOCKET_BLOCK_W; D = SOCKET_BLOCK_D; H = SOCKET_BLOCK_H;
+    ball_r = BALL_DIA/2 + 0.15;
+    block_x = (plate_w - W) / 2;
+    block_y = (plate_d - D) / 2;
 
     difference() {
         union() {
-            // Adapter plate
             cube([plate_w, plate_d, plate_th]);
-            // Socket cup
-            translate([cup_x, cup_y, plate_th])
-                cylinder(d=socket_od, h=socket_h);
-            // Clamp boss
-            translate([cup_x + socket_od/2 - 3, cup_y - 4, plate_th + 2])
-                cube([18, 8, socket_h - 4]);
+            translate([block_x, block_y, plate_th])
+                cube([W, D, H]);
         }
-        // Ball cavity
-        translate([cup_x, cup_y, ball_z]) sphere(r=ball_r);
-        // Cone opening at top
-        translate([cup_x, cup_y, ball_z])
-            cylinder(d1=ball_r*2 - 3, d2=STALK_DIA + 2, h=socket_h);
-        // Slit (flex line)
-        translate([cup_x, cup_y - slit_w/2, plate_th + 2])
-            cube([socket_od/2 + 2, slit_w, socket_h + 1]);
-        // M3 clamp screw hole (horizontal through boss)
-        translate([cup_x + socket_od/2 + 18, cup_y, plate_th + 2 + (socket_h - 4)/2])
-            rotate([0, -90, 0])
-                cylinder(d=3.4, h=socket_od + 24);
-        // Hex nut pocket
-        translate([cup_x + socket_od/2 + 14, cup_y - 3.1, plate_th + 2 + (socket_h - 4)/2 - 1.25])
-            cube([3, 6.2, 2.5]);
+        // Hemisphere cavity (opens UP — centre at top of block)
+        translate([plate_w/2, plate_d/2, plate_th + H]) sphere(r=ball_r);
+        // 2× bolt holes + hex nut pockets at the joint line
+        for (xoff = [-SOCKET_BOLT_OFFSET, SOCKET_BOLT_OFFSET]) {
+            x = plate_w/2 + xoff;
+            // Bolt through-hole
+            translate([x, plate_d/2, -1]) cylinder(d=4.4, h=H + plate_th + 2);
+            // M4 hex nut pocket (8 mm dia × 3.5 mm deep, captive)
+            translate([x, plate_d/2, plate_th + H - 3.5])
+                cylinder(d=8, h=4);
+        }
     }
 }
 
@@ -145,12 +159,12 @@ module wall_mount() {
     }
 }
 
-// ─── 3. BOX SOCKET (sticks to back of IP65 box, holds wall_mount's ball) ──
-module box_socket() {
-    plate_w = 55; plate_d = 45;
+// ─── 3. BOX SOCKET BOTTOM (sticks to back of IP65 box, holds wall_mount's ball) ──
+module box_socket_bottom() {
+    plate_w = 60; plate_d = 50;
     difference() {
-        _socket(plate_w, plate_d, plate_th=3);
-        // 4× optional mounting screw holes
+        _bottom_socket(plate_w, plate_d, plate_th=3);
+        // 4× optional M3 mounting screw holes near corners
         for (x = [6, plate_w - 6], y = [6, plate_d - 6])
             translate([x, y, -1]) cylinder(d=3.2, h=5);
     }
@@ -183,13 +197,13 @@ module solar_bracket() {
     }
 }
 
-// ─── 5. PANEL SOCKET (bolts to back of solar panel, holds bracket's ball) ─
-module panel_socket() {
-    plate_w = 80; plate_d = 40;
+// ─── 5. PANEL SOCKET BOTTOM (bolts to back of solar panel, holds bracket's ball) ─
+module panel_socket_bottom() {
+    plate_w = 95; plate_d = 55;
     difference() {
-        _socket(plate_w, plate_d, plate_th=4);
+        _bottom_socket(plate_w, plate_d, plate_th=4);
         // 4× M4 mounting holes for the solar panel frame
-        for (x = [10, plate_w - 10], y = [8, plate_d - 8])
+        for (x = [8, plate_w - 8], y = [8, plate_d - 8])
             translate([x, y, -1]) cylinder(d=4.4, h=6);
     }
 }
@@ -197,16 +211,19 @@ module panel_socket() {
 // ═══════════════════════════════════════════════════════════════════════════
 //                              LAY OUT FOR EXPORT
 // ═══════════════════════════════════════════════════════════════════════════
-if (PART == "tray")               electronics_tray();
-else if (PART == "wall_mount")    wall_mount();
-else if (PART == "box_socket")    box_socket();
-else if (PART == "solar_bracket") solar_bracket();
-else if (PART == "panel_socket")  panel_socket();
+if (PART == "tray")                  electronics_tray();
+else if (PART == "wall_mount")       wall_mount();
+else if (PART == "box_socket_bottom")   box_socket_bottom();
+else if (PART == "panel_socket_bottom") panel_socket_bottom();
+else if (PART == "socket_top_half")  socket_top_half();
+else if (PART == "solar_bracket")    solar_bracket();
 else {
     // "all" → show every part spread out for preview
     electronics_tray();
     translate([BOX_W + 30,  120,    0]) wall_mount();
-    translate([BOX_W + 130, 120,    0]) box_socket();
+    translate([BOX_W + 130, 120,    0]) box_socket_bottom();
     translate([BOX_W + 30,    0,    0]) solar_bracket();
-    translate([BOX_W + 130,   0,    0]) panel_socket();
+    translate([BOX_W + 130,   0,    0]) panel_socket_bottom();
+    // socket_top_half is used on BOTH ball joints — show one copy
+    translate([BOX_W + 230,  60,    0]) socket_top_half();
 }

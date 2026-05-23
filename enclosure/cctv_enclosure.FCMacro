@@ -2,12 +2,13 @@
 # ═══════════════════════════════════════════════════════════════════════════
 #  CCTV-Camera Enclosure  —  FreeCAD Python Macro
 # ═══════════════════════════════════════════════════════════════════════════
-#  Generates 5 parts inside the active FreeCAD document, ready for STEP/STL export:
-#       1. Electronics tray (organises battery + MPPT + boost inside IP65 box)
-#       2. Camera bezel    (sealed lens window + ESP32-CAM mount)
-#       3. Lid seal        (optional TPU gasket — print in flexible filament)
-#       4. Solar bracket   (L-bracket with adjustable tilt angle)
-#       5. Wall mount      (articulating ball joint behind the box)
+#  Generates 6 parts inside the active FreeCAD document, ready for STEP/STL export:
+#       1. Electronics tray    (organises battery + MPPT + boost inside IP65 box)
+#       2. Wall mount          (80×80 wall plate + ball stalk → camera box)
+#       3. Box socket bottom   (60×50 plate + lower socket half → attaches to IP65 box)
+#       4. Solar bracket       (L-arm + ball stalk → solar panel)
+#       5. Panel socket bottom (95×55 plate + lower socket half → attaches to panel frame)
+#       6. Socket top half     (upper clam-shell half — print TWO copies, one per joint)
 #
 #  HOW TO USE
 #  ──────────
@@ -110,104 +111,127 @@ def electronics_tray():
     return tray
 
 
-# ─── Ball-joint geometry shared by wall_mount + solar_bracket + sockets ────
-BALL_DIA  = 20.0   # ball diameter
-STALK_DIA = 10.0   # stalk diameter
-STALK_H   = 15.0   # stalk length (from base to bottom of ball)
+# ─── Ball-joint geometry shared by all mounts and sockets ──────────────────
+BALL_DIA   = 20.0   # ball diameter
+STALK_DIA  = 10.0   # stalk diameter
+STALK_H    = 15.0   # stalk length (from base to bottom of ball)
+SOCKET_BLOCK_W = 50.0   # clam-shell block width
+SOCKET_BLOCK_D = 30.0   # clam-shell block depth
+SOCKET_BLOCK_H = 12.0   # each half is this thick (so total height = 24 mm)
+SOCKET_BOLT_OFFSET = 15.0  # bolt distance from block centre (±X)
 
 
-def _make_socket(plate_w, plate_d, plate_th=3.0):
-    """Helper: clamping socket on top of an adapter plate.
-    Slit on one side + perpendicular boss with M3 clamp screw hole.
-    Snap the ball in from the top; tighten M3 to lock the angle.
+def socket_top_half():
+    """Universal TOP half of the clam-shell socket — used for BOTH the box and
+    the panel ball-joints (print two copies).
+    Has a half-sphere cavity on the bottom face + a conical stalk opening on
+    top + 2× M4 through-holes (with socket-head countersink) for the clamp bolts.
     """
-    SOCKET_OD = BALL_DIA + 8        # 4 mm wall on each side
-    SOCKET_H  = BALL_DIA / 2 + 6    # taller than half-sphere
-    SLIT_W    = 1.6                 # one nozzle line wide
-    BALL_R    = BALL_DIA / 2 + 0.15 # tiny clearance for snap
+    W, D, H = SOCKET_BLOCK_W, SOCKET_BLOCK_D, SOCKET_BLOCK_H
+    BALL_R = BALL_DIA / 2 + 0.15      # 0.15 mm clearance
+
+    block = Part.makeBox(W, D, H)
+
+    # Hemisphere cavity (opens DOWN — sphere centre at z = 0, bottom face)
+    cavity = Part.makeSphere(BALL_R)
+    cavity.translate(Vector(W / 2, D / 2, 0))
+    block = block.cut(cavity)
+
+    # Conical stalk pivot opening (from cavity top up through cap)
+    cone_h = H - BALL_R + 2
+    cone = Part.makeCone(STALK_DIA / 2 + 1, STALK_DIA / 2 + 5, cone_h)
+    cone.translate(Vector(W / 2, D / 2, BALL_R - 1))
+    block = block.cut(cone)
+
+    # 2× M4 through-holes with socket-head recess on top
+    for x_off in (-SOCKET_BOLT_OFFSET, SOCKET_BOLT_OFFSET):
+        x = W / 2 + x_off
+        y = D / 2
+        # Through hole (M4 = 4 mm + 0.4 mm slop)
+        bh = Part.makeCylinder(2.2, H + 2)
+        bh.translate(Vector(x, y, -1))
+        block = block.cut(bh)
+        # Socket-head countersink (M4 socket cap ≈ 7 mm dia × 4 mm tall)
+        cs = Part.makeCylinder(3.5, 4)
+        cs.translate(Vector(x, y, H - 4))
+        block = block.cut(cs)
+
+    return block
+
+
+def _bottom_socket(plate_w, plate_d, plate_th=4.0):
+    """Helper: BOTTOM half of clam-shell socket + adapter plate underneath.
+    Hemisphere cavity opens UP; M4 hex-nut pockets capture nuts at the joint
+    line so they can't spin when the bolts are tightened.
+    """
+    W, D, H = SOCKET_BLOCK_W, SOCKET_BLOCK_D, SOCKET_BLOCK_H
+    BALL_R = BALL_DIA / 2 + 0.15
 
     # Adapter plate
     base = Part.makeBox(plate_w, plate_d, plate_th)
 
-    cup_x, cup_y = plate_w / 2, plate_d / 2
+    # Bottom block centred on plate
+    block_x = (plate_w - W) / 2
+    block_y = (plate_d - D) / 2
+    block = Part.makeBox(W, D, H)
+    block.translate(Vector(block_x, block_y, plate_th))
+    base = base.fuse(block)
 
-    # Socket housing (cylindrical cup)
-    cup = Part.makeCylinder(SOCKET_OD / 2, SOCKET_H)
-    cup.translate(Vector(cup_x, cup_y, plate_th))
-    base = base.fuse(cup)
-
-    # Hollow ball cavity (sphere)
-    ball_z = plate_th + BALL_DIA / 2 + 1
+    # Hemisphere cavity (opens UP — sphere centre at top face of block)
     cavity = Part.makeSphere(BALL_R)
-    cavity.translate(Vector(cup_x, cup_y, ball_z))
+    cavity.translate(Vector(plate_w / 2, plate_d / 2, plate_th + H))
     base = base.cut(cavity)
 
-    # Top opening — cone so the stalk can pivot at any angle
-    open_top = Part.makeCone(BALL_R - 1.5, STALK_DIA / 2 + 1, SOCKET_H)
-    open_top.translate(Vector(cup_x, cup_y, ball_z))
-    base = base.cut(open_top)
-
-    # Slit through one side wall (lets the cup flex when clamped)
-    slit = Part.makeBox(SOCKET_OD / 2 + 2, SLIT_W, SOCKET_H + 1)
-    slit.translate(Vector(cup_x, cup_y - SLIT_W / 2, plate_th + 2))
-    base = base.cut(slit)
-
-    # Clamp boss on the opposite side of the slit
-    boss_l, boss_w, boss_h = 18, 8, SOCKET_H - 4
-    boss = Part.makeBox(boss_l, boss_w, boss_h)
-    boss.translate(Vector(cup_x + SOCKET_OD / 2 - 3,
-                          cup_y - boss_w / 2, plate_th + 2))
-    base = base.fuse(boss)
-
-    # M3 clamp screw hole — horizontal, through boss → slit → opposite wall
-    clamp_z = plate_th + 2 + boss_h / 2
-    clamp_hole = Part.makeCylinder(1.7, SOCKET_OD + 6,
-                                   Vector(cup_x + SOCKET_OD / 2 + boss_l - 4,
-                                          cup_y, clamp_z),
-                                   Vector(-1, 0, 0))
-    base = base.cut(clamp_hole)
-
-    # Hex nut pocket on outer face of boss (so M3 nut sits flush)
-    nut_pocket = Part.makeBox(3, 6.2, 2.5)
-    nut_pocket.translate(Vector(cup_x + SOCKET_OD / 2 + boss_l - 4,
-                                cup_y - 3.1, clamp_z - 1.25))
-    base = base.cut(nut_pocket)
+    # 2× M4 bolt holes + hex nut pockets at the joint line
+    for x_off in (-SOCKET_BOLT_OFFSET, SOCKET_BOLT_OFFSET):
+        x = plate_w / 2 + x_off
+        y = plate_d / 2
+        # Bolt through-hole all the way down (clearance for M4)
+        bh = Part.makeCylinder(2.2, H + plate_th + 2)
+        bh.translate(Vector(x, y, -1))
+        base = base.cut(bh)
+        # Nut pocket (8 mm dia × 3.5 mm deep, accessible from joint line)
+        # 8 mm dia is slightly larger than M4 nut across-points (≈ 8 mm)
+        # so the nut press-fits and won't spin
+        nut_pocket = Part.makeCylinder(4.0, 3.5)
+        nut_pocket.translate(Vector(x, y, plate_th + H - 3.5))
+        base = base.cut(nut_pocket)
 
     return base
 
 
-def box_socket():
-    """Socket clamp that adheres to the back of the IP65 camera box.
-    Stick with VHB tape (preferred — no holes in box) or M3 screws.
-    Mates with wall_mount's ball; M3 clamp screw locks the angle.
+def box_socket_bottom():
+    """Bottom half of clam-shell socket for the IP65 camera box.
+    The 60×50 mm adapter plate attaches to the back of the box (VHB tape
+    preferred, or use the optional 4× M3 holes for self-tap screws).
     """
-    plate_w, plate_d = 55.0, 45.0
-    base = _make_socket(plate_w, plate_d, plate_th=3.0)
+    plate_w, plate_d = 60.0, 50.0
+    base = _bottom_socket(plate_w, plate_d, plate_th=3.0)
 
-    # 4× optional M3 screw holes (or just use 3M VHB tape on the back)
-    for x in (6, plate_w - 6):
-        for y in (6, plate_d - 6):
-            hole = Part.makeCylinder(1.6, 5)
-            hole.translate(Vector(x, y, -1))
-            base = base.cut(hole)
+    # 4× optional M3 mounting holes near the corners (clear of bolt area)
+    for x, y in [(6, 6), (plate_w - 6, 6),
+                 (6, plate_d - 6), (plate_w - 6, plate_d - 6)]:
+        hole = Part.makeCylinder(1.6, 5)
+        hole.translate(Vector(x, y, -1))
+        base = base.cut(hole)
 
     return base
 
 
-def panel_socket():
-    """Socket clamp that bolts to the back of the solar panel frame.
-    Mates with solar_bracket's ball; M3 clamp screw locks the angle.
-    Use the 4× M4 holes to bolt onto the panel frame's mounting tabs.
+def panel_socket_bottom():
+    """Bottom half of clam-shell socket for the solar panel.
+    The 95×55 mm adapter plate bolts to the panel frame via 4× M4 holes
+    at the corners (clear of the clamp bolts in the centre).
     """
-    plate_w, plate_d = 80.0, 40.0
-    base = _make_socket(plate_w, plate_d, plate_th=4.0)
+    plate_w, plate_d = 95.0, 55.0
+    base = _bottom_socket(plate_w, plate_d, plate_th=4.0)
 
-    # 4× M4 mounting holes for solar panel frame
-    for x in (10, plate_w - 10):
-        for y in (8, plate_d - 8):
-            hole = Part.makeCylinder(2.2, 7)
-            hole.translate(Vector(x, y, -1))
-            base = base.cut(hole)
+    # 4× M4 panel mounting holes at the corners
+    for x, y in [(8, 8), (plate_w - 8, 8),
+                 (8, plate_d - 8), (plate_w - 8, plate_d - 8)]:
+        hole = Part.makeCylinder(2.2, 6)
+        hole.translate(Vector(x, y, -1))
+        base = base.cut(hole)
 
     return base
 
@@ -304,15 +328,18 @@ doc = App.newDocument(doc_name)
 print("Building CCTV enclosure parts…")
 
 # Inside the IP65 box
-add_part(electronics_tray(), "1_Electronics_Tray",  (0,           0,            0))
+add_part(electronics_tray(),    "1_Electronics_Tray",   (0,           0,            0))
 
-# Wall-to-box ball joint (2 pieces snap together)
-add_part(wall_mount(),       "2_Wall_Mount",        (BOX_W + 30,  120,          0))
-add_part(box_socket(),       "3_Box_Socket",        (BOX_W + 130, 120,          0))
+# Wall-to-box ball joint (clam-shell socket)
+add_part(wall_mount(),          "2_Wall_Mount",         (BOX_W + 30,  140,          0))
+add_part(box_socket_bottom(),   "3_Box_Socket_Bottom",  (BOX_W + 130, 140,          0))
 
-# Wall-to-panel ball joint (2 pieces snap together)
-add_part(solar_bracket(),    "4_Solar_Bracket",     (BOX_W + 30,  0,            0))
-add_part(panel_socket(),     "5_Panel_Socket",      (BOX_W + 130, 0,            0))
+# Wall-to-panel ball joint (clam-shell socket)
+add_part(solar_bracket(),       "4_Solar_Bracket",      (BOX_W + 30,  0,            0))
+add_part(panel_socket_bottom(), "5_Panel_Socket_Bottom",(BOX_W + 130, 0,            0))
+
+# Universal TOP half (print 2 copies — one for each ball joint)
+add_part(socket_top_half(),     "6_Socket_Top_Half",    (BOX_W + 230, 70,           0))
 
 doc.recompute()
 
@@ -324,12 +351,13 @@ except Exception:
     pass
 
 print("─" * 70)
-print("Done. 5 parts created. Tree → right-click each → Export…")
+print("Done. 6 parts created. Tree → right-click each → Export…")
 print("  • STEP (.step)  → keep parametric / share with other CAD")
 print("  • Mesh (.stl)   → straight to your 3D printer slicer")
 print("─" * 70)
-print("Ball-joint pairs:")
-print("  wall_mount  + box_socket    → wall  ↔ camera IP65 box")
-print("  solar_bracket + panel_socket → wall ↔ solar panel")
-print("Each pair: snap ball into socket, tighten M3 clamp screw to lock angle.")
+print("Ball-joint assembly (two-half clam-shell, like a magic arm):")
+print("  CAMERA :  wall_mount + box_socket_bottom + socket_top_half")
+print("  SOLAR  :  solar_bracket + panel_socket_bottom + socket_top_half")
+print("Print socket_top_half TWICE (one per ball joint).")
+print("Hardware per joint: 2× M4×20 socket-head bolt + 2× M4 nut.")
 print("─" * 70)
