@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<title>Electronics Tray — Component Layout</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #dde2e8;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding: 28px 16px;
+}
+.card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,.18);
+  padding: 26px 28px 20px;
+  width: fit-content;
+}
+h1 { font-size: 15px; font-weight: 700; color: #1a1a1a; margin-bottom: 2px; }
+.sub { font-size: 11px; color: #888; margin-bottom: 18px; }
+.legend {
+  margin-top: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  font-size: 11px;
+  color: #555;
+}
+.leg { display: flex; align-items: center; gap: 6px; }
+.sw {
+  width: 14px; height: 14px; border-radius: 3px;
+  border: 1.5px solid #888; flex-shrink: 0;
+}
+</style>
+</head>
+<body>
+<div class="card">
+  <h1>Electronics Tray — มุมมองจากด้านบน (Top View)</h1>
+  <p class="sub">Tray 130 × 68 mm · IP65 box inner 134 × 72 mm · Scale 4 px = 1 mm</p>
+
+  <!--
+    COORDINATE SYSTEM
+    S  = 4 px/mm
+    OX = 65 px   (left margin)
+    OY = 55 px   (top margin)
+    Tray plate: (65,55) → (585,327)   520 × 272 px
+
+    Key element pixel positions (computed from SCAD code):
+      Battery pocket outer : (81,71)  302 × 146
+      Battery pocket inner : (87,77)  290 × 134  [open / hollow]
+      MPPT outer           : (405,71) 135 × 95
+      MPPT PCB slot        : (411,77) 123 × 83   [open]
+      Boost outer          : (405,171) 159 × 83
+      Boost PCB slot       : (411,177) 147 × 71  [open]
+      Posts ⌀4             : (105,95) (545,95) (105,287) (545,287)  r=8
+      M3 holes ⌀3.4        : (89,79)  (561,79) (89,303)  (561,303)  r=7
+  -->
+  <svg width="730" height="408" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <!-- arrowhead right -->
+      <marker id="ar" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+        <path d="M0,0 L7,3.5 L0,7 Z" fill="#555"/>
+      </marker>
+      <!-- arrowhead left -->
+      <marker id="al" markerWidth="7" markerHeight="7" refX="1" refY="3.5" orient="auto-start-reverse">
+        <path d="M0,0 L7,3.5 L0,7 Z" fill="#555"/>
+      </marker>
+      <!-- green arrows -->
+      <marker id="ag" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+        <path d="M0,0 L6,3 L0,6 Z" fill="#388e3c"/>
+      </marker>
+      <marker id="agl" markerWidth="6" markerHeight="6" refX="1" refY="3" orient="auto-start-reverse">
+        <path d="M0,0 L6,3 L0,6 Z" fill="#388e3c"/>
+      </marker>
+      <!-- blue arrows -->
+      <marker id="ab" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+        <path d="M0,0 L6,3 L0,6 Z" fill="#1565c0"/>
+      </marker>
+      <marker id="abl" markerWidth="6" markerHeight="6" refX="1" refY="3" orient="auto-start-reverse">
+        <path d="M0,0 L6,3 L0,6 Z" fill="#1565c0"/>
+      </marker>
+    </defs>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         1. TRAY BASE PLATE
+    ════════════════════════════════════════════════════════════════ -->
+    <rect x="65" y="55" width="520" height="272"
+          fill="#e0e0e0" stroke="#333" stroke-width="2"/>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         2. BATTERY HOLDER POCKET
+         outer walls  : (81,71) 302×146
+         inner cavity : (87,77) 290×134
+    ════════════════════════════════════════════════════════════════ -->
+    <!-- Walls (material) -->
+    <rect x="81"  y="71"  width="302" height="146"
+          fill="#a5d6a7" stroke="#2e7d32" stroke-width="1.5"/>
+    <!-- Inner open cavity (hollow above floor) -->
+    <rect x="87"  y="77"  width="290" height="134"
+          fill="#f9f9f9" stroke="#66bb6a" stroke-width="1" stroke-dasharray="5,3"/>
+
+    <!-- Labels -->
+    <text x="232" y="132" font-size="12" font-weight="bold" fill="#1b5e20"
+          text-anchor="middle">2 × 18650</text>
+    <text x="232" y="147" font-size="11" fill="#2e7d32" text-anchor="middle">Battery Holder</text>
+    <text x="232" y="161" font-size="10" fill="#388e3c" text-anchor="middle">75 × 36 mm</text>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         3. MPPT CHARGER CLIP  (CN3791)
+         outer : (405,71) 135×95
+         PCB   : (411,77) 123×83
+    ════════════════════════════════════════════════════════════════ -->
+    <rect x="405" y="71"  width="135" height="95"
+          fill="#90caf9" stroke="#1565c0" stroke-width="1.5"/>
+    <rect x="411" y="77"  width="123" height="83"
+          fill="#f9f9f9" stroke="#42a5f5" stroke-width="1" stroke-dasharray="5,3"/>
+
+    <text x="472" y="108" font-size="12" font-weight="bold" fill="#0d47a1"
+          text-anchor="middle">CN3791</text>
+    <text x="472" y="122" font-size="11" fill="#1565c0" text-anchor="middle">MPPT Charger</text>
+    <text x="472" y="136" font-size="10" fill="#1976d2" text-anchor="middle">30 × 20 mm</text>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         4. BOOST CONVERTER CLIP  (MT3608)
+         outer : (405,171) 159×83
+         PCB   : (411,177) 147×71
+    ════════════════════════════════════════════════════════════════ -->
+    <rect x="405" y="171" width="159" height="83"
+          fill="#ffcc80" stroke="#e65100" stroke-width="1.5"/>
+    <rect x="411" y="177" width="147" height="71"
+          fill="#f9f9f9" stroke="#ff9800" stroke-width="1" stroke-dasharray="5,3"/>
+
+    <text x="484" y="208" font-size="12" font-weight="bold" fill="#bf360c"
+          text-anchor="middle">MT3608</text>
+    <text x="484" y="222" font-size="11" fill="#e65100" text-anchor="middle">Boost 5 V</text>
+    <text x="484" y="236" font-size="10" fill="#f57c00" text-anchor="middle">36 × 17 mm</text>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         5. CABLE ROUTING POSTS  ⌀4 mm  h=12 mm
+         at (10,10) (120,10) (10,58) (120,58) in mm → r=8 px
+    ════════════════════════════════════════════════════════════════ -->
+    <circle cx="105" cy="95"  r="8" fill="#ffe082" stroke="#f9a825" stroke-width="1.5"/>
+    <circle cx="545" cy="95"  r="8" fill="#ffe082" stroke="#f9a825" stroke-width="1.5"/>
+    <circle cx="105" cy="287" r="8" fill="#ffe082" stroke="#f9a825" stroke-width="1.5"/>
+    <circle cx="545" cy="287" r="8" fill="#ffe082" stroke="#f9a825" stroke-width="1.5"/>
+    <!-- P labels inside posts -->
+    <text x="105" y="95"  font-size="7.5" font-weight="bold" fill="#5d4037"
+          text-anchor="middle" dominant-baseline="middle">P</text>
+    <text x="545" y="95"  font-size="7.5" font-weight="bold" fill="#5d4037"
+          text-anchor="middle" dominant-baseline="middle">P</text>
+    <text x="105" y="287" font-size="7.5" font-weight="bold" fill="#5d4037"
+          text-anchor="middle" dominant-baseline="middle">P</text>
+    <text x="545" y="287" font-size="7.5" font-weight="bold" fill="#5d4037"
+          text-anchor="middle" dominant-baseline="middle">P</text>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         6. M3 MOUNTING HOLES  ⌀3.4 mm  (to box standoffs)
+         at (6,6) (124,6) (6,62) (124,62) → r=7 px
+    ════════════════════════════════════════════════════════════════ -->
+    <g stroke="#555" stroke-width="1.5">
+      <!-- holes -->
+      <circle cx="89"  cy="79"  r="7" fill="white"/>
+      <circle cx="561" cy="79"  r="7" fill="white"/>
+      <circle cx="89"  cy="303" r="7" fill="white"/>
+      <circle cx="561" cy="303" r="7" fill="white"/>
+      <!-- centre crosses -->
+      <line x1="85"  y1="79"  x2="93"  y2="79"/>  <line x1="89"  y1="75"  x2="89"  y2="83"/>
+      <line x1="557" y1="79"  x2="565" y2="79"/>  <line x1="561" y1="75"  x2="561" y2="83"/>
+      <line x1="85"  y1="303" x2="93"  y2="303"/> <line x1="89"  y1="299" x2="89"  y2="307"/>
+      <line x1="557" y1="303" x2="565" y2="303"/> <line x1="561" y1="299" x2="561" y2="307"/>
+    </g>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         7. WIRING CHANNEL LABEL
+         6 mm gap between battery right edge and module clips
+    ════════════════════════════════════════════════════════════════ -->
+    <!-- Vertical gap band: x=383 to x=405, y=71 to y=327 -->
+    <rect x="383" y="71" width="22" height="200"
+          fill="none" stroke="#bbb" stroke-width="0.8" stroke-dasharray="3,3"/>
+    <text x="394" y="175" font-size="8.5" fill="#aaa" text-anchor="middle"
+          transform="rotate(-90,394,175)">wiring</text>
+
+    <!-- Empty space label (bottom of tray, below boost converter) -->
+    <text x="484" y="284" font-size="10" fill="#bbb" text-anchor="middle">spare space</text>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         8. DIMENSION LINES
+    ════════════════════════════════════════════════════════════════ -->
+
+    <!-- Tray width: 130 mm — below tray -->
+    <line x1="65" y1="343" x2="585" y2="343" stroke="#555" stroke-width="1"
+          marker-start="url(#al)" marker-end="url(#ar)"/>
+    <line x1="65"  y1="329" x2="65"  y2="351" stroke="#555" stroke-width="1"/>
+    <line x1="585" y1="329" x2="585" y2="351" stroke="#555" stroke-width="1"/>
+    <text x="325" y="357" font-size="11" text-anchor="middle" fill="#333">130 mm</text>
+
+    <!-- Tray depth: 68 mm — right of tray -->
+    <line x1="605" y1="55" x2="605" y2="327" stroke="#555" stroke-width="1"
+          marker-start="url(#al)" marker-end="url(#ar)"/>
+    <line x1="587" y1="55"  x2="613" y2="55"  stroke="#555" stroke-width="1"/>
+    <line x1="587" y1="327" x2="613" y2="327" stroke="#555" stroke-width="1"/>
+    <text x="625" y="195" font-size="11" text-anchor="middle" fill="#333"
+          transform="rotate(90,625,191)">68 mm</text>
+
+    <!-- Battery pocket width: 75 mm — small dim inside -->
+    <line x1="81" y1="228" x2="383" y2="228" stroke="#2e7d32" stroke-width="0.8"
+          marker-start="url(#agl)" marker-end="url(#ag)"/>
+    <text x="232" y="238" font-size="9" text-anchor="middle" fill="#2e7d32">75.6 mm</text>
+
+    <!-- MPPT width: 30 mm -->
+    <line x1="411" y1="62" x2="534" y2="62" stroke="#1565c0" stroke-width="0.8"
+          marker-start="url(#abl)" marker-end="url(#ab)"/>
+    <text x="472" y="51" font-size="9" text-anchor="middle" fill="#1565c0">30 mm (PCB)</text>
+
+    <!-- Gap 6mm between battery and clips -->
+    <line x1="383" y1="88" x2="405" y2="88" stroke="#999" stroke-width="0.8"
+          marker-start="url(#al)" marker-end="url(#ar)"/>
+    <text x="394" y="84" font-size="8.5" text-anchor="middle" fill="#888">6 mm</text>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         9. TRAY ORIGIN + WALL LABEL
+    ════════════════════════════════════════════════════════════════ -->
+    <text x="67" y="68" font-size="9" fill="#999">(0,0)</text>
+    <text x="325" y="45" font-size="10" fill="#aaa" text-anchor="middle">
+      ↑ ด้านหน้ากล่อง / Front of IP65 box
+    </text>
+
+  </svg>
+
+  <!-- ── LEGEND ──────────────────────────────────────────────────── -->
+  <div class="legend">
+    <div class="leg">
+      <div class="sw" style="background:#e0e0e0;border-color:#333"></div>
+      Tray base plate (130 × 68 mm)
+    </div>
+    <div class="leg">
+      <div class="sw" style="background:#a5d6a7;border-color:#2e7d32"></div>
+      Battery pocket walls (1.6 mm PETG)
+    </div>
+    <div class="leg">
+      <div class="sw" style="background:#f9f9f9;border-color:#66bb6a;border-style:dashed"></div>
+      Inner cavity / open slot
+    </div>
+    <div class="leg">
+      <div class="sw" style="background:#90caf9;border-color:#1565c0"></div>
+      CN3791 MPPT clip (30 × 20 mm PCB)
+    </div>
+    <div class="leg">
+      <div class="sw" style="background:#ffcc80;border-color:#e65100"></div>
+      MT3608 Boost clip (36 × 17 mm PCB)
+    </div>
+    <div class="leg">
+      <svg width="14" height="14" style="flex-shrink:0">
+        <circle cx="7" cy="7" r="6" fill="#ffe082" stroke="#f9a825" stroke-width="1.5"/>
+        <text x="7" y="7" font-size="6" font-weight="bold" fill="#5d4037"
+              text-anchor="middle" dominant-baseline="middle">P</text>
+      </svg>
+      Cable routing post ⌀4 × 12 mm (4 ชิ้น)
+    </div>
+    <div class="leg">
+      <svg width="14" height="14" style="flex-shrink:0">
+        <circle cx="7" cy="7" r="6" fill="white" stroke="#555" stroke-width="1.5"/>
+        <line x1="3" y1="7" x2="11" y2="7" stroke="#555" stroke-width="1"/>
+        <line x1="7" y1="3" x2="7"  y2="11" stroke="#555" stroke-width="1"/>
+      </svg>
+      M3 mounting hole ⌀3.4 mm (4 ชิ้น)
+    </div>
+  </div>
+
+  <p style="margin-top:14px;font-size:10px;color:#aaa">
+    Print in PETG at 0.2 mm · 4 perimeters · 25 % gyroid infill · No supports
+  </p>
+</div>
+</body>
+</html>
