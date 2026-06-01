@@ -84,6 +84,26 @@ Board outline: 0,0 to 100,80 mm rectangle on Edge.Cuts.
 
 ---
 
+## What's already routed
+
+The PCB ships with **18 power traces at 1 mm width on F.Cu** already laid down. You only need to finish the signal nets and a couple of leftover power connections.
+
+| Net | Status | Notes |
+|---|---|---|
+| `SOLAR+` | ✅ done | J1.1 → U1.1, diagonal |
+| `SOLAR-` | ✅ done | J1.2 → U1.2, 2-segment L |
+| `BATT+` | ✅ done (4 of 5 pads) | Top rail at y=5 connecting U1.3, U2.1, U2.3, U3.1. **J2.1 still needs to connect** — easiest route is `J2.1 → (4, 28) → (4, 5) → rail`. |
+| `BATT-` | ✅ done (2 of 3 pads) | U1.4 → U2.2. **J2.2 still needs to connect** — route on B.Cu or via the left edge. |
+| `+5V` | ✅ done | U3.3 → U4.1 via right side and underbelly at y=40 |
+| `+3V3` | ⚠ partial | R1.1 → R2.1 → U5.1 done. **U4.3 → R1.1 still needs to connect** — U4's right pad column blocks a direct path; easiest is U4.3 → exit right above U4 body → R1.1. |
+| `GND` | ⚠ tiny stub | U3.2 ↔ U3.4 only. **The other 4 GND pads need connection** (U2.4, U4.2, U5.2, U5.4). This is the most complex net — recommend either Freerouting handles it, or you draw a small ground fill on B.Cu in pcbnew (`Place → Filled Zone → B.Cu → GND`). |
+| Camera bus (`SIOC`, `SIOD`, `VSYNC`, `HREF`, `PCLK`, `XCLK`) | ❌ unrouted | 6 short nets between U4 left side and U5 left side |
+| Camera data (`CAM_D0..D7`) | ❌ unrouted | 8 nets, U4 right side to U5 right side — will likely need vias and B.Cu |
+
+For the unrouted nets, either:
+- Open in pcbnew, press `B` to refresh ratsnest, press `X` to route interactively (~10 min for what's left)
+- Or follow the Freerouting steps below — it will route around the existing 1 mm power traces and lay down the rest
+
 ## Net summary (21 nets + GND)
 
 Power: `SOLAR+`, `SOLAR-`, `BATT+`, `BATT-`, `GND`, `+5V`, `+3V3`
