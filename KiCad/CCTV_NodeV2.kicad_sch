@@ -834,10 +834,10 @@
 		(property "Reference" "J2"
 			(at 130 100 0)
 		)
-		(property "Value" "2x 18650 ||"
+		(property "Value" "Battery (ext, 2× 18650 ||)"
 			(at 130 113 0)
 		)
-		(property "Footprint" "CCTV_RPi4:BatteryHolder_18650"
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical"
 			(at 0 0 0)
 			(hide yes)
 		)
@@ -1470,10 +1470,20 @@
 		(effects (font (size 1.27 1.27)) (justify left bottom))
 		(uuid "c000000d-0000-0000-0000-00000000000d")
 	)
-	(label "BATT-"
+	(label "PROT-"
 		(at 167.3 75.08 0)
 		(effects (font (size 1.27 1.27)) (justify left top))
 		(uuid "c000000e-0000-0000-0000-00000000000e")
+	)
+	(label "BATT+"
+		(at 142.7 64.92 0)
+		(effects (font (size 1.27 1.27)) (justify left bottom))
+		(uuid "c0000031-0000-0000-0000-000000000031")
+	)
+	(label "PROT-"
+		(at 142.7 75.08 0)
+		(effects (font (size 1.27 1.27)) (justify left top))
+		(uuid "c0000032-0000-0000-0000-000000000032")
 	)
 	(label "+5V"
 		(at 122.22 147.3 0)
