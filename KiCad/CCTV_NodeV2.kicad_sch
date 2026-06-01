@@ -187,6 +187,10 @@
 			(property "Value" "R"
 				(at 0 0 90)
 			)
+			(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal"
+				(at 0 0 0)
+				(hide yes)
+			)
 			(symbol "R_0_1"
 				(rectangle
 					(start -1.016 -2.54)
@@ -265,6 +269,10 @@
 				(at 0 0 0)
 				(hide yes)
 			)
+			(property "Footprint" "CCTV_RPi4:CN3791_Module"
+				(at 0 0 0)
+				(hide yes)
+			)
 			(symbol "CN3791_0_1"
 				(rectangle
 					(start -10.16 -8.89)
@@ -320,6 +328,10 @@
 				(at 0 -11.43 0)
 			)
 			(property "Description" "1S Li-ion protection (DW01A + FS8205A), over-discharge ~2.4V, OCP ~3A"
+				(at 0 0 0)
+				(hide yes)
+			)
+			(property "Footprint" "CCTV_RPi4:BMS_1S_DW01A_FS8205A"
 				(at 0 0 0)
 				(hide yes)
 			)
@@ -381,6 +393,10 @@
 				(at 0 0 0)
 				(hide yes)
 			)
+			(property "Footprint" "CCTV_RPi4:MT3608_Module"
+				(at 0 0 0)
+				(hide yes)
+			)
 			(symbol "MT3608_0_1"
 				(rectangle
 					(start -10.16 -8.89)
@@ -436,6 +452,10 @@
 				(at 0 -17.78 0)
 			)
 			(property "Description" "ESP32-S3 dev board with 16MB flash + 8MB octal PSRAM"
+				(at 0 0 0)
+				(hide yes)
+			)
+			(property "Footprint" "CCTV_RPi4:ESP32-S3-DevKitC-1"
 				(at 0 0 0)
 				(hide yes)
 			)
@@ -576,6 +596,10 @@
 				(at 0 -17.78 0)
 			)
 			(property "Description" "OV7670 VGA CMOS sensor, 8-bit DVP, no JPEG"
+				(at 0 0 0)
+				(hide yes)
+			)
+			(property "Footprint" "CCTV_RPi4:OV7670_Module"
 				(at 0 0 0)
 				(hide yes)
 			)
@@ -722,6 +746,10 @@
 		(property "Value" "Solar 6V/10W"
 			(at 40 78 0)
 		)
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical"
+			(at 0 0 0)
+			(hide yes)
+		)
 		(pin "1" (uuid "a0000001-0001-0000-0000-000000000001"))
 		(pin "2" (uuid "a0000001-0002-0000-0000-000000000001"))
 		(instances
@@ -800,6 +828,10 @@
 		)
 		(property "Value" "2x 18650 ||"
 			(at 130 113 0)
+		)
+		(property "Footprint" "CCTV_RPi4:BatteryHolder_18650"
+			(at 0 0 0)
+			(hide yes)
 		)
 		(pin "1" (uuid "a0000004-0001-0000-0000-000000000004"))
 		(pin "2" (uuid "a0000004-0002-0000-0000-000000000004"))
