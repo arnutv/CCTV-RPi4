@@ -86,23 +86,32 @@ Board outline: 0,0 to 100,80 mm rectangle on Edge.Cuts.
 
 ## What's already routed
 
-The PCB ships with **18 power traces at 1 mm width on F.Cu** already laid down. You only need to finish the signal nets and a couple of leftover power connections.
+The PCB ships with **56 traces** already laid down: 18 power traces at 1 mm width on F.Cu, plus 38 signal/auxiliary traces at 0.7 mm width on F.Cu + B.Cu.
 
 | Net | Status | Notes |
 |---|---|---|
-| `SOLAR+` | ✅ done | J1.1 → U1.1, diagonal |
-| `SOLAR-` | ✅ done | J1.2 → U1.2, 2-segment L |
-| `BATT+` | ✅ done (4 of 5 pads) | Top rail at y=5 connecting U1.3, U2.1, U2.3, U3.1. **J2.1 still needs to connect** — easiest route is `J2.1 → (4, 28) → (4, 5) → rail`. |
-| `BATT-` | ✅ done (2 of 3 pads) | U1.4 → U2.2. **J2.2 still needs to connect** — route on B.Cu or via the left edge. |
-| `+5V` | ✅ done | U3.3 → U4.1 via right side and underbelly at y=40 |
-| `+3V3` | ⚠ partial | R1.1 → R2.1 → U5.1 done. **U4.3 → R1.1 still needs to connect** — U4's right pad column blocks a direct path; easiest is U4.3 → exit right above U4 body → R1.1. |
-| `GND` | ⚠ tiny stub | U3.2 ↔ U3.4 only. **The other 4 GND pads need connection** (U2.4, U4.2, U5.2, U5.4). This is the most complex net — recommend either Freerouting handles it, or you draw a small ground fill on B.Cu in pcbnew (`Place → Filled Zone → B.Cu → GND`). |
-| Camera bus (`SIOC`, `SIOD`, `VSYNC`, `HREF`, `PCLK`, `XCLK`) | ❌ unrouted | 6 short nets between U4 left side and U5 left side |
-| Camera data (`CAM_D0..D7`) | ❌ unrouted | 8 nets, U4 right side to U5 right side — will likely need vias and B.Cu |
+| `SOLAR+` | ✅ done (1 mm F.Cu) | J1.1 → U1.1, diagonal |
+| `SOLAR-` | ✅ done (1 mm F.Cu) | J1.2 → U1.2, 2-segment L |
+| `BATT+` | ✅ done (1 mm F.Cu + 0.7 mm B.Cu) | Top rail at y=5 + J2.1 via left edge on B.Cu through y=8 |
+| `BATT-` | ✅ done (1 mm F.Cu + 0.7 mm B.Cu) | U1.4 → U2.2 + J2.2 via left edge on B.Cu through y=16 |
+| `+5V` | ✅ done (1 mm F.Cu) | U3.3 → U4.1 via right side and underbelly at y=40 |
+| `+3V3` | ✅ done (1 mm + 0.7 mm F.Cu) | U4.3 → R1 → R2 → U5.1 (U4.3 exit via y=49.92 west-east then up around R1) |
+| `GND` | ✅ done (0.7 mm F.Cu) | U2.4 → right edge (x=75) → U3.4 → down through OV7670 body → U5.2 + U5.4 bypass + U4.2 horizontal |
+| Camera control: `SIOC`, `SIOD`, `VSYNC`, `HREF`, `PCLK`, `XCLK` | ✅ done (0.7 mm F.Cu) | Each routed as L-shape from U4 left column to U5 left column through inter-column gap |
+| Camera data (`CAM_D0..D7`) | ❌ unrouted | 8 nets, U4 right side to U5 right side. **Reversed pin order** (U4 has D0 on top, U5 has D0 on bottom) means 8 crossings — strongly recommend Freerouting for this. |
 
-For the unrouted nets, either:
-- Open in pcbnew, press `B` to refresh ratsnest, press `X` to route interactively (~10 min for what's left)
-- Or follow the Freerouting steps below — it will route around the existing 1 mm power traces and lay down the rest
+For the remaining 8 data lines, either:
+- Open in pcbnew, press `B` to refresh ratsnest, press `X` to route interactively. The data bus needs a "twist" pattern (D0 top→bottom, D7 bottom→top) — drop a via near each U4 pad, route on B.Cu to its swapped y, drop a via back to F.Cu, into the U5 pad.
+- Or follow the Freerouting steps below — it will route around the existing 56 traces and lay down the data bus
+
+### DRC notes for the hand-routed traces
+
+Most traces pass between header pads at the standard 2.54 mm pitch. With 0.7 mm trace width + 1.7 mm pad diameter, the trace-to-pad clearance through the gap is **~0.07 mm** — KiCad's default 0.2 mm clearance rule will flag these.
+
+To resolve, in **File → Board Setup → Constraints**:
+- Set "Minimum clearance" to 0.1 mm (industry minimum for most fabs)
+- Or reduce just the affected traces to 0.5 mm width and clearance stays at 0.2 mm
+- Or accept the DRC violations if you're hand-soldering (the pads still fit, the traces just sit closer than the design rule prefers)
 
 ## Net summary (21 nets + GND)
 
