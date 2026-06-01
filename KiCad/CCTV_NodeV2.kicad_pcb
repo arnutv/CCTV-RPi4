@@ -86,7 +86,7 @@
 	(footprint "CCTV_RPi4:CN3791_Module"
 		(layer "F.Cu")
 		(uuid "10328401-85b6-4b1b-8250-4e0c08dac70d")
-		(at 124.53 82.54)
+		(at 17.81 68)
 		(descr "CN3791 MPPT charger module")
 		(property "Reference" "U1"
 			(at 0 -7.5 0)
@@ -197,7 +197,7 @@
 	(footprint "CCTV_RPi4:BMS_1S_DW01A_FS8205A"
 		(layer "F.Cu")
 		(uuid "33bd84be-697c-4e5c-9ac2-3d97223fbd25")
-		(at 149.87 83.04)
+		(at 47 68)
 		(descr "1S BMS DW01A+FS8205A 20x10mm")
 		(property "Reference" "U2"
 			(at 0 -7 0)
@@ -308,7 +308,7 @@
 	(footprint "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical"
 		(layer "F.Cu")
 		(uuid "3b7b8ea8-9bcd-4ac9-980f-70921a7488fd")
-		(at 108.37 92.04)
+		(at 47 76)
 		(descr "Battery pack connector — 2-pin 2.54mm")
 		(property "Reference" "J2"
 			(at 0 -3 0)
@@ -390,7 +390,7 @@
 	(footprint "CCTV_RPi4:MT3608_Module"
 		(layer "F.Cu")
 		(uuid "48e9dd22-17d6-4179-b2cf-eef6ec841566")
-		(at 174.98 83.27)
+		(at 78 68)
 		(descr "MT3608 boost converter module 23x11mm")
 		(property "Reference" "U3"
 			(at 0 -7.5 0)
@@ -572,7 +572,7 @@
 	(footprint "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical"
 		(layer "F.Cu")
 		(uuid "964c9e34-37e9-407e-a632-1b0b1ca742d2")
-		(at 108.37 79.27)
+		(at 6 68)
 		(descr "Solar input connector — 2-pin 2.54mm")
 		(property "Reference" "J1"
 			(at 0 -3 0)
