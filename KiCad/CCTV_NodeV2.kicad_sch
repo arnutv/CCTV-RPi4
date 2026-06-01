@@ -775,6 +775,10 @@
 		(property "Value" "CN3791"
 			(at 80 84 0)
 		)
+		(property "Footprint" "CCTV_RPi4:CN3791_Module"
+			(at 0 0 0)
+			(hide yes)
+		)
 		(pin "1" (uuid "a0000002-0001-0000-0000-000000000002"))
 		(pin "2" (uuid "a0000002-0002-0000-0000-000000000002"))
 		(pin "3" (uuid "a0000002-0003-0000-0000-000000000002"))
@@ -801,6 +805,10 @@
 		)
 		(property "Value" "BMS 1S"
 			(at 130 84 0)
+		)
+		(property "Footprint" "CCTV_RPi4:BMS_1S_DW01A_FS8205A"
+			(at 0 0 0)
+			(hide yes)
 		)
 		(pin "1" (uuid "a0000003-0001-0000-0000-000000000003"))
 		(pin "2" (uuid "a0000003-0002-0000-0000-000000000003"))
@@ -858,6 +866,10 @@
 		(property "Value" "MT3608"
 			(at 180 84 0)
 		)
+		(property "Footprint" "CCTV_RPi4:MT3608_Module"
+			(at 0 0 0)
+			(hide yes)
+		)
 		(pin "1" (uuid "a0000005-0001-0000-0000-000000000005"))
 		(pin "2" (uuid "a0000005-0002-0000-0000-000000000005"))
 		(pin "3" (uuid "a0000005-0003-0000-0000-000000000005"))
@@ -884,6 +896,10 @@
 		)
 		(property "Value" "ESP32-S3-DevKitC-1 N16R8"
 			(at 140 180 0)
+		)
+		(property "Footprint" "CCTV_RPi4:ESP32-S3-DevKitC-1"
+			(at 0 0 0)
+			(hide yes)
 		)
 		(pin "1" (uuid "a0000006-0001-0000-0000-000000000006"))
 		(pin "2" (uuid "a0000006-0002-0000-0000-000000000006"))
@@ -924,6 +940,10 @@
 		)
 		(property "Value" "OV7670"
 			(at 230 180 0)
+		)
+		(property "Footprint" "CCTV_RPi4:OV7670_Module"
+			(at 0 0 0)
+			(hide yes)
 		)
 		(pin "1" (uuid "a0000007-0001-0000-0000-000000000007"))
 		(pin "2" (uuid "a0000007-0002-0000-0000-000000000007"))
@@ -966,6 +986,10 @@
 		(property "Value" "4.7k SIOD pull-up"
 			(at 198 153 0)
 		)
+		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal"
+			(at 0 0 0)
+			(hide yes)
+		)
 		(pin "1" (uuid "a0000008-0001-0000-0000-000000000008"))
 		(pin "2" (uuid "a0000008-0002-0000-0000-000000000008"))
 		(instances
@@ -990,6 +1014,10 @@
 		)
 		(property "Value" "4.7k SIOC pull-up"
 			(at 208 153 0)
+		)
+		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal"
+			(at 0 0 0)
+			(hide yes)
 		)
 		(pin "1" (uuid "a0000009-0001-0000-0000-000000000009"))
 		(pin "2" (uuid "a0000009-0002-0000-0000-000000000009"))
