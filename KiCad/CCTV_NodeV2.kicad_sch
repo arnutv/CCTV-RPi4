@@ -1386,31 +1386,6 @@
 		)
 	)
 	(symbol
-		(lib_id "CCTV2:BATT+")
-		(at 167.3 64.92 0)
-		(unit 1)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "a0000011-0000-0000-0000-000000000011")
-		(property "Reference" "#PWR08"
-			(at 167.3 61.11 0)
-			(hide yes)
-		)
-		(property "Value" "BATT+"
-			(at 167.3 61.36 0)
-		)
-		(pin "1" (uuid "a0000011-0001-0000-0000-000000000011"))
-		(instances
-			(project "CCTV_NodeV2"
-				(path "/b0c0d0e0-0001-4000-8000-000000000001"
-					(reference "#PWR08")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "CCTV2:GND")
 		(at 67.3 76.35 0)
 		(unit 1)
@@ -1645,7 +1620,7 @@
 		(effects (font (size 1.27 1.27)) (justify left top))
 		(uuid "c000000c-0000-0000-0000-00000000000c")
 	)
-	(label "BATT+"
+	(label "P+"
 		(at 167.3 64.92 0)
 		(effects (font (size 1.27 1.27)) (justify left bottom))
 		(uuid "c000000d-0000-0000-0000-00000000000d")
@@ -1655,7 +1630,7 @@
 		(effects (font (size 1.27 1.27)) (justify left top))
 		(uuid "c000000e-0000-0000-0000-00000000000e")
 	)
-	(label "BATT+"
+	(label "P+"
 		(at 142.7 64.92 0)
 		(effects (font (size 1.27 1.27)) (justify left bottom))
 		(uuid "c0000031-0000-0000-0000-000000000031")
