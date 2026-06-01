@@ -12,6 +12,9 @@ desktop.ini
 .idea/
 *.code-workspace
 
+# ── KiCad local history (auto-snapshots, has its own .git) ───────────────
+KiCad/.history/
+
 # ── Claude Code workspace ─────────────────────────────────────────────────
 .claude/
 

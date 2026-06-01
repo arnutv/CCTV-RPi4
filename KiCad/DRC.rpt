@@ -1,0 +1,342 @@
+** Drc report for CCTV_Power.kicad_pcb **
+** Created on 2026-05-24T16:06:37 **
+** Report includes: Errors, Warnings **
+
+** Found 81 DRC violations **
+[shorting_items]: Items shorting two nets (nets SENSE and )
+    Local override; error
+    @(57.0700 mm, 20.0000 mm): Track [SENSE] on F.Cu, length 7.7300 mm
+    @(57.0700 mm, 25.1900 mm): PTH pad 3 [<no net>] of U3
+[shorting_items]: Items shorting two nets (nets GND and )
+    Local override; error
+    @(57.0700 mm, 47.0000 mm): Track [GND] on B.Cu, length 26.8900 mm
+    @(57.0700 mm, 25.1900 mm): PTH pad 3 [<no net>] of U3
+[shorting_items]: Items shorting two nets (nets BATT+ and +5V)
+    Local override; error
+    @(41.4300 mm, 18.7300 mm): PTH pad 3 [BATT+] of U1
+    @(79.9300 mm, 18.0000 mm): Track [+5V] on F.Cu, length 46.9300 mm
+[shorting_items]: Items shorting two nets (nets BATT+ and +5V)
+    Local override; error
+    @(41.4300 mm, 18.7300 mm): PTH pad 3 [BATT+] of U1
+    @(33.0000 mm, 18.0000 mm): Track [+5V] on F.Cu, length 28.0000 mm
+[shorting_items]: Items shorting two nets (nets GND and SOLAR+)
+    Local override; error
+    @(5.5000 mm, 15.0000 mm): PTH pad 2 [GND] of J1
+    @(5.5000 mm, 18.7300 mm): Track [SOLAR+] on F.Cu, length 6.2700 mm
+[shorting_items]: Items shorting two nets (nets GND and BATT+)
+    Local override; error
+    @(18.5700 mm, 47.0000 mm): Track [GND] on B.Cu, length 25.7300 mm
+    @(18.0000 mm, 42.4600 mm): PTH pad 1 [BATT+] of U2
+[tracks_crossing]: Tracks crossing
+    Local override; error
+    @(49.0000 mm, 25.0000 mm): Track [+5V] on F.Cu, length 16.0000 mm
+    @(35.0000 mm, 20.0000 mm): Track [BATT+] on F.Cu, length 14.0000 mm
+[shorting_items]: Items shorting two nets (nets  and SENSE)
+    Local override; error
+    @(57.0700 mm, 30.2700 mm): PTH pad 5 [<no net>] of U3
+    @(57.0700 mm, 27.7300 mm): Track [SENSE] on F.Cu, length 7.2700 mm
+[shorting_items]: Items shorting two nets (nets GND and BATT+)
+    Local override; error
+    @(18.5700 mm, 21.2700 mm): Track [GND] on B.Cu, length 25.7300 mm
+    @(18.0000 mm, 42.4600 mm): PTH pad 1 [BATT+] of U2
+[tracks_crossing]: Tracks crossing
+    Local override; error
+    @(33.0000 mm, 25.0000 mm): Track [+5V] on F.Cu, length 16.0000 mm
+    @(35.0000 mm, 20.0000 mm): Track [BATT+] on F.Cu, length 14.0000 mm
+[shorting_items]: Items shorting two nets (nets +5V and GND)
+    Local override; error
+    @(61.0000 mm, 40.5000 mm): Track [+5V] on F.Cu, length 15.1527 mm
+    @(49.3473 mm, 40.5000 mm): PTH pad 2 [GND] of C1
+[shorting_items]: Items shorting two nets (nets GND and )
+    Local override; error
+    @(57.0700 mm, 20.1100 mm): Track [GND] on B.Cu, length 26.8900 mm
+    @(57.0700 mm, 25.1900 mm): PTH pad 3 [<no net>] of U3
+[shorting_items]: Items shorting two nets (nets BATT+ and GND)
+    Local override; error
+    @(5.5000 mm, 34.7250 mm): PTH pad 1 [BATT+] of J2
+    @(5.5000 mm, 47.0000 mm): Track [GND] on B.Cu, length 32.0000 mm
+[tracks_crossing]: Tracks crossing
+    Local override; error
+    @(49.0000 mm, 25.0000 mm): Track [+5V] on F.Cu, length 16.0000 mm
+    @(41.4300 mm, 34.0000 mm): Track [BATT+] on F.Cu, length 15.2700 mm
+[shorting_items]: Items shorting two nets (nets SENSE and BATT+)
+    Local override; error
+    @(35.0000 mm, 35.0000 mm): PTH pad 1 [SENSE] of R2
+    @(35.0000 mm, 34.0000 mm): Track [BATT+] on F.Cu, length 6.4300 mm
+[shorting_items]: Items shorting two nets (nets SENSE and )
+    Local override; error
+    @(57.0700 mm, 35.0000 mm): Track [SENSE] on F.Cu, length 22.0700 mm
+    @(57.0700 mm, 35.3500 mm): PTH pad 7 [<no net>] of U3
+[tracks_crossing]: Tracks crossing
+    Local override; error
+    @(33.0000 mm, 25.0000 mm): Track [+5V] on F.Cu, length 16.0000 mm
+    @(41.4300 mm, 34.0000 mm): Track [BATT+] on F.Cu, length 15.2700 mm
+[shorting_items]: Items shorting two nets (nets GND and )
+    Local override; error
+    @(79.9300 mm, 47.0000 mm): Track [GND] on B.Cu, length 24.3500 mm
+    @(79.9300 mm, 35.3500 mm): PTH pad 15 [<no net>] of U3
+[tracks_crossing]: Tracks crossing
+    Local override; error
+    @(41.4300 mm, 18.7300 mm): Track [BATT+] on F.Cu, length 15.2700 mm
+    @(33.0000 mm, 25.0000 mm): Track [+5V] on F.Cu, length 16.0000 mm
+[shorting_items]: Items shorting two nets (nets GND and )
+    Local override; error
+    @(79.9300 mm, 22.6500 mm): Track [GND] on B.Cu, length 24.3500 mm
+    @(79.9300 mm, 35.3500 mm): PTH pad 15 [<no net>] of U3
+[shorting_items]: Items shorting two nets (nets SENSE and BATT+)
+    Local override; error
+    @(35.0000 mm, 35.0000 mm): PTH pad 1 [SENSE] of R2
+    @(41.4300 mm, 34.0000 mm): Track [BATT+] on F.Cu, length 23.4300 mm
+[shorting_items]: Items shorting two nets (nets SENSE and GND)
+    Local override; error
+    @(42.6200 mm, 20.0000 mm): Track [SENSE] on F.Cu, length 14.4500 mm
+    @(57.0700 mm, 20.1100 mm): PTH pad 1 [GND] of U3
+[shorting_items]: Items shorting two nets (nets BATT+ and GND)
+    Local override; error
+    @(5.5000 mm, 34.7250 mm): PTH pad 1 [BATT+] of J2
+    @(5.5000 mm, 15.0000 mm): Track [GND] on B.Cu, length 32.0000 mm
+[clearance]: Clearance violation ( clearance 0.2000 mm; actual 0.0404 mm)
+    Local override; error
+    @(42.6200 mm, 20.0000 mm): PTH pad 2 [SENSE] of R1
+    @(41.4300 mm, 18.7300 mm): PTH pad 3 [BATT+] of U1
+[clearance]: Clearance violation ( clearance 0.2000 mm; actual 0.0404 mm)
+    Local override; error
+    @(42.6200 mm, 20.0000 mm): PTH pad 2 [SENSE] of R1
+    @(41.4300 mm, 21.2700 mm): PTH pad 4 [GND] of U1
+[clearance]: Clearance violation ( clearance 0.2000 mm; actual 0.0404 mm)
+    Local override; error
+    @(41.4300 mm, 18.7300 mm): PTH pad 3 [BATT+] of U1
+    @(42.6200 mm, 20.0000 mm): PTH pad 2 [SENSE] of R1
+[courtyards_overlap]: Courtyards overlap
+    Rule: board setup constraints courtyard; error
+    @(35.0000 mm, 20.0000 mm): Footprint R1
+    @(30.0000 mm, 20.0000 mm): Footprint U1
+[pth_inside_courtyard]: PTH inside courtyard
+    Local override; error
+    @(41.4300 mm, 18.7300 mm): PTH pad 3 [BATT+] of U1
+    @(35.0000 mm, 20.0000 mm): Footprint R1
+[pth_inside_courtyard]: PTH inside courtyard
+    Local override; error
+    @(41.4300 mm, 21.2700 mm): PTH pad 4 [GND] of U1
+    @(35.0000 mm, 20.0000 mm): Footprint R1
+[pth_inside_courtyard]: PTH inside courtyard
+    Local override; error
+    @(35.0000 mm, 20.0000 mm): PTH pad 1 [BATT+] of R1
+    @(30.0000 mm, 20.0000 mm): Footprint U1
+[pth_inside_courtyard]: PTH inside courtyard
+    Local override; error
+    @(42.6200 mm, 20.0000 mm): PTH pad 2 [SENSE] of R1
+    @(30.0000 mm, 20.0000 mm): Footprint U1
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(79.9300 mm, 18.0000 mm): Track [+5V] on F.Cu, length 46.9300 mm
+    @(41.4300 mm, 18.7300 mm): PTH pad 3 [BATT+] of U1
+[solder_mask_bridge]: Rear solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(18.5700 mm, 47.0000 mm): Track [GND] on B.Cu, length 25.7300 mm
+    @(18.0000 mm, 42.4600 mm): PTH pad 1 [BATT+] of U2
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(33.0000 mm, 18.0000 mm): Track [+5V] on F.Cu, length 28.0000 mm
+    @(41.4300 mm, 18.7300 mm): PTH pad 3 [BATT+] of U1
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(57.0700 mm, 27.7300 mm): Track [SENSE] on F.Cu, length 7.2700 mm
+    @(57.0700 mm, 35.3500 mm): PTH pad 7 [<no net>] of U3
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(5.5000 mm, 18.7300 mm): Track [SOLAR+] on F.Cu, length 6.2700 mm
+    @(5.5000 mm, 15.0000 mm): PTH pad 2 [GND] of J1
+[solder_mask_bridge]: Rear solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(57.0700 mm, 47.0000 mm): Track [GND] on B.Cu, length 26.8900 mm
+    @(57.0700 mm, 35.3500 mm): PTH pad 7 [<no net>] of U3
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(61.0000 mm, 40.5000 mm): Track [+5V] on F.Cu, length 15.1527 mm
+    @(49.3473 mm, 40.5000 mm): PTH pad 2 [GND] of C1
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(35.0000 mm, 20.0000 mm): Track [BATT+] on F.Cu, length 14.0000 mm
+    @(35.0000 mm, 35.0000 mm): PTH pad 1 [SENSE] of R2
+[solder_mask_bridge]: Rear solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(57.0700 mm, 47.0000 mm): Track [GND] on B.Cu, length 26.8900 mm
+    @(57.0700 mm, 37.8900 mm): PTH pad 8 [<no net>] of U3
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(57.0700 mm, 27.7300 mm): Track [SENSE] on F.Cu, length 7.2700 mm
+    @(57.0700 mm, 30.2700 mm): PTH pad 5 [<no net>] of U3
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(35.0000 mm, 34.0000 mm): Track [BATT+] on F.Cu, length 6.4300 mm
+    @(35.0000 mm, 35.0000 mm): PTH pad 1 [SENSE] of R2
+[solder_mask_bridge]: Rear solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(18.5700 mm, 21.2700 mm): Track [GND] on B.Cu, length 25.7300 mm
+    @(18.0000 mm, 42.4600 mm): PTH pad 1 [BATT+] of U2
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(57.0700 mm, 27.7300 mm): Track [SENSE] on F.Cu, length 7.2700 mm
+    @(57.0700 mm, 32.8100 mm): PTH pad 6 [<no net>] of U3
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(41.4300 mm, 34.0000 mm): Track [BATT+] on F.Cu, length 15.2700 mm
+    @(41.4300 mm, 21.2700 mm): PTH pad 4 [GND] of U1
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(42.6200 mm, 20.0000 mm): Track [SENSE] on F.Cu, length 14.4500 mm
+    @(57.0700 mm, 20.1100 mm): PTH pad 1 [GND] of U3
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(57.0700 mm, 35.0000 mm): Track [SENSE] on F.Cu, length 22.0700 mm
+    @(57.0700 mm, 35.3500 mm): PTH pad 7 [<no net>] of U3
+[solder_mask_bridge]: Rear solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(57.0700 mm, 47.0000 mm): Track [GND] on B.Cu, length 26.8900 mm
+    @(57.0700 mm, 22.6500 mm): PTH pad 2 [<no net>] of U3
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(57.0700 mm, 20.0000 mm): Track [SENSE] on F.Cu, length 7.7300 mm
+    @(57.0700 mm, 20.1100 mm): PTH pad 1 [GND] of U3
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(41.4300 mm, 18.7300 mm): Track [BATT+] on F.Cu, length 15.2700 mm
+    @(41.4300 mm, 21.2700 mm): PTH pad 4 [GND] of U1
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(57.0700 mm, 35.0000 mm): Track [SENSE] on F.Cu, length 22.0700 mm
+    @(42.6200 mm, 35.0000 mm): PTH pad 2 [GND] of R2
+[solder_mask_bridge]: Rear solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(5.5000 mm, 47.0000 mm): Track [GND] on B.Cu, length 32.0000 mm
+    @(5.5000 mm, 34.7250 mm): PTH pad 1 [BATT+] of J2
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(57.0700 mm, 20.0000 mm): Track [SENSE] on F.Cu, length 7.7300 mm
+    @(57.0700 mm, 22.6500 mm): PTH pad 2 [<no net>] of U3
+[solder_mask_bridge]: Rear solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(57.0700 mm, 47.0000 mm): Track [GND] on B.Cu, length 26.8900 mm
+    @(57.0700 mm, 25.1900 mm): PTH pad 3 [<no net>] of U3
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(41.4300 mm, 34.0000 mm): Track [BATT+] on F.Cu, length 23.4300 mm
+    @(35.0000 mm, 35.0000 mm): PTH pad 1 [SENSE] of R2
+[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(57.0700 mm, 20.0000 mm): Track [SENSE] on F.Cu, length 7.7300 mm
+    @(57.0700 mm, 25.1900 mm): PTH pad 3 [<no net>] of U3
+[solder_mask_bridge]: Rear solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(5.5000 mm, 15.0000 mm): Track [GND] on B.Cu, length 32.0000 mm
+    @(5.5000 mm, 34.7250 mm): PTH pad 1 [BATT+] of J2
+[solder_mask_bridge]: Rear solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(57.0700 mm, 47.0000 mm): Track [GND] on B.Cu, length 26.8900 mm
+    @(57.0700 mm, 27.7300 mm): PTH pad 4 [SENSE] of U3
+[solder_mask_bridge]: Rear solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(57.0700 mm, 47.0000 mm): Track [GND] on B.Cu, length 26.8900 mm
+    @(57.0700 mm, 30.2700 mm): PTH pad 5 [<no net>] of U3
+[solder_mask_bridge]: Rear solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(57.0700 mm, 47.0000 mm): Track [GND] on B.Cu, length 26.8900 mm
+    @(57.0700 mm, 32.8100 mm): PTH pad 6 [<no net>] of U3
+[solder_mask_bridge]: Rear solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(57.0700 mm, 20.1100 mm): Track [GND] on B.Cu, length 26.8900 mm
+    @(57.0700 mm, 35.3500 mm): PTH pad 7 [<no net>] of U3
+[solder_mask_bridge]: Rear solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(57.0700 mm, 20.1100 mm): Track [GND] on B.Cu, length 26.8900 mm
+    @(57.0700 mm, 37.8900 mm): PTH pad 8 [<no net>] of U3
+[solder_mask_bridge]: Rear solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(57.0700 mm, 20.1100 mm): Track [GND] on B.Cu, length 26.8900 mm
+    @(57.0700 mm, 22.6500 mm): PTH pad 2 [<no net>] of U3
+[solder_mask_bridge]: Rear solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(57.0700 mm, 20.1100 mm): Track [GND] on B.Cu, length 26.8900 mm
+    @(57.0700 mm, 25.1900 mm): PTH pad 3 [<no net>] of U3
+[solder_mask_bridge]: Rear solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(57.0700 mm, 20.1100 mm): Track [GND] on B.Cu, length 26.8900 mm
+    @(57.0700 mm, 27.7300 mm): PTH pad 4 [SENSE] of U3
+[solder_mask_bridge]: Rear solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(57.0700 mm, 20.1100 mm): Track [GND] on B.Cu, length 26.8900 mm
+    @(57.0700 mm, 30.2700 mm): PTH pad 5 [<no net>] of U3
+[solder_mask_bridge]: Rear solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(57.0700 mm, 20.1100 mm): Track [GND] on B.Cu, length 26.8900 mm
+    @(57.0700 mm, 32.8100 mm): PTH pad 6 [<no net>] of U3
+[solder_mask_bridge]: Rear solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(79.9300 mm, 47.0000 mm): Track [GND] on B.Cu, length 24.3500 mm
+    @(79.9300 mm, 25.1900 mm): PTH pad 11 [<no net>] of U3
+[solder_mask_bridge]: Rear solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(79.9300 mm, 47.0000 mm): Track [GND] on B.Cu, length 24.3500 mm
+    @(79.9300 mm, 27.7300 mm): PTH pad 12 [<no net>] of U3
+[solder_mask_bridge]: Rear solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(79.9300 mm, 47.0000 mm): Track [GND] on B.Cu, length 24.3500 mm
+    @(79.9300 mm, 30.2700 mm): PTH pad 13 [<no net>] of U3
+[solder_mask_bridge]: Rear solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(79.9300 mm, 47.0000 mm): Track [GND] on B.Cu, length 24.3500 mm
+    @(79.9300 mm, 32.8100 mm): PTH pad 14 [<no net>] of U3
+[solder_mask_bridge]: Rear solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(79.9300 mm, 47.0000 mm): Track [GND] on B.Cu, length 24.3500 mm
+    @(79.9300 mm, 35.3500 mm): PTH pad 15 [<no net>] of U3
+[solder_mask_bridge]: Rear solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(79.9300 mm, 22.6500 mm): Track [GND] on B.Cu, length 24.3500 mm
+    @(79.9300 mm, 25.1900 mm): PTH pad 11 [<no net>] of U3
+[solder_mask_bridge]: Rear solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(79.9300 mm, 22.6500 mm): Track [GND] on B.Cu, length 24.3500 mm
+    @(79.9300 mm, 27.7300 mm): PTH pad 12 [<no net>] of U3
+[solder_mask_bridge]: Rear solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(79.9300 mm, 22.6500 mm): Track [GND] on B.Cu, length 24.3500 mm
+    @(79.9300 mm, 30.2700 mm): PTH pad 13 [<no net>] of U3
+[solder_mask_bridge]: Rear solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(79.9300 mm, 22.6500 mm): Track [GND] on B.Cu, length 24.3500 mm
+    @(79.9300 mm, 32.8100 mm): PTH pad 14 [<no net>] of U3
+[solder_mask_bridge]: Rear solder mask aperture bridges items with different nets
+    Rule: board setup solder mask min width; error
+    @(79.9300 mm, 22.6500 mm): Track [GND] on B.Cu, length 24.3500 mm
+    @(79.9300 mm, 35.3500 mm): PTH pad 15 [<no net>] of U3
+[silk_over_copper]: Silkscreen clipped by solder mask
+    Local override; warning
+    @(35.5400 mm, 18.6300 mm): Segment of R1 on F.Silkscreen
+    @(41.4300 mm, 18.7300 mm): PTH pad 3 [BATT+] of U1
+[silk_over_copper]: Silkscreen clipped by solder mask
+    Local override; warning
+    @(35.5400 mm, 21.3700 mm): Segment of R1 on F.Silkscreen
+    @(41.4300 mm, 21.2700 mm): PTH pad 4 [GND] of U1
+[silk_over_copper]: Silkscreen clipped by solder mask
+    Local override; warning
+    @(42.0800 mm, 18.6300 mm): Segment of R1 on F.Silkscreen
+    @(41.4300 mm, 18.7300 mm): PTH pad 3 [BATT+] of U1
+[silk_over_copper]: Silkscreen clipped by solder mask
+    Local override; warning
+    @(42.0800 mm, 21.3700 mm): Segment of R1 on F.Silkscreen
+    @(41.4300 mm, 21.2700 mm): PTH pad 4 [GND] of U1
+
+** Found 0 unconnected pads **
+
+** Found 0 Footprint errors **
+
+** Ignored checks **
+    - Footprint has no courtyard defined
+    - Track endpoint not centered on via
+    - Tuning profile track geometries
+    - Footprint doesn't match symbol's footprint filters
+    - Footprint component type doesn't match footprint pads
+
+** End of Report **
