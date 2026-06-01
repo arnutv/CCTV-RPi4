@@ -86,7 +86,12 @@ Board outline: 0,0 to 100,80 mm rectangle on Edge.Cuts.
 
 ## What's already routed
 
-The PCB ships with **56 traces** already laid down: 18 power traces at 1 mm width on F.Cu, plus 38 signal/auxiliary traces at 0.7 mm width on F.Cu + B.Cu.
+The PCB ships **fully routed** — 96 trace segments covering all 21 nets:
+- 18 power traces at 1 mm width on F.Cu (BATT+, BATT-, +5V, +3V3, SOLAR+, SOLAR-, partial GND)
+- 38 signal + auxiliary power traces at 0.7 mm width on F.Cu (camera control + GND chain + J2 routes on B.Cu)
+- 40 camera data traces at 0.7 mm width on B.Cu (CAM_D0..D7, 5 segments each in a switching pattern)
+
+Open in pcbnew and press `B` — the ratsnest should be empty (no airwires).
 
 | Net | Status | Notes |
 |---|---|---|
@@ -98,11 +103,12 @@ The PCB ships with **56 traces** already laid down: 18 power traces at 1 mm widt
 | `+3V3` | ✅ done (1 mm + 0.7 mm F.Cu) | U4.3 → R1 → R2 → U5.1 (U4.3 exit via y=49.92 west-east then up around R1) |
 | `GND` | ✅ done (0.7 mm F.Cu) | U2.4 → right edge (x=75) → U3.4 → down through OV7670 body → U5.2 + U5.4 bypass + U4.2 horizontal |
 | Camera control: `SIOC`, `SIOD`, `VSYNC`, `HREF`, `PCLK`, `XCLK` | ✅ done (0.7 mm F.Cu) | Each routed as L-shape from U4 left column to U5 left column through inter-column gap |
-| Camera data (`CAM_D0..D7`) | ❌ unrouted | 8 nets, U4 right side to U5 right side. **Reversed pin order** (U4 has D0 on top, U5 has D0 on bottom) means 8 crossings — strongly recommend Freerouting for this. |
+| Camera data (`CAM_D0..D7`) | ✅ done (0.7 mm B.Cu) | All 8 lines routed on the back copper layer with a 5-segment switching pattern: exit U4 east, drop south to a unique bottom rail (y=68–76.4, 1.2 mm pitch), traverse east past U5, climb north to target y, into U5 right pad from the east. No vias needed (through-hole pads bridge layers). |
 
-For the remaining 8 data lines, either:
-- Open in pcbnew, press `B` to refresh ratsnest, press `X` to route interactively. The data bus needs a "twist" pattern (D0 top→bottom, D7 bottom→top) — drop a via near each U4 pad, route on B.Cu to its swapped y, drop a via back to F.Cu, into the U5 pad.
-- Or follow the Freerouting steps below — it will route around the existing 56 traces and lay down the data bus
+All nets are routed. If you want to verify or improve:
+- Open in pcbnew, press `B` to refresh ratsnest — should be empty
+- Run DRC (`Inspect → Design Rules Checker`) — expect ~6 clearance warnings at U4's right pad column (see DRC notes below)
+- If desired, run Freerouting on the same DSN export — it will re-optimize the layout (typically tightening corners and reducing total trace length 10–20%)
 
 ### DRC notes for the hand-routed traces
 
