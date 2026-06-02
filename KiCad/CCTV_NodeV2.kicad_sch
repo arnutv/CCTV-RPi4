@@ -1052,17 +1052,17 @@
 	)
 	(symbol
 		(lib_id "CCTV2:ESP32_S3_DevKitC")
-		(at 140 160 0)
+		(at 60 220 0)
 		(unit 1)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(uuid "a0000006-0000-0000-0000-000000000006")
 		(property "Reference" "U4"
-			(at 140 140 0)
+			(at 60 195 0)
 		)
 		(property "Value" "ESP32-S3-DevKitC-1 N16R8"
-			(at 140 180 0)
+			(at 60 250 0)
 		)
 		(property "Footprint" "CCTV_RPi4:ESP32-S3-DevKitC-1"
 			(at 0 0 0)
@@ -1123,17 +1123,17 @@
 	)
 	(symbol
 		(lib_id "CCTV2:OV7670")
-		(at 185 160 0)
+		(at 290 220 0)
 		(unit 1)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(uuid "a0000007-0000-0000-0000-000000000007")
 		(property "Reference" "U5"
-			(at 185 140 0)
+			(at 290 195 0)
 		)
 		(property "Value" "OV7670"
-			(at 185 180 0)
+			(at 290 250 0)
 		)
 		(property "Footprint" "CCTV_RPi4:OV7670_Module"
 			(at 0 0 0)
@@ -1834,12 +1834,12 @@
 		(uuid "d0000002-0000-0000-0000-000000000002")
 	)
 	(text "MCU + camera"
-		(at 185 130 0)
+		(at 175 185 0)
 		(effects (font (size 2.5 2.5) (bold yes)))
 		(uuid "d0000003-0000-0000-0000-000000000003")
 	)
 	(text "ESP32-S3-DevKitC-1 (N16R8) drives OV7670 over DVP. SIOC/SIOD pulled up to 3V3 with 4.7k."
-		(at 185 136 0)
+		(at 175 191 0)
 		(effects (font (size 1.27 1.27)))
 		(uuid "d0000004-0000-0000-0000-000000000004")
 	)
@@ -1854,7 +1854,7 @@
 		(uuid "d0000006-0000-0000-0000-000000000006")
 	)
 	(text "OV7670 outputs RGB565/YUV422 (no JPEG). Encode JPEG in software via frame2jpg() in stream handler."
-		(at 185 200 0)
+		(at 290 265 0)
 		(effects (font (size 1.27 1.27) (italic yes)))
 		(uuid "d0000007-0000-0000-0000-000000000007")
 	)
