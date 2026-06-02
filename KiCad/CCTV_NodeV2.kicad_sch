@@ -1168,17 +1168,17 @@
 	)
 	(symbol
 		(lib_id "CCTV2:R")
-		(at 130 130 0)
+		(at 50 232 0)
 		(unit 1)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(uuid "a0000008-0000-0000-0000-000000000008")
 		(property "Reference" "R1"
-			(at 133 130 0)
+			(at 53 232 0)
 		)
 		(property "Value" "4.7k SIOD pull-up"
-			(at 133 133 0)
+			(at 53 235 0)
 		)
 		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal"
 			(at 0 0 0)
@@ -1197,17 +1197,17 @@
 	)
 	(symbol
 		(lib_id "CCTV2:R")
-		(at 135 130 0)
+		(at 55 232 0)
 		(unit 1)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(uuid "a0000009-0000-0000-0000-000000000009")
 		(property "Reference" "R2"
-			(at 138 130 0)
+			(at 58 232 0)
 		)
 		(property "Value" "4.7k SIOC pull-up"
-			(at 138 133 0)
+			(at 58 235 0)
 		)
 		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal"
 			(at 0 0 0)
@@ -1251,18 +1251,18 @@
 	)
 	(symbol
 		(lib_id "CCTV2:+5V")
-		(at 122.22 147.3 0)
+		(at 42.22 197.14 0)
 		(unit 1)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(uuid "a000000b-0000-0000-0000-00000000000b")
 		(property "Reference" "#PWR02"
-			(at 122.22 143.49 0)
+			(at 42.22 193.33 0)
 			(hide yes)
 		)
 		(property "Value" "+5V"
-			(at 122.22 143.74 0)
+			(at 42.22 193.58 0)
 		)
 		(pin "1" (uuid "a000000b-0001-0000-0000-00000000000b"))
 		(instances
@@ -1276,18 +1276,18 @@
 	)
 	(symbol
 		(lib_id "CCTV2:+3V3")
-		(at 122.22 152.38 0)
+		(at 42.22 247.94 0)
 		(unit 1)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(uuid "a000000c-0000-0000-0000-00000000000c")
 		(property "Reference" "#PWR03"
-			(at 122.22 148.57 0)
+			(at 42.22 244.13 0)
 			(hide yes)
 		)
 		(property "Value" "+3V3"
-			(at 122.22 148.82 0)
+			(at 42.22 244.38 0)
 		)
 		(pin "1" (uuid "a000000c-0001-0000-0000-00000000000c"))
 		(instances
@@ -1301,18 +1301,18 @@
 	)
 	(symbol
 		(lib_id "CCTV2:+3V3")
-		(at 167.22 147.3 0)
+		(at 272.22 207.30 0)
 		(unit 1)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(uuid "a000000d-0000-0000-0000-00000000000d")
 		(property "Reference" "#PWR04"
-			(at 167.22 143.49 0)
+			(at 272.22 203.49 0)
 			(hide yes)
 		)
 		(property "Value" "+3V3"
-			(at 167.22 143.74 0)
+			(at 272.22 203.74 0)
 		)
 		(pin "1" (uuid "a000000d-0001-0000-0000-00000000000d"))
 		(instances
@@ -1326,18 +1326,18 @@
 	)
 	(symbol
 		(lib_id "CCTV2:+3V3")
-		(at 130 126.19 0)
+		(at 50 228.19 0)
 		(unit 1)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(uuid "a000000e-0000-0000-0000-00000000000e")
 		(property "Reference" "#PWR05"
-			(at 130 122.38 0)
+			(at 50 224.38 0)
 			(hide yes)
 		)
 		(property "Value" "+3V3"
-			(at 130 122.63 0)
+			(at 50 224.63 0)
 		)
 		(pin "1" (uuid "a000000e-0001-0000-0000-00000000000e"))
 		(instances
@@ -1351,18 +1351,18 @@
 	)
 	(symbol
 		(lib_id "CCTV2:+3V3")
-		(at 135 126.19 0)
+		(at 55 228.19 0)
 		(unit 1)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(uuid "a000000f-0000-0000-0000-00000000000f")
 		(property "Reference" "#PWR06"
-			(at 135 122.38 0)
+			(at 55 224.38 0)
 			(hide yes)
 		)
 		(property "Value" "+3V3"
-			(at 135 122.63 0)
+			(at 55 224.63 0)
 		)
 		(pin "1" (uuid "a000000f-0001-0000-0000-00000000000f"))
 		(instances
@@ -1535,18 +1535,18 @@
 	)
 	(symbol
 		(lib_id "CCTV2:GND")
-		(at 122.22 149.84 0)
+		(at 42.22 194.60 0)
 		(unit 1)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(uuid "a0000025-0000-0000-0000-000000000025")
 		(property "Reference" "#PWR14"
-			(at 122.22 156.19 0)
+			(at 42.22 200.95 0)
 			(hide yes)
 		)
 		(property "Value" "GND"
-			(at 122.22 153.65 0)
+			(at 42.22 198.41 0)
 		)
 		(pin "1" (uuid "a0000025-0001-0000-0000-000000000025"))
 		(instances
@@ -1560,18 +1560,18 @@
 	)
 	(symbol
 		(lib_id "CCTV2:GND")
-		(at 167.22 149.84 0)
+		(at 272.22 209.84 0)
 		(unit 1)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(uuid "a0000026-0000-0000-0000-000000000026")
 		(property "Reference" "#PWR15"
-			(at 167.22 156.19 0)
+			(at 272.22 216.19 0)
 			(hide yes)
 		)
 		(property "Value" "GND"
-			(at 167.22 153.65 0)
+			(at 272.22 213.65 0)
 		)
 		(pin "1" (uuid "a0000026-0001-0000-0000-000000000026"))
 		(instances
@@ -1659,167 +1659,167 @@
 		(uuid "c0000032-0000-0000-0000-000000000032")
 	)
 	(label "+5V"
-		(at 122.22 147.3 0)
+		(at 42.22 197.14 0)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "c000000f-0000-0000-0000-00000000000f")
 	)
 	(label "+3V3"
-		(at 122.22 152.38 0)
+		(at 42.22 247.94 0)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "c0000010-0000-0000-0000-000000000010")
 	)
 	(label "SIOD"
-		(at 122.22 157.46 0)
+		(at 42.22 240.32 0)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "c0000011-0000-0000-0000-000000000011")
 	)
 	(label "SIOC"
-		(at 122.22 160 0)
+		(at 42.22 237.78 0)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "c0000012-0000-0000-0000-000000000012")
 	)
 	(label "VSYNC"
-		(at 122.22 162.54 0)
+		(at 42.22 235.24 0)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "c0000013-0000-0000-0000-000000000013")
 	)
 	(label "HREF"
-		(at 122.22 165.08 0)
+		(at 42.22 232.70 0)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "c0000014-0000-0000-0000-000000000014")
 	)
 	(label "PCLK"
-		(at 122.22 167.62 0)
+		(at 42.22 202.22 0)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "c0000015-0000-0000-0000-000000000015")
 	)
 	(label "XCLK"
-		(at 122.22 170.16 0)
+		(at 42.22 230.16 0)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "c0000016-0000-0000-0000-000000000016")
 	)
 	(label "CAM_D0"
-		(at 157.78 147.3 0)
+		(at 42.22 207.30 0)
 		(effects (font (size 1.27 1.27)) (justify left bottom))
 		(uuid "c0000017-0000-0000-0000-000000000017")
 	)
 	(label "CAM_D1"
-		(at 157.78 149.84 0)
+		(at 42.22 212.38 0)
 		(effects (font (size 1.27 1.27)) (justify left bottom))
 		(uuid "c0000018-0000-0000-0000-000000000018")
 	)
 	(label "CAM_D2"
-		(at 157.78 152.38 0)
+		(at 42.22 220.00 0)
 		(effects (font (size 1.27 1.27)) (justify left bottom))
 		(uuid "c0000019-0000-0000-0000-000000000019")
 	)
 	(label "CAM_D3"
-		(at 157.78 154.92 0)
+		(at 42.22 209.84 0)
 		(effects (font (size 1.27 1.27)) (justify left bottom))
 		(uuid "c000001a-0000-0000-0000-00000000001a")
 	)
 	(label "CAM_D4"
-		(at 157.78 157.46 0)
+		(at 42.22 204.76 0)
 		(effects (font (size 1.27 1.27)) (justify left bottom))
 		(uuid "c000001b-0000-0000-0000-00000000001b")
 	)
 	(label "CAM_D5"
-		(at 157.78 160 0)
+		(at 42.22 222.54 0)
 		(effects (font (size 1.27 1.27)) (justify left bottom))
 		(uuid "c000001c-0000-0000-0000-00000000001c")
 	)
 	(label "CAM_D6"
-		(at 157.78 162.54 0)
+		(at 42.22 225.08 0)
 		(effects (font (size 1.27 1.27)) (justify left bottom))
 		(uuid "c000001d-0000-0000-0000-00000000001d")
 	)
 	(label "CAM_D7"
-		(at 157.78 165.08 0)
+		(at 42.22 227.62 0)
 		(effects (font (size 1.27 1.27)) (justify left bottom))
 		(uuid "c000001e-0000-0000-0000-00000000001e")
 	)
 	(label "+3V3"
-		(at 167.22 147.3 0)
+		(at 272.22 207.30 0)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "c000001f-0000-0000-0000-00000000001f")
 	)
 	(label "SIOC"
-		(at 167.22 160 0)
+		(at 272.22 220.00 0)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "c0000020-0000-0000-0000-000000000020")
 	)
 	(label "SIOD"
-		(at 167.22 162.54 0)
+		(at 272.22 222.54 0)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "c0000021-0000-0000-0000-000000000021")
 	)
 	(label "VSYNC"
-		(at 167.22 165.08 0)
+		(at 272.22 225.08 0)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "c0000022-0000-0000-0000-000000000022")
 	)
 	(label "HREF"
-		(at 167.22 167.62 0)
+		(at 272.22 227.62 0)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "c0000023-0000-0000-0000-000000000023")
 	)
 	(label "PCLK"
-		(at 167.22 170.16 0)
+		(at 272.22 230.16 0)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "c0000024-0000-0000-0000-000000000024")
 	)
 	(label "XCLK"
-		(at 167.22 172.7 0)
+		(at 272.22 232.70 0)
 		(effects (font (size 1.27 1.27)) (justify right bottom))
 		(uuid "c0000025-0000-0000-0000-000000000025")
 	)
 	(label "CAM_D7"
-		(at 202.78 149.84 0)
+		(at 307.78 209.84 0)
 		(effects (font (size 1.27 1.27)) (justify left bottom))
 		(uuid "c0000027-0000-0000-0000-000000000027")
 	)
 	(label "CAM_D6"
-		(at 202.78 152.38 0)
+		(at 307.78 212.38 0)
 		(effects (font (size 1.27 1.27)) (justify left bottom))
 		(uuid "c0000028-0000-0000-0000-000000000028")
 	)
 	(label "CAM_D5"
-		(at 202.78 154.92 0)
+		(at 307.78 214.92 0)
 		(effects (font (size 1.27 1.27)) (justify left bottom))
 		(uuid "c0000029-0000-0000-0000-000000000029")
 	)
 	(label "CAM_D4"
-		(at 202.78 157.46 0)
+		(at 307.78 217.46 0)
 		(effects (font (size 1.27 1.27)) (justify left bottom))
 		(uuid "c000002a-0000-0000-0000-00000000002a")
 	)
 	(label "CAM_D3"
-		(at 202.78 160 0)
+		(at 307.78 220.00 0)
 		(effects (font (size 1.27 1.27)) (justify left bottom))
 		(uuid "c000002b-0000-0000-0000-00000000002b")
 	)
 	(label "CAM_D2"
-		(at 202.78 162.54 0)
+		(at 307.78 222.54 0)
 		(effects (font (size 1.27 1.27)) (justify left bottom))
 		(uuid "c000002c-0000-0000-0000-00000000002c")
 	)
 	(label "CAM_D1"
-		(at 202.78 165.08 0)
+		(at 307.78 225.08 0)
 		(effects (font (size 1.27 1.27)) (justify left bottom))
 		(uuid "c000002d-0000-0000-0000-00000000002d")
 	)
 	(label "CAM_D0"
-		(at 202.78 167.62 0)
+		(at 307.78 227.62 0)
 		(effects (font (size 1.27 1.27)) (justify left bottom))
 		(uuid "c000002e-0000-0000-0000-00000000002e")
 	)
 	(label "SIOD"
-		(at 130 133.81 0)
+		(at 50 235.81 0)
 		(effects (font (size 1.27 1.27)) (justify left top))
 		(uuid "c000002f-0000-0000-0000-00000000002f")
 	)
 	(label "SIOC"
-		(at 135 133.81 0)
+		(at 55 235.81 0)
 		(effects (font (size 1.27 1.27)) (justify left top))
 		(uuid "c0000030-0000-0000-0000-000000000030")
 	)
