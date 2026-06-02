@@ -292,7 +292,7 @@
 			(drill 1)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net "/+5V_GND")
+			(net "GND")
 			(pinfunction "OUT-_4")
 			(pintype "passive")
 			(uuid "a0798226-cc6f-4727-b31e-92962138137c")

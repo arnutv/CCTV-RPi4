@@ -1658,11 +1658,6 @@
 		(effects (font (size 1.27 1.27)) (justify left bottom))
 		(uuid "c000000b-0000-0000-0000-00000000000b")
 	)
-	(label "+5V_GND"
-		(at 192.7 75.08 0)
-		(effects (font (size 1.27 1.27)) (justify left top))
-		(uuid "c000000c-0000-0000-0000-00000000000c")
-	)
 	(label "P+"
 		(at 167.3 64.92 0)
 		(effects (font (size 1.27 1.27)) (justify left bottom))
