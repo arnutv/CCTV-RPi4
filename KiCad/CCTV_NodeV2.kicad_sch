@@ -1168,17 +1168,17 @@
 	)
 	(symbol
 		(lib_id "CCTV2:R")
-		(at 20 232 0)
+		(at 20 244 0)
 		(unit 1)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(uuid "a0000008-0000-0000-0000-000000000008")
 		(property "Reference" "R1"
-			(at 23 232 0)
+			(at 23 244 0)
 		)
 		(property "Value" "4.7k SIOD pull-up"
-			(at 23 235 0)
+			(at 23 247 0)
 		)
 		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal"
 			(at 0 0 0)
@@ -1326,18 +1326,18 @@
 	)
 	(symbol
 		(lib_id "CCTV2:+3V3")
-		(at 20 228.19 0)
+		(at 20 240.19 0)
 		(unit 1)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(uuid "a000000e-0000-0000-0000-00000000000e")
 		(property "Reference" "#PWR05"
-			(at 20 224.38 0)
+			(at 20 236.38 0)
 			(hide yes)
 		)
 		(property "Value" "+3V3"
-			(at 20 224.63 0)
+			(at 20 236.63 0)
 		)
 		(pin "1" (uuid "a000000e-0001-0000-0000-00000000000e"))
 		(instances
@@ -1814,7 +1814,7 @@
 		(uuid "c000002e-0000-0000-0000-00000000002e")
 	)
 	(label "SIOD"
-		(at 20 235.81 0)
+		(at 20 247.81 0)
 		(effects (font (size 1.27 1.27)) (justify left top))
 		(uuid "c000002f-0000-0000-0000-00000000002f")
 	)
