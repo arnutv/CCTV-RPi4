@@ -338,55 +338,43 @@
 			(symbol "TC4056A_BMS_0_1"
 				(rectangle
 					(start -10.16 -8.89)
-					(end 10.16 13.97)
+					(end 10.16 8.89)
 					(stroke (width 0.254) (type default))
 					(fill (type background))
 				)
 				(text "TC4056A"
-					(at 0 3.81 0)
+					(at 0 2.54 0)
 					(effects (font (size 1.27 1.27) (bold yes)))
 				)
 				(text "+BMS"
-					(at 0 1.27 0)
+					(at 0 0 0)
 					(effects (font (size 1.016 1.016)))
 				)
 			)
 			(symbol "TC4056A_BMS_1_1"
-				(pin power_in line
-					(at -12.7 12.7 0)
-					(length 2.54)
-					(name "IN+" (effects (font (size 1.27 1.27))))
-					(number "1" (effects (font (size 1.27 1.27))))
-				)
-				(pin passive line
-					(at -12.7 10.16 0)
-					(length 2.54)
-					(name "IN-" (effects (font (size 1.27 1.27))))
-					(number "2" (effects (font (size 1.27 1.27))))
-				)
 				(pin passive line
 					(at -12.7 5.08 0)
 					(length 2.54)
 					(name "B+" (effects (font (size 1.27 1.27))))
-					(number "3" (effects (font (size 1.27 1.27))))
+					(number "1" (effects (font (size 1.27 1.27))))
 				)
 				(pin passive line
 					(at -12.7 -5.08 0)
 					(length 2.54)
 					(name "B-" (effects (font (size 1.27 1.27))))
-					(number "4" (effects (font (size 1.27 1.27))))
+					(number "2" (effects (font (size 1.27 1.27))))
 				)
 				(pin power_out line
 					(at 12.7 5.08 180)
 					(length 2.54)
 					(name "OUT+" (effects (font (size 1.27 1.27))))
-					(number "5" (effects (font (size 1.27 1.27))))
+					(number "3" (effects (font (size 1.27 1.27))))
 				)
 				(pin passive line
 					(at 12.7 -5.08 180)
 					(length 2.54)
 					(name "OUT-" (effects (font (size 1.27 1.27))))
-					(number "6" (effects (font (size 1.27 1.27))))
+					(number "4" (effects (font (size 1.27 1.27))))
 				)
 			)
 			(embedded_fonts no)
@@ -975,12 +963,10 @@
 			(at 0 0 0)
 			(hide yes)
 		)
-		(pin "1" (uuid "a0000003-0001-0001-0000-000000000003"))
-		(pin "2" (uuid "a0000003-0001-0002-0000-000000000003"))
-		(pin "3" (uuid "a0000003-0001-0000-0000-000000000003"))
-		(pin "4" (uuid "a0000003-0002-0000-0000-000000000003"))
-		(pin "5" (uuid "a0000003-0003-0000-0000-000000000003"))
-		(pin "6" (uuid "a0000003-0004-0000-0000-000000000003"))
+		(pin "1" (uuid "a0000003-0001-0000-0000-000000000003"))
+		(pin "2" (uuid "a0000003-0002-0000-0000-000000000003"))
+		(pin "3" (uuid "a0000003-0003-0000-0000-000000000003"))
+		(pin "4" (uuid "a0000003-0004-0000-0000-000000000003"))
 		(instances
 			(project "CCTV_NodeV2"
 				(path "/b0c0d0e0-0001-4000-8000-000000000001"
@@ -1448,35 +1434,6 @@
 				)
 			)
 		)
-	)
-	(symbol
-		(lib_id "CCTV2:GND")
-		(at 117.3 60.65 0)
-		(unit 1)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "a0000021-0000-0001-0000-000000000021")
-		(property "Reference" "#PWR_IN_NEG"
-			(at 117.3 67 0)
-			(hide yes)
-		)
-		(property "Value" "GND"
-			(at 117.3 65 0)
-		)
-		(pin "1" (uuid "a0000021-0001-0001-0000-000000000021"))
-		(instances
-			(project "CCTV_NodeV2"
-				(path "/b0c0d0e0-0001-4000-8000-000000000001"
-					(reference "#PWR_IN_NEG")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(no_connect
-		(at 117.3 57.3)
-		(uuid "nc000001-0000-0000-0000-000000000001")
 	)
 	(symbol
 		(lib_id "CCTV2:GND")
