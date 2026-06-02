@@ -39,7 +39,7 @@
         "other_text_thickness": 0.15,
         "other_text_upright": false,
         "pads": {
-          "drill": 1.0,
+          "drill": 1.2,
           "height": 2.0,
           "width": 2.0
         },
@@ -237,7 +237,7 @@
       "internal_id": "",
       "mfg": "",
       "mpn": "",
-      "sch_revision": ""
+      "sch_revision": "2.0"
     },
     "layer_pairs": [],
     "layer_presets": [],
@@ -660,7 +660,12 @@
     "used_designators": "",
     "variants": []
   },
-  "sheets": [],
+  "sheets": [
+    [
+      "b0c0d0e0-0001-4000-8000-000000000001",
+      "CCTV_NodeV2"
+    ]
+  ],
   "text_variables": {},
   "tuning_profiles": {
     "meta": {

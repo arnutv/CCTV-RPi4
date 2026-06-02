@@ -12,49 +12,8 @@
 		(comment 1 "Solar 6V 10W → CN3791 MPPT → 1S BMS (DW01A+FS8205A) → 18650 → MT3608 5V → ESP32-S3-DevKitC-1 N16R8 + OV7670")
 	)
 	(lib_symbols
-		(symbol "CCTV2:+5V"
-			(power)
-			(pin_numbers
-				(hide yes)
-			)
-			(pin_names
-				(offset 0)
-				(hide yes)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "#PWR"
-				(at 0 -3.81 0)
-				(hide yes)
-			)
-			(property "Value" "+5V"
-				(at 0 3.556 0)
-			)
-			(symbol "+5V_0_1"
-				(polyline
-					(pts (xy -1.27 1.27) (xy 0 2.54) (xy 1.27 1.27))
-					(stroke (width 0) (type default))
-					(fill (type none))
-				)
-				(polyline
-					(pts (xy 0 0) (xy 0 1.27))
-					(stroke (width 0) (type default))
-					(fill (type none))
-				)
-			)
-			(symbol "+5V_1_1"
-				(pin power_in line
-					(at 0 0 90)
-					(length 0)
-					(name "" (effects (font (size 1.27 1.27))))
-					(number "1" (effects (font (size 1.27 1.27))))
-				)
-			)
-			(embedded_fonts no)
-		)
 		(symbol "CCTV2:+3V3"
-			(power)
+			(power global)
 			(pin_numbers
 				(hide yes)
 			)
@@ -65,37 +24,112 @@
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
 			(property "Reference" "#PWR"
 				(at 0 -3.81 0)
+				(show_name no)
+				(do_not_autoplace no)
 				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
 			)
 			(property "Value" "+3V3"
 				(at 0 3.556 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
 			)
 			(symbol "+3V3_0_1"
 				(polyline
-					(pts (xy -1.27 1.27) (xy 0 2.54) (xy 1.27 1.27))
-					(stroke (width 0) (type default))
-					(fill (type none))
+					(pts
+						(xy -1.27 1.27) (xy 0 2.54) (xy 1.27 1.27)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
 				)
 				(polyline
-					(pts (xy 0 0) (xy 0 1.27))
-					(stroke (width 0) (type default))
-					(fill (type none))
+					(pts
+						(xy 0 0) (xy 0 1.27)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
 				)
 			)
 			(symbol "+3V3_1_1"
 				(pin power_in line
 					(at 0 0 90)
 					(length 0)
-					(name "" (effects (font (size 1.27 1.27))))
-					(number "1" (effects (font (size 1.27 1.27))))
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
 				)
 			)
 			(embedded_fonts no)
 		)
-		(symbol "CCTV2:BATT+"
-			(power)
+		(symbol "CCTV2:+5V"
+			(power global)
 			(pin_numbers
 				(hide yes)
 			)
@@ -106,111 +140,387 @@
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
 			(property "Reference" "#PWR"
 				(at 0 -3.81 0)
+				(show_name no)
+				(do_not_autoplace no)
 				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "+5V"
+				(at 0 3.556 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "+5V_0_1"
+				(polyline
+					(pts
+						(xy -1.27 1.27) (xy 0 2.54) (xy 1.27 1.27)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 0) (xy 0 1.27)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "+5V_1_1"
+				(pin power_in line
+					(at 0 0 90)
+					(length 0)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "CCTV2:BATT+"
+			(power global)
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "#PWR"
+				(at 0 -3.81 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
 			)
 			(property "Value" "BATT+"
 				(at 0 3.556 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
 			)
 			(symbol "BATT+_0_1"
 				(polyline
-					(pts (xy -1.27 1.27) (xy 0 2.54) (xy 1.27 1.27))
-					(stroke (width 0) (type default))
-					(fill (type none))
+					(pts
+						(xy -1.27 1.27) (xy 0 2.54) (xy 1.27 1.27)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
 				)
 				(polyline
-					(pts (xy 0 0) (xy 0 1.27))
-					(stroke (width 0) (type default))
-					(fill (type none))
+					(pts
+						(xy 0 0) (xy 0 1.27)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
 				)
 			)
 			(symbol "BATT+_1_1"
 				(pin power_in line
 					(at 0 0 90)
 					(length 0)
-					(name "" (effects (font (size 1.27 1.27))))
-					(number "1" (effects (font (size 1.27 1.27))))
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
 				)
 			)
 			(embedded_fonts no)
 		)
-		(symbol "CCTV2:GND"
-			(power)
-			(pin_numbers
-				(hide yes)
-			)
-			(pin_names
-				(offset 0)
-				(hide yes)
-			)
+		(symbol "CCTV2:CN3791"
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
-			(property "Reference" "#PWR"
-				(at 0 -6.35 0)
-				(hide yes)
-			)
-			(property "Value" "GND"
-				(at 0 -3.81 0)
-			)
-			(symbol "GND_0_1"
-				(polyline
-					(pts (xy 0 0) (xy 0 -1.27) (xy 1.27 -1.27) (xy 0 -2.54) (xy -1.27 -1.27) (xy 0 -1.27))
-					(stroke (width 0) (type default))
-					(fill (type none))
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "U"
+				(at 0 11.43 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
 				)
 			)
-			(symbol "GND_1_1"
-				(pin power_in line
-					(at 0 0 270)
-					(length 0)
-					(name "" (effects (font (size 1.27 1.27))))
-					(number "1" (effects (font (size 1.27 1.27))))
+			(property "Value" "CN3791"
+				(at 0 -11.43 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
 				)
 			)
-			(embedded_fonts no)
-		)
-		(symbol "CCTV2:R"
-			(pin_numbers
-				(hide yes)
-			)
-			(pin_names
-				(offset 0)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "R"
-				(at 2.286 0 90)
-			)
-			(property "Value" "R"
-				(at 0 0 90)
-			)
-			(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal"
+			(property "Footprint" "CCTV_RPi4:CN3791_Module"
 				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
 				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
 			)
-			(symbol "R_0_1"
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "MPPT Li-ion charger, 6V solar in / 4.2V Li-ion out"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "CN3791_0_1"
 				(rectangle
-					(start -1.016 -2.54)
-					(end 1.016 2.54)
-					(stroke (width 0.254) (type default))
-					(fill (type none))
+					(start -10.16 -8.89)
+					(end 10.16 8.89)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+				(text "CN3791"
+					(at 0 2.54 0)
+					(effects
+						(font
+							(size 1.27 1.27)
+							(bold yes)
+						)
+					)
+				)
+				(text "MPPT"
+					(at 0 0 0)
+					(effects
+						(font
+							(size 1.016 1.016)
+						)
+					)
 				)
 			)
-			(symbol "R_1_1"
-				(pin passive line
-					(at 0 3.81 270)
-					(length 1.27)
-					(name "~" (effects (font (size 1.27 1.27))))
-					(number "1" (effects (font (size 1.27 1.27))))
+			(symbol "CN3791_1_1"
+				(pin power_in line
+					(at -12.7 5.08 0)
+					(length 2.54)
+					(name "VIN/IN+"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
 				)
 				(pin passive line
-					(at 0 -3.81 90)
-					(length 1.27)
-					(name "~" (effects (font (size 1.27 1.27))))
-					(number "2" (effects (font (size 1.27 1.27))))
+					(at -12.7 -5.08 0)
+					(length 2.54)
+					(name "GND"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 12.7 -5.08 180)
+					(length 2.54)
+					(name "GND"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_out line
+					(at 12.7 5.08 180)
+					(length 2.54)
+					(name "BAT+"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
 				)
 			)
 			(embedded_fonts no)
@@ -225,230 +535,110 @@
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
 			(property "Reference" "J"
 				(at 3.81 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
 			)
 			(property "Value" "Conn_01x02"
 				(at 3.81 -5.08 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
 			)
 			(symbol "Conn_01x02_0_1"
 				(rectangle
 					(start -1.778 -2.032)
 					(end 0 2.032)
-					(stroke (width 0.0508) (type solid))
-					(fill (type none))
+					(stroke
+						(width 0.0508)
+						(type solid)
+					)
+					(fill
+						(type none)
+					)
 				)
 			)
 			(symbol "Conn_01x02_1_1"
 				(pin passive line
 					(at -5.08 1.27 0)
 					(length 3.81)
-					(name "Pin_1" (effects (font (size 1.27 1.27))))
-					(number "1" (effects (font (size 1.27 1.27))))
+					(name "Pin_1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
 				)
 				(pin passive line
 					(at -5.08 -1.27 0)
 					(length 3.81)
-					(name "Pin_2" (effects (font (size 1.27 1.27))))
-					(number "2" (effects (font (size 1.27 1.27))))
-				)
-			)
-			(embedded_fonts no)
-		)
-		(symbol "CCTV2:CN3791"
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "U"
-				(at 0 11.43 0)
-			)
-			(property "Value" "CN3791"
-				(at 0 -11.43 0)
-			)
-			(property "Description" "MPPT Li-ion charger, 6V solar in / 4.2V Li-ion out"
-				(at 0 0 0)
-				(hide yes)
-			)
-			(property "Footprint" "CCTV_RPi4:CN3791_Module"
-				(at 0 0 0)
-				(hide yes)
-			)
-			(symbol "CN3791_0_1"
-				(rectangle
-					(start -10.16 -8.89)
-					(end 10.16 8.89)
-					(stroke (width 0.254) (type default))
-					(fill (type background))
-				)
-				(text "CN3791"
-					(at 0 2.54 0)
-					(effects (font (size 1.27 1.27) (bold yes)))
-				)
-				(text "MPPT"
-					(at 0 0 0)
-					(effects (font (size 1.016 1.016)))
-				)
-			)
-			(symbol "CN3791_1_1"
-				(pin power_in line
-					(at -12.7 5.08 0)
-					(length 2.54)
-					(name "VIN/IN+" (effects (font (size 1.27 1.27))))
-					(number "1" (effects (font (size 1.27 1.27))))
-				)
-				(pin passive line
-					(at -12.7 -5.08 0)
-					(length 2.54)
-					(name "GND" (effects (font (size 1.27 1.27))))
-					(number "2" (effects (font (size 1.27 1.27))))
-				)
-				(pin passive line
-					(at 12.7 -5.08 180)
-					(length 2.54)
-					(name "GND" (effects (font (size 1.27 1.27))))
-					(number "3" (effects (font (size 1.27 1.27))))
-				)
-				(pin power_out line
-					(at 12.7 5.08 180)
-					(length 2.54)
-					(name "BAT+" (effects (font (size 1.27 1.27))))
-					(number "4" (effects (font (size 1.27 1.27))))
-				)
-			)
-			(embedded_fonts no)
-		)
-		(symbol "CCTV2:TC4056A_BMS"
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "U"
-				(at 0 14.5 0)
-			)
-			(property "Value" "TC4056A_BMS"
-				(at 0 -14.5 0)
-			)
-			(property "Description" "TC4056A (TP4056) Li-Ion 1A USB charger + DW01A BMS protection. Pins 3-6 match old BMS_1S B+/B-/P+/P-. IN+/IN- for USB charging (can be NC if not used)."
-				(at 0 0 0)
-				(hide yes)
-			)
-			(property "Footprint" "CCTV_RPi4:TC4056A_BMS_Module"
-				(at 0 0 0)
-				(hide yes)
-			)
-			(symbol "TC4056A_BMS_0_1"
-				(rectangle
-					(start -10.16 -8.89)
-					(end 10.16 13.97)
-					(stroke (width 0.254) (type default))
-					(fill (type background))
-				)
-				(text "TC4056A"
-					(at 0 3.81 0)
-					(effects (font (size 1.27 1.27) (bold yes)))
-				)
-				(text "+BMS"
-					(at 0 1.27 0)
-					(effects (font (size 1.016 1.016)))
-				)
-			)
-			(symbol "TC4056A_BMS_1_1"
-				(pin power_in line
-					(at -12.7 12.7 0)
-					(length 2.54)
-					(name "IN+" (effects (font (size 1.27 1.27))))
-					(number "1" (effects (font (size 1.27 1.27))))
-				)
-				(pin passive line
-					(at -12.7 10.16 0)
-					(length 2.54)
-					(name "IN-" (effects (font (size 1.27 1.27))))
-					(number "2" (effects (font (size 1.27 1.27))))
-				)
-				(pin power_out line
-					(at 12.7 5.08 180)
-					(length 2.54)
-					(name "OUT+" (effects (font (size 1.27 1.27))))
-					(number "3" (effects (font (size 1.27 1.27))))
-				)
-				(pin passive line
-					(at -12.7 5.08 0)
-					(length 2.54)
-					(name "B+" (effects (font (size 1.27 1.27))))
-					(number "4" (effects (font (size 1.27 1.27))))
-				)
-				(pin passive line
-					(at -12.7 -5.08 0)
-					(length 2.54)
-					(name "B-" (effects (font (size 1.27 1.27))))
-					(number "5" (effects (font (size 1.27 1.27))))
-				)
-				(pin passive line
-					(at 12.7 -5.08 180)
-					(length 2.54)
-					(name "OUT-" (effects (font (size 1.27 1.27))))
-					(number "6" (effects (font (size 1.27 1.27))))
-				)
-			)
-			(embedded_fonts no)
-		)
-		(symbol "CCTV2:MT3608"
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "U"
-				(at 0 11.43 0)
-			)
-			(property "Value" "MT3608"
-				(at 0 -11.43 0)
-			)
-			(property "Description" "Boost converter, set OUT = 5.0V before connecting load"
-				(at 0 0 0)
-				(hide yes)
-			)
-			(property "Footprint" "CCTV_RPi4:MT3608_Module"
-				(at 0 0 0)
-				(hide yes)
-			)
-			(symbol "MT3608_0_1"
-				(rectangle
-					(start -10.16 -8.89)
-					(end 10.16 8.89)
-					(stroke (width 0.254) (type default))
-					(fill (type background))
-				)
-				(text "MT3608"
-					(at 0 2.54 0)
-					(effects (font (size 1.27 1.27) (bold yes)))
-				)
-				(text "BOOST 5V"
-					(at 0 0 0)
-					(effects (font (size 1.016 1.016)))
-				)
-			)
-			(symbol "MT3608_1_1"
-				(pin power_in line
-					(at -12.7 5.08 0)
-					(length 2.54)
-					(name "IN+" (effects (font (size 1.27 1.27))))
-					(number "1" (effects (font (size 1.27 1.27))))
-				)
-				(pin passive line
-					(at -12.7 -5.08 0)
-					(length 2.54)
-					(name "IN-" (effects (font (size 1.27 1.27))))
-					(number "2" (effects (font (size 1.27 1.27))))
-				)
-				(pin power_out line
-					(at 12.7 5.08 180)
-					(length 2.54)
-					(name "OUT+" (effects (font (size 1.27 1.27))))
-					(number "3" (effects (font (size 1.27 1.27))))
-				)
-				(pin passive line
-					(at 12.7 -5.08 180)
-					(length 2.54)
-					(name "OUT-" (effects (font (size 1.27 1.27))))
-					(number "4" (effects (font (size 1.27 1.27))))
+					(name "Pin_2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
 				)
 			)
 			(embedded_fonts no)
@@ -457,295 +647,1160 @@
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
 			(property "Reference" "U"
 				(at 0 32 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
 			)
 			(property "Value" "ESP32-S3-DevKitC-1 N16R8"
 				(at 0 -32 0)
-			)
-			(property "Description" "ESP32-S3 DevKitC-1 N16R8 — physical pinout. Left col 1-22 top-to-bottom; Right col 23-44 top-to-bottom."
-				(at 0 0 0)
-				(hide yes)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
 			)
 			(property "Footprint" "CCTV_RPi4:ESP32-S3-DevKitC-1"
 				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
 				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "ESP32-S3 DevKitC-1 N16R8 — physical pinout. Left col 1-22 top-to-bottom; Right col 23-44 top-to-bottom."
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
 			)
 			(symbol "ESP32_S3_DevKitC_0_1"
 				(rectangle
 					(start -15.24 -29)
 					(end 15.24 29)
-					(stroke (width 0.254) (type default))
-					(fill (type background))
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
 				)
-				(text "ESP32-S3" (at 0 5.08 0) (effects (font (size 1.27 1.27) (bold yes))))
-				(text "DevKitC-1" (at 0 2.54 0) (effects (font (size 1.016 1.016))))
-				(text "N16R8"    (at 0 0    0) (effects (font (size 1.016 1.016))))
+				(text "ESP32-S3"
+					(at 0 5.08 0)
+					(effects
+						(font
+							(size 1.27 1.27)
+							(bold yes)
+						)
+					)
+				)
+				(text "DevKitC-1"
+					(at 0 2.54 0)
+					(effects
+						(font
+							(size 1.016 1.016)
+						)
+					)
+				)
+				(text "N16R8"
+					(at 0 0 0)
+					(effects
+						(font
+							(size 1.016 1.016)
+						)
+					)
+				)
 			)
 			(symbol "ESP32_S3_DevKitC_1_1"
 				(pin power_in line
 					(at -17.78 -27.94 0)
 					(length 2.54)
-					(name "3V3" (effects (font (size 1.27 1.27))))
-					(number "1" (effects (font (size 1.27 1.27))))
+					(name "3V3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
 				)
 				(pin no_connect line
-					(at -17.78 -25.40 0)
+					(at -17.78 -25.4 0)
 					(length 2.54)
-					(name "3V3_2" (effects (font (size 1.27 1.27))))
-					(number "2" (effects (font (size 1.27 1.27))))
+					(name "3V3_2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
 				)
 				(pin no_connect line
 					(at -17.78 -22.86 0)
 					(length 2.54)
-					(name "RST" (effects (font (size 1.27 1.27))))
-					(number "3" (effects (font (size 1.27 1.27))))
+					(name "RST"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
 				)
 				(pin bidirectional line
 					(at -17.78 -20.32 0)
 					(length 2.54)
-					(name "GPIO4_SIOD" (effects (font (size 1.27 1.27))))
-					(number "4" (effects (font (size 1.27 1.27))))
+					(name "GPIO4_SIOD"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
 				)
 				(pin output line
 					(at -17.78 -17.78 0)
 					(length 2.54)
-					(name "GPIO5_SIOC" (effects (font (size 1.27 1.27))))
-					(number "5" (effects (font (size 1.27 1.27))))
+					(name "GPIO5_SIOC"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "5"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
 				)
 				(pin input line
 					(at -17.78 -15.24 0)
 					(length 2.54)
-					(name "GPIO6_VSYNC" (effects (font (size 1.27 1.27))))
-					(number "6" (effects (font (size 1.27 1.27))))
+					(name "GPIO6_VSYNC"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "6"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
 				)
 				(pin input line
-					(at -17.78 -12.70 0)
+					(at -17.78 -12.7 0)
 					(length 2.54)
-					(name "GPIO7_HREF" (effects (font (size 1.27 1.27))))
-					(number "7" (effects (font (size 1.27 1.27))))
+					(name "GPIO7_HREF"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "7"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
 				)
 				(pin output line
 					(at -17.78 -10.16 0)
 					(length 2.54)
-					(name "GPIO15_XCLK" (effects (font (size 1.27 1.27))))
-					(number "8" (effects (font (size 1.27 1.27))))
+					(name "GPIO15_XCLK"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "8"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
 				)
 				(pin input line
 					(at -17.78 -7.62 0)
 					(length 2.54)
-					(name "GPIO16_D7" (effects (font (size 1.27 1.27))))
-					(number "9" (effects (font (size 1.27 1.27))))
+					(name "GPIO16_D7"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "9"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
 				)
 				(pin input line
 					(at -17.78 -5.08 0)
 					(length 2.54)
-					(name "GPIO17_D6" (effects (font (size 1.27 1.27))))
-					(number "10" (effects (font (size 1.27 1.27))))
+					(name "GPIO17_D6"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "10"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
 				)
 				(pin input line
 					(at -17.78 -2.54 0)
 					(length 2.54)
-					(name "GPIO18_D5" (effects (font (size 1.27 1.27))))
-					(number "11" (effects (font (size 1.27 1.27))))
+					(name "GPIO18_D5"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "11"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
 				)
 				(pin input line
 					(at -17.78 0 0)
 					(length 2.54)
-					(name "GPIO8_D2" (effects (font (size 1.27 1.27))))
-					(number "12" (effects (font (size 1.27 1.27))))
+					(name "GPIO8_D2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "12"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
 				)
 				(pin no_connect line
 					(at -17.78 2.54 0)
 					(length 2.54)
-					(name "GPIO3" (effects (font (size 1.27 1.27))))
-					(number "13" (effects (font (size 1.27 1.27))))
+					(name "GPIO3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "13"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
 				)
 				(pin no_connect line
 					(at -17.78 5.08 0)
 					(length 2.54)
-					(name "GPIO46" (effects (font (size 1.27 1.27))))
-					(number "14" (effects (font (size 1.27 1.27))))
+					(name "GPIO46"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "14"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
 				)
 				(pin input line
 					(at -17.78 7.62 0)
 					(length 2.54)
-					(name "GPIO9_D1" (effects (font (size 1.27 1.27))))
-					(number "15" (effects (font (size 1.27 1.27))))
+					(name "GPIO9_D1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "15"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
 				)
 				(pin input line
 					(at -17.78 10.16 0)
 					(length 2.54)
-					(name "GPIO10_D3" (effects (font (size 1.27 1.27))))
-					(number "16" (effects (font (size 1.27 1.27))))
+					(name "GPIO10_D3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "16"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
 				)
 				(pin input line
-					(at -17.78 12.70 0)
+					(at -17.78 12.7 0)
 					(length 2.54)
-					(name "GPIO11_D0" (effects (font (size 1.27 1.27))))
-					(number "17" (effects (font (size 1.27 1.27))))
+					(name "GPIO11_D0"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "17"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
 				)
 				(pin input line
 					(at -17.78 15.24 0)
 					(length 2.54)
-					(name "GPIO12_D4" (effects (font (size 1.27 1.27))))
-					(number "18" (effects (font (size 1.27 1.27))))
+					(name "GPIO12_D4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "18"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
 				)
 				(pin input line
 					(at -17.78 17.78 0)
 					(length 2.54)
-					(name "GPIO13_PCLK" (effects (font (size 1.27 1.27))))
-					(number "19" (effects (font (size 1.27 1.27))))
+					(name "GPIO13_PCLK"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "19"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
 				)
 				(pin no_connect line
 					(at -17.78 20.32 0)
 					(length 2.54)
-					(name "GPIO14" (effects (font (size 1.27 1.27))))
-					(number "20" (effects (font (size 1.27 1.27))))
+					(name "GPIO14"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "20"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
 				)
 				(pin power_in line
 					(at -17.78 22.86 0)
 					(length 2.54)
-					(name "5V" (effects (font (size 1.27 1.27))))
-					(number "21" (effects (font (size 1.27 1.27))))
+					(name "5V"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "21"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
 				)
 				(pin passive line
-					(at -17.78 25.40 0)
+					(at -17.78 25.4 0)
 					(length 2.54)
-					(name "GND" (effects (font (size 1.27 1.27))))
-					(number "22" (effects (font (size 1.27 1.27))))
+					(name "GND"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "22"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
 				)
 				(pin no_connect line
 					(at 17.78 -27.94 180)
 					(length 2.54)
-					(name "GND_R" (effects (font (size 1.27 1.27))))
-					(number "23" (effects (font (size 1.27 1.27))))
+					(name "GND_R"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "23"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
 				)
 				(pin no_connect line
-					(at 17.78 -25.40 180)
+					(at 17.78 -25.4 180)
 					(length 2.54)
-					(name "GPIO43" (effects (font (size 1.27 1.27))))
-					(number "24" (effects (font (size 1.27 1.27))))
+					(name "GPIO43"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "24"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
 				)
 				(pin no_connect line
 					(at 17.78 -22.86 180)
 					(length 2.54)
-					(name "GPIO44" (effects (font (size 1.27 1.27))))
-					(number "25" (effects (font (size 1.27 1.27))))
+					(name "GPIO44"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "25"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
 				)
 				(pin no_connect line
 					(at 17.78 -20.32 180)
 					(length 2.54)
-					(name "GPIO1" (effects (font (size 1.27 1.27))))
-					(number "26" (effects (font (size 1.27 1.27))))
+					(name "GPIO1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "26"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
 				)
 				(pin no_connect line
 					(at 17.78 -17.78 180)
 					(length 2.54)
-					(name "GPIO2" (effects (font (size 1.27 1.27))))
-					(number "27" (effects (font (size 1.27 1.27))))
+					(name "GPIO2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "27"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
 				)
 				(pin no_connect line
 					(at 17.78 -15.24 180)
 					(length 2.54)
-					(name "GPIO42" (effects (font (size 1.27 1.27))))
-					(number "28" (effects (font (size 1.27 1.27))))
+					(name "GPIO42"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "28"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
 				)
 				(pin no_connect line
-					(at 17.78 -12.70 180)
+					(at 17.78 -12.7 180)
 					(length 2.54)
-					(name "GPIO41" (effects (font (size 1.27 1.27))))
-					(number "29" (effects (font (size 1.27 1.27))))
+					(name "GPIO41"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "29"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
 				)
 				(pin no_connect line
 					(at 17.78 -10.16 180)
 					(length 2.54)
-					(name "GPIO40" (effects (font (size 1.27 1.27))))
-					(number "30" (effects (font (size 1.27 1.27))))
+					(name "GPIO40"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "30"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
 				)
 				(pin no_connect line
 					(at 17.78 -7.62 180)
 					(length 2.54)
-					(name "GPIO39" (effects (font (size 1.27 1.27))))
-					(number "31" (effects (font (size 1.27 1.27))))
+					(name "GPIO39"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "31"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
 				)
 				(pin no_connect line
 					(at 17.78 -5.08 180)
 					(length 2.54)
-					(name "GPIO38_RGB" (effects (font (size 1.27 1.27))))
-					(number "32" (effects (font (size 1.27 1.27))))
+					(name "GPIO38_RGB"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "32"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
 				)
 				(pin no_connect line
 					(at 17.78 -2.54 180)
 					(length 2.54)
-					(name "GPIO37" (effects (font (size 1.27 1.27))))
-					(number "33" (effects (font (size 1.27 1.27))))
+					(name "GPIO37"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "33"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
 				)
 				(pin no_connect line
 					(at 17.78 0 180)
 					(length 2.54)
-					(name "GPIO36" (effects (font (size 1.27 1.27))))
-					(number "34" (effects (font (size 1.27 1.27))))
+					(name "GPIO36"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "34"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
 				)
 				(pin no_connect line
 					(at 17.78 2.54 180)
 					(length 2.54)
-					(name "GPIO35" (effects (font (size 1.27 1.27))))
-					(number "35" (effects (font (size 1.27 1.27))))
+					(name "GPIO35"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "35"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
 				)
 				(pin no_connect line
 					(at 17.78 5.08 180)
 					(length 2.54)
-					(name "GPIO0_BOOT" (effects (font (size 1.27 1.27))))
-					(number "36" (effects (font (size 1.27 1.27))))
+					(name "GPIO0_BOOT"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "36"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
 				)
 				(pin no_connect line
 					(at 17.78 7.62 180)
 					(length 2.54)
-					(name "GPIO45" (effects (font (size 1.27 1.27))))
-					(number "37" (effects (font (size 1.27 1.27))))
+					(name "GPIO45"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "37"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
 				)
 				(pin no_connect line
 					(at 17.78 10.16 180)
 					(length 2.54)
-					(name "GPIO48" (effects (font (size 1.27 1.27))))
-					(number "38" (effects (font (size 1.27 1.27))))
+					(name "GPIO48"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "38"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
 				)
 				(pin no_connect line
-					(at 17.78 12.70 180)
+					(at 17.78 12.7 180)
 					(length 2.54)
-					(name "GPIO47" (effects (font (size 1.27 1.27))))
-					(number "39" (effects (font (size 1.27 1.27))))
+					(name "GPIO47"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "39"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
 				)
 				(pin no_connect line
 					(at 17.78 15.24 180)
 					(length 2.54)
-					(name "GPIO21" (effects (font (size 1.27 1.27))))
-					(number "40" (effects (font (size 1.27 1.27))))
+					(name "GPIO21"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "40"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
 				)
 				(pin no_connect line
 					(at 17.78 17.78 180)
 					(length 2.54)
-					(name "GPIO20" (effects (font (size 1.27 1.27))))
-					(number "41" (effects (font (size 1.27 1.27))))
+					(name "GPIO20"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "41"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
 				)
 				(pin no_connect line
 					(at 17.78 20.32 180)
 					(length 2.54)
-					(name "GPIO19" (effects (font (size 1.27 1.27))))
-					(number "42" (effects (font (size 1.27 1.27))))
+					(name "GPIO19"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "42"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
 				)
 				(pin no_connect line
 					(at 17.78 22.86 180)
 					(length 2.54)
-					(name "GND_R2" (effects (font (size 1.27 1.27))))
-					(number "43" (effects (font (size 1.27 1.27))))
+					(name "GND_R2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "43"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
 				)
 				(pin no_connect line
-					(at 17.78 25.40 180)
+					(at 17.78 25.4 180)
 					(length 2.54)
-					(name "GND_R3" (effects (font (size 1.27 1.27))))
-					(number "44" (effects (font (size 1.27 1.27))))
+					(name "GND_R3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "44"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "CCTV2:GND"
+			(power global)
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "#PWR"
+				(at 0 -6.35 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "GND"
+				(at 0 -3.81 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "GND_0_1"
+				(polyline
+					(pts
+						(xy 0 0) (xy 0 -1.27) (xy 1.27 -1.27) (xy 0 -2.54) (xy -1.27 -1.27) (xy 0 -1.27)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "GND_1_1"
+				(pin power_in line
+					(at 0 0 270)
+					(length 0)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "CCTV2:MT3608"
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "U"
+				(at 0 11.43 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "MT3608"
+				(at 0 -11.43 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" "CCTV_RPi4:MT3608_Module"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "Boost converter, set OUT = 5.0V before connecting load"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "MT3608_0_1"
+				(rectangle
+					(start -10.16 -8.89)
+					(end 10.16 8.89)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+				(text "MT3608"
+					(at 0 2.54 0)
+					(effects
+						(font
+							(size 1.27 1.27)
+							(bold yes)
+						)
+					)
+				)
+				(text "BOOST 5V"
+					(at 0 0 0)
+					(effects
+						(font
+							(size 1.016 1.016)
+						)
+					)
+				)
+			)
+			(symbol "MT3608_1_1"
+				(pin power_in line
+					(at -12.7 5.08 0)
+					(length 2.54)
+					(name "IN+"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -12.7 -5.08 0)
+					(length 2.54)
+					(name "IN-"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_out line
+					(at 12.7 5.08 180)
+					(length 2.54)
+					(name "OUT+"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 12.7 -5.08 180)
+					(length 2.54)
+					(name "OUT-"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
 				)
 			)
 			(embedded_fonts no)
@@ -754,169 +1809,1586 @@
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
 			(property "Reference" "U"
 				(at 0 17.78 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
 			)
 			(property "Value" "OV7670"
 				(at 0 -17.78 0)
-			)
-			(property "Description" "OV7670 VGA CMOS sensor, 8-bit DVP, no JPEG"
-				(at 0 0 0)
-				(hide yes)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
 			)
 			(property "Footprint" "CCTV_RPi4:OV7670_Module"
 				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
 				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "OV7670 VGA CMOS sensor, 8-bit DVP, no JPEG"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
 			)
 			(symbol "OV7670_0_1"
 				(rectangle
 					(start -15.24 -15.24)
 					(end 15.24 15.24)
-					(stroke (width 0.254) (type default))
-					(fill (type background))
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
 				)
 				(text "OV7670"
 					(at 0 5.08 0)
-					(effects (font (size 1.27 1.27) (bold yes)))
+					(effects
+						(font
+							(size 1.27 1.27)
+							(bold yes)
+						)
+					)
 				)
 				(text "DVP camera"
 					(at 0 2.54 0)
-					(effects (font (size 1.016 1.016)))
+					(effects
+						(font
+							(size 1.016 1.016)
+						)
+					)
 				)
 			)
 			(symbol "OV7670_1_1"
 				(pin power_in line
 					(at -17.78 12.7 0)
 					(length 2.54)
-					(name "3V3" (effects (font (size 1.27 1.27))))
-					(number "1" (effects (font (size 1.27 1.27))))
+					(name "3V3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
 				)
 				(pin passive line
 					(at -17.78 10.16 0)
 					(length 2.54)
-					(name "GND" (effects (font (size 1.27 1.27))))
-					(number "2" (effects (font (size 1.27 1.27))))
-				)
-				(pin input line
-					(at -17.78 5.08 0)
-					(length 2.54)
-					(name "RESET" (effects (font (size 1.27 1.27))))
-					(number "17" (effects (font (size 1.27 1.27))))
-				)
-				(pin input line
-					(at -17.78 2.54 0)
-					(length 2.54)
-					(name "PWDN" (effects (font (size 1.27 1.27))))
-					(number "18" (effects (font (size 1.27 1.27))))
+					(name "GND"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
 				)
 				(pin input line
 					(at -17.78 0 0)
 					(length 2.54)
-					(name "SIOC" (effects (font (size 1.27 1.27))))
-					(number "3" (effects (font (size 1.27 1.27))))
+					(name "SIOC"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
 				)
 				(pin bidirectional line
 					(at -17.78 -2.54 0)
 					(length 2.54)
-					(name "SIOD" (effects (font (size 1.27 1.27))))
-					(number "4" (effects (font (size 1.27 1.27))))
+					(name "SIOD"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
 				)
 				(pin output line
 					(at -17.78 -5.08 0)
 					(length 2.54)
-					(name "VSYNC" (effects (font (size 1.27 1.27))))
-					(number "5" (effects (font (size 1.27 1.27))))
+					(name "VSYNC"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "5"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
 				)
 				(pin output line
 					(at -17.78 -7.62 0)
 					(length 2.54)
-					(name "HREF" (effects (font (size 1.27 1.27))))
-					(number "6" (effects (font (size 1.27 1.27))))
+					(name "HREF"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "6"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
 				)
 				(pin output line
 					(at -17.78 -10.16 0)
 					(length 2.54)
-					(name "PCLK" (effects (font (size 1.27 1.27))))
-					(number "7" (effects (font (size 1.27 1.27))))
+					(name "PCLK"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "7"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
 				)
 				(pin input line
 					(at -17.78 -12.7 0)
 					(length 2.54)
-					(name "XCLK" (effects (font (size 1.27 1.27))))
-					(number "8" (effects (font (size 1.27 1.27))))
+					(name "XCLK"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "8"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
 				)
 				(pin output line
 					(at 17.78 10.16 180)
 					(length 2.54)
-					(name "D7" (effects (font (size 1.27 1.27))))
-					(number "9" (effects (font (size 1.27 1.27))))
+					(name "D7"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "9"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
 				)
 				(pin output line
 					(at 17.78 7.62 180)
 					(length 2.54)
-					(name "D6" (effects (font (size 1.27 1.27))))
-					(number "10" (effects (font (size 1.27 1.27))))
+					(name "D6"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "10"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
 				)
 				(pin output line
 					(at 17.78 5.08 180)
 					(length 2.54)
-					(name "D5" (effects (font (size 1.27 1.27))))
-					(number "11" (effects (font (size 1.27 1.27))))
+					(name "D5"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "11"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
 				)
 				(pin output line
 					(at 17.78 2.54 180)
 					(length 2.54)
-					(name "D4" (effects (font (size 1.27 1.27))))
-					(number "12" (effects (font (size 1.27 1.27))))
+					(name "D4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "12"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
 				)
 				(pin output line
 					(at 17.78 0 180)
 					(length 2.54)
-					(name "D3" (effects (font (size 1.27 1.27))))
-					(number "13" (effects (font (size 1.27 1.27))))
+					(name "D3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "13"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
 				)
 				(pin output line
 					(at 17.78 -2.54 180)
 					(length 2.54)
-					(name "D2" (effects (font (size 1.27 1.27))))
-					(number "14" (effects (font (size 1.27 1.27))))
+					(name "D2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "14"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
 				)
 				(pin output line
 					(at 17.78 -5.08 180)
 					(length 2.54)
-					(name "D1" (effects (font (size 1.27 1.27))))
-					(number "15" (effects (font (size 1.27 1.27))))
+					(name "D1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "15"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
 				)
 				(pin output line
 					(at 17.78 -7.62 180)
 					(length 2.54)
-					(name "D0" (effects (font (size 1.27 1.27))))
-					(number "16" (effects (font (size 1.27 1.27))))
+					(name "D0"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "16"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -17.78 5.08 0)
+					(length 2.54)
+					(name "RESET"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "17"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -17.78 2.54 0)
+					(length 2.54)
+					(name "PWDN"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "18"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "CCTV2:R"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "R"
+				(at 2.286 0 90)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "R"
+				(at 0 0 90)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "R_0_1"
+				(rectangle
+					(start -1.016 -2.54)
+					(end 1.016 2.54)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "R_1_1"
+				(pin passive line
+					(at 0 3.81 270)
+					(length 1.27)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 -3.81 90)
+					(length 1.27)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "CCTV2:TC4056A_BMS"
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "U"
+				(at 0 14.5 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "TC4056A_BMS"
+				(at 0 -14.5 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" "CCTV_RPi4:TC4056A_BMS_Module"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "TC4056A (TP4056) Li-Ion 1A USB charger + DW01A BMS protection. Pins 3-6 match old BMS_1S B+/B-/P+/P-. IN+/IN- for USB charging (can be NC if not used)."
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "TC4056A_BMS_0_1"
+				(rectangle
+					(start -10.16 -8.89)
+					(end 10.16 13.97)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+				(text "TC4056A"
+					(at 0 3.81 0)
+					(effects
+						(font
+							(size 1.27 1.27)
+							(bold yes)
+						)
+					)
+				)
+				(text "+BMS"
+					(at 0 1.27 0)
+					(effects
+						(font
+							(size 1.016 1.016)
+						)
+					)
+				)
+			)
+			(symbol "TC4056A_BMS_1_1"
+				(pin power_in line
+					(at -12.7 12.7 0)
+					(length 2.54)
+					(name "IN+"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -12.7 10.16 0)
+					(length 2.54)
+					(name "IN-"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_out line
+					(at 12.7 5.08 180)
+					(length 2.54)
+					(name "OUT+"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -12.7 5.08 0)
+					(length 2.54)
+					(name "B+"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -12.7 -5.08 0)
+					(length 2.54)
+					(name "B-"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "5"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 12.7 -5.08 180)
+					(length 2.54)
+					(name "OUT-"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "6"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
 				)
 			)
 			(embedded_fonts no)
 		)
 	)
+	(text "Power chain"
+		(exclude_from_sim no)
+		(at 105 50 0)
+		(effects
+			(font
+				(size 2.5 2.5)
+				(bold yes)
+			)
+		)
+		(uuid "d0000001-0000-0000-0000-000000000001")
+	)
+	(text "Solar 6V/10W → CN3791 MPPT → 1S BMS → 2× 18650 (parallel) → MT3608 boost → +5V"
+		(exclude_from_sim no)
+		(at 105 56 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "d0000002-0000-0000-0000-000000000002")
+	)
+	(text "MCU + camera"
+		(exclude_from_sim no)
+		(at 107.944 194.906 0)
+		(effects
+			(font
+				(size 2.5 2.5)
+				(bold yes)
+			)
+		)
+		(uuid "d0000003-0000-0000-0000-000000000003")
+	)
+	(text "ESP32-S3-DevKitC-1 (N16R8) drives OV7670 over DVP. SIOC/SIOD pulled up to 3V3 with 4.7k."
+		(exclude_from_sim no)
+		(at 106.426 201.422 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "d0000004-0000-0000-0000-000000000004")
+	)
+	(text "Set MT3608 OUT = 5.00 V with no load BEFORE wiring to U4."
+		(exclude_from_sim no)
+		(at 195 90 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(italic yes)
+			)
+		)
+		(uuid "d0000005-0000-0000-0000-000000000005")
+	)
+	(text "BMS over-discharge trip ≈ 2.4 V (last resort). Implement software cutoff at 3.3 V in firmware."
+		(exclude_from_sim no)
+		(at 130 90 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(italic yes)
+			)
+		)
+		(uuid "d0000006-0000-0000-0000-000000000006")
+	)
+	(text "OV7670 outputs RGB565/YUV422 (no JPEG). Encode JPEG in software via frame2jpg() in stream handler."
+		(exclude_from_sim no)
+		(at 290 265 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(italic yes)
+			)
+		)
+		(uuid "d0000007-0000-0000-0000-000000000007")
+	)
+	(no_connect
+		(at 117.3 57.3)
+		(uuid "2e67d5d4-0b05-477b-9882-c20563719597")
+	)
+	(wire
+		(pts
+			(xy 66.04 134.62) (xy 58.73 134.91)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0047fe4e-0587-4f57-bcee-80906edfcec1")
+	)
+	(wire
+		(pts
+			(xy 66.04 170.18) (xy 58.73 170.47)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0bd4b0e6-ff89-4b42-a5a4-74fd2d3d1c1a")
+	)
+	(wire
+		(pts
+			(xy 39.37 137.16) (xy 36.83 137.16)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0e36150d-972e-4628-b4bc-f878c51d0d75")
+	)
+	(wire
+		(pts
+			(xy 66.04 132.08) (xy 58.73 132.37)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "13941037-d265-41f2-a4db-c88a967453a8")
+	)
+	(wire
+		(pts
+			(xy 66.04 165.1) (xy 58.73 165.39)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1b0a931b-bb71-4f65-b813-9ad23757d2de")
+	)
+	(wire
+		(pts
+			(xy 39.37 135.89) (xy 39.37 137.16)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1e471f48-52ca-42f1-8114-e47e5b74abe4")
+	)
+	(wire
+		(pts
+			(xy 66.04 157.48) (xy 58.73 157.77)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2d7f176e-2e07-47ce-a6a4-f0d0cb161743")
+	)
+	(wire
+		(pts
+			(xy 36.83 144.78) (xy 36.83 147.32)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "338a725e-6f11-4776-87d2-5767d9a70b36")
+	)
+	(wire
+		(pts
+			(xy 66.04 154.94) (xy 58.73 155.23)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "40668acc-93d5-4905-99a7-4ccabe597a2a")
+	)
+	(wire
+		(pts
+			(xy 66.04 137.16) (xy 58.73 137.45)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4b4b41dc-acf0-46f5-8807-bad1bbc9f2df")
+	)
+	(wire
+		(pts
+			(xy 66.04 160.02) (xy 58.73 160.31)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4c6cb6fd-7bdd-4ec6-8520-a3f3eef36e03")
+	)
+	(wire
+		(pts
+			(xy 66.04 124.46) (xy 58.73 124.75)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5c8e7093-90ab-45db-ab52-0a9fc4eb47e3")
+	)
+	(wire
+		(pts
+			(xy 66.04 149.86) (xy 58.73 150.15)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "70626126-a399-4e8d-a6bb-5eb825d1ae8f")
+	)
+	(wire
+		(pts
+			(xy 66.04 162.56) (xy 58.73 162.85)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "77dc9043-d44a-4f8e-9754-6b912050b069")
+	)
+	(wire
+		(pts
+			(xy 66.04 142.24) (xy 58.73 142.53)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "83b54106-2f7e-44a5-8c88-0f1ccf28aa85")
+	)
+	(wire
+		(pts
+			(xy 66.04 152.4) (xy 58.73 152.69)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "888e9505-ca83-45d1-9869-8d0f7fb5de2e")
+	)
+	(wire
+		(pts
+			(xy 66.04 127) (xy 58.73 127.29)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "993f4ef6-4df1-4e99-be51-08ff4324e9a1")
+	)
+	(wire
+		(pts
+			(xy 66.04 177.8) (xy 58.73 178.09)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a1622da6-1f74-4429-8e98-d76d88bf03a3")
+	)
+	(wire
+		(pts
+			(xy 39.37 135.89) (xy 36.83 135.89)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c884cd70-1fcc-4987-8a3a-1bcd1a351eb3")
+	)
+	(wire
+		(pts
+			(xy 66.04 167.64) (xy 58.73 167.93)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c983dc49-2e99-48b5-a7ca-94584392c35a")
+	)
+	(wire
+		(pts
+			(xy 66.04 139.7) (xy 58.73 139.99)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ccd101ad-0d0d-425b-8d3a-3e770c36614d")
+	)
+	(label "PROT-"
+		(at 192.7 75.08 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "101b63dd-18e9-4713-a6a5-d2fd387e5167")
+	)
+	(label "SOLAR+"
+		(at 34.92 68.73 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "c0000001-0000-0000-0000-000000000001")
+	)
+	(label "SOLAR-"
+		(at 34.92 71.27 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "c0000002-0000-0000-0000-000000000002")
+	)
+	(label "SOLAR+"
+		(at 67.3 64.92 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "c0000003-0000-0000-0000-000000000003")
+	)
+	(label "SOLAR-"
+		(at 67.3 75.08 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "c0000004-0000-0000-0000-000000000004")
+	)
+	(label "BATT+"
+		(at 92.7 64.92 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "c0000005-0000-0000-0000-000000000005")
+	)
+	(label "BATT-"
+		(at 92.7 75.08 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "c0000006-0000-0000-0000-000000000006")
+	)
+	(label "BATT+"
+		(at 117.3 64.92 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "c0000007-0000-0000-0000-000000000007")
+	)
+	(label "BATT-"
+		(at 117.3 75.08 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "c0000008-0000-0000-0000-000000000008")
+	)
+	(label "BATT+"
+		(at 124.92 103.73 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "c0000009-0000-0000-0000-000000000009")
+	)
+	(label "BATT-"
+		(at 124.92 106.27 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right top)
+		)
+		(uuid "c000000a-0000-0000-0000-00000000000a")
+	)
+	(label "+5V"
+		(at 192.7 64.92 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "c000000b-0000-0000-0000-00000000000b")
+	)
+	(label "P+"
+		(at 167.3 64.92 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "c000000d-0000-0000-0000-00000000000d")
+	)
+	(label "PROT-"
+		(at 167.3 75.08 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "c000000e-0000-0000-0000-00000000000e")
+	)
+	(label "+5V"
+		(at 57.15 127 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "c000000f-0000-0000-0000-00000000000f")
+	)
+	(label "+3V3"
+		(at 61.27 178.09 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "c0000010-0000-0000-0000-000000000010")
+	)
+	(label "SIOD"
+		(at 61.27 170.47 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "c0000011-0000-0000-0000-000000000011")
+	)
+	(label "SIOC"
+		(at 61.27 167.93 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "c0000012-0000-0000-0000-000000000012")
+	)
+	(label "VSYNC"
+		(at 61.27 165.39 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "c0000013-0000-0000-0000-000000000013")
+	)
+	(label "HREF"
+		(at 61.27 162.85 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "c0000014-0000-0000-0000-000000000014")
+	)
+	(label "PCLK"
+		(at 61.27 132.37 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "c0000015-0000-0000-0000-000000000015")
+	)
+	(label "XCLK"
+		(at 61.27 160.31 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "c0000016-0000-0000-0000-000000000016")
+	)
+	(label "CAM_D0"
+		(at 57.15 137.16 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "c0000017-0000-0000-0000-000000000017")
+	)
+	(label "CAM_D1"
+		(at 57.15 142.24 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "c0000018-0000-0000-0000-000000000018")
+	)
+	(label "CAM_D2"
+		(at 57.15 149.86 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "c0000019-0000-0000-0000-000000000019")
+	)
+	(label "CAM_D3"
+		(at 57.15 139.7 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "c000001a-0000-0000-0000-00000000001a")
+	)
+	(label "CAM_D4"
+		(at 57.15 134.62 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "c000001b-0000-0000-0000-00000000001b")
+	)
+	(label "CAM_D5"
+		(at 57.15 152.4 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "c000001c-0000-0000-0000-00000000001c")
+	)
+	(label "CAM_D6"
+		(at 57.15 154.94 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "c000001d-0000-0000-0000-00000000001d")
+	)
+	(label "CAM_D7"
+		(at 57.15 157.48 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "c000001e-0000-0000-0000-00000000001e")
+	)
+	(label "+3V3"
+		(at 138.43 137.16 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "c000001f-0000-0000-0000-00000000001f")
+	)
+	(label "SIOC"
+		(at 138.43 149.86 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "c0000020-0000-0000-0000-000000000020")
+	)
+	(label "SIOD"
+		(at 138.43 152.4 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "c0000021-0000-0000-0000-000000000021")
+	)
+	(label "VSYNC"
+		(at 138.43 154.94 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "c0000022-0000-0000-0000-000000000022")
+	)
+	(label "HREF"
+		(at 138.43 157.48 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "c0000023-0000-0000-0000-000000000023")
+	)
+	(label "PCLK"
+		(at 138.43 160.02 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "c0000024-0000-0000-0000-000000000024")
+	)
+	(label "XCLK"
+		(at 138.43 162.56 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "c0000025-0000-0000-0000-000000000025")
+	)
+	(label "CAM_D7"
+		(at 173.99 139.7 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "c0000027-0000-0000-0000-000000000027")
+	)
+	(label "CAM_D6"
+		(at 173.99 142.24 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "c0000028-0000-0000-0000-000000000028")
+	)
+	(label "CAM_D5"
+		(at 173.99 144.78 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "c0000029-0000-0000-0000-000000000029")
+	)
+	(label "CAM_D4"
+		(at 173.99 147.32 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "c000002a-0000-0000-0000-00000000002a")
+	)
+	(label "CAM_D3"
+		(at 173.99 149.86 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "c000002b-0000-0000-0000-00000000002b")
+	)
+	(label "CAM_D2"
+		(at 173.99 152.4 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "c000002c-0000-0000-0000-00000000002c")
+	)
+	(label "CAM_D1"
+		(at 173.99 154.94 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "c000002d-0000-0000-0000-00000000002d")
+	)
+	(label "CAM_D0"
+		(at 173.99 157.48 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "c000002e-0000-0000-0000-00000000002e")
+	)
+	(label "SIOD"
+		(at 36.83 172.72 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "c000002f-0000-0000-0000-00000000002f")
+	)
+	(label "SIOC"
+		(at 36.83 147.32 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "c0000030-0000-0000-0000-000000000030")
+	)
+	(label "P+"
+		(at 142.7 64.92 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "c0000031-0000-0000-0000-000000000031")
+	)
+	(label "PROT-"
+		(at 142.7 75.08 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "c0000032-0000-0000-0000-000000000032")
+	)
 	(symbol
 		(lib_id "CCTV2:Conn_01x02")
 		(at 40 70 0)
 		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
+		(in_pos_files yes)
 		(dnp no)
 		(uuid "a0000001-0000-0000-0000-000000000001")
 		(property "Reference" "J1"
 			(at 40 65 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
 		)
 		(property "Value" "Solar 6V/10W"
 			(at 40 78 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
 		)
 		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical"
 			(at 0 0 0)
 			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
 		)
-		(pin "1" (uuid "a0000001-0001-0000-0000-000000000001"))
-		(pin "2" (uuid "a0000001-0002-0000-0000-000000000001"))
+		(property "Datasheet" ""
+			(at 40 70 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 40 70 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "a0000001-0001-0000-0000-000000000001")
+		)
+		(pin "2"
+			(uuid "a0000001-0002-0000-0000-000000000001")
+		)
 		(instances
 			(project "CCTV_NodeV2"
 				(path "/b0c0d0e0-0001-4000-8000-000000000001"
@@ -930,24 +3402,76 @@
 		(lib_id "CCTV2:CN3791")
 		(at 80 70 0)
 		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
+		(in_pos_files yes)
 		(dnp no)
 		(uuid "a0000002-0000-0000-0000-000000000002")
 		(property "Reference" "U1"
 			(at 80 56 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
 		)
 		(property "Value" "CN3791"
 			(at 80 84 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
 		)
 		(property "Footprint" "CCTV_RPi4:CN3791_Module"
 			(at 0 0 0)
 			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
 		)
-		(pin "1" (uuid "a0000002-0001-0000-0000-000000000002"))
-		(pin "2" (uuid "a0000002-0002-0000-0000-000000000002"))
-		(pin "3" (uuid "a0000002-0003-0000-0000-000000000002"))
-		(pin "4" (uuid "a0000002-0004-0000-0000-000000000002"))
+		(property "Datasheet" ""
+			(at 80 70 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 80 70 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "a0000002-0001-0000-0000-000000000002")
+		)
+		(pin "2"
+			(uuid "a0000002-0002-0000-0000-000000000002")
+		)
+		(pin "3"
+			(uuid "a0000002-0003-0000-0000-000000000002")
+		)
+		(pin "4"
+			(uuid "a0000002-0004-0000-0000-000000000002")
+		)
 		(instances
 			(project "CCTV_NodeV2"
 				(path "/b0c0d0e0-0001-4000-8000-000000000001"
@@ -961,26 +3485,82 @@
 		(lib_id "CCTV2:TC4056A_BMS")
 		(at 130 70 0)
 		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
+		(in_pos_files yes)
 		(dnp no)
 		(uuid "a0000003-0000-0000-0000-000000000003")
 		(property "Reference" "U2"
 			(at 130 56 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
 		)
 		(property "Value" "TC4056A_BMS"
 			(at 130 84 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
 		)
 		(property "Footprint" "CCTV_RPi4:TC4056A_BMS_Module"
 			(at 0 0 0)
 			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
 		)
-		(pin "1" (uuid "a0000003-0001-0001-0000-000000000003"))
-		(pin "2" (uuid "a0000003-0001-0002-0000-000000000003"))
-		(pin "3" (uuid "a0000003-0003-0000-0000-000000000003"))
-		(pin "4" (uuid "a0000003-0001-0000-0000-000000000003"))
-		(pin "5" (uuid "a0000003-0002-0000-0000-000000000003"))
-		(pin "6" (uuid "a0000003-0004-0000-0000-000000000003"))
+		(property "Datasheet" ""
+			(at 130 70 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 130 70 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "a0000003-0001-0001-0000-000000000003")
+		)
+		(pin "2"
+			(uuid "a0000003-0001-0002-0000-000000000003")
+		)
+		(pin "3"
+			(uuid "a0000003-0003-0000-0000-000000000003")
+		)
+		(pin "4"
+			(uuid "a0000003-0001-0000-0000-000000000003")
+		)
+		(pin "5"
+			(uuid "a0000003-0002-0000-0000-000000000003")
+		)
+		(pin "6"
+			(uuid "a0000003-0004-0000-0000-000000000003")
+		)
 		(instances
 			(project "CCTV_NodeV2"
 				(path "/b0c0d0e0-0001-4000-8000-000000000001"
@@ -994,22 +3574,70 @@
 		(lib_id "CCTV2:Conn_01x02")
 		(at 130 105 0)
 		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
+		(in_pos_files yes)
 		(dnp no)
 		(uuid "a0000004-0000-0000-0000-000000000004")
 		(property "Reference" "J2"
 			(at 130 100 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
 		)
 		(property "Value" "Battery (ext, 2× 18650 ||)"
 			(at 130 113 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
 		)
 		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical"
 			(at 0 0 0)
 			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
 		)
-		(pin "1" (uuid "a0000004-0001-0000-0000-000000000004"))
-		(pin "2" (uuid "a0000004-0002-0000-0000-000000000004"))
+		(property "Datasheet" ""
+			(at 130 105 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 130 105 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "a0000004-0001-0000-0000-000000000004")
+		)
+		(pin "2"
+			(uuid "a0000004-0002-0000-0000-000000000004")
+		)
 		(instances
 			(project "CCTV_NodeV2"
 				(path "/b0c0d0e0-0001-4000-8000-000000000001"
@@ -1023,24 +3651,76 @@
 		(lib_id "CCTV2:MT3608")
 		(at 180 70 0)
 		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
+		(in_pos_files yes)
 		(dnp no)
 		(uuid "a0000005-0000-0000-0000-000000000005")
 		(property "Reference" "U3"
 			(at 180 56 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
 		)
 		(property "Value" "MT3608"
 			(at 180 84 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
 		)
 		(property "Footprint" "CCTV_RPi4:MT3608_Module"
 			(at 0 0 0)
 			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
 		)
-		(pin "1" (uuid "a0000005-0001-0000-0000-000000000005"))
-		(pin "2" (uuid "a0000005-0002-0000-0000-000000000005"))
-		(pin "3" (uuid "a0000005-0003-0000-0000-000000000005"))
-		(pin "4" (uuid "a0000005-0004-0000-0000-000000000005"))
+		(property "Datasheet" ""
+			(at 180 70 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 180 70 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "a0000005-0001-0000-0000-000000000005")
+		)
+		(pin "2"
+			(uuid "a0000005-0002-0000-0000-000000000005")
+		)
+		(pin "3"
+			(uuid "a0000005-0003-0000-0000-000000000005")
+		)
+		(pin "4"
+			(uuid "a0000005-0004-0000-0000-000000000005")
+		)
 		(instances
 			(project "CCTV_NodeV2"
 				(path "/b0c0d0e0-0001-4000-8000-000000000001"
@@ -1052,66 +3732,198 @@
 	)
 	(symbol
 		(lib_id "CCTV2:ESP32_S3_DevKitC")
-		(at 60 220 0)
+		(at 83.82 149.86 0)
 		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
+		(in_pos_files yes)
 		(dnp no)
 		(uuid "a0000006-0000-0000-0000-000000000006")
 		(property "Reference" "U4"
-			(at 60 195 0)
+			(at 83.82 124.86 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
 		)
 		(property "Value" "ESP32-S3-DevKitC-1 N16R8"
-			(at 60 250 0)
+			(at 83.82 179.86 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
 		)
 		(property "Footprint" "CCTV_RPi4:ESP32-S3-DevKitC-1"
-			(at 0 0 0)
+			(at 23.82 -70.14 0)
 			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
 		)
-		(pin "1" (uuid "a0000006-0001-0000-0000-000000000006"))
-		(pin "2" (uuid "a0000006-0002-0000-0000-000000000006"))
-		(pin "3" (uuid "a0000006-0003-0000-0000-000000000006"))
-		(pin "4" (uuid "a0000006-0004-0000-0000-000000000006"))
-		(pin "5" (uuid "a0000006-0005-0000-0000-000000000006"))
-		(pin "6" (uuid "a0000006-0006-0000-0000-000000000006"))
-		(pin "7" (uuid "a0000006-0007-0000-0000-000000000006"))
-		(pin "8" (uuid "a0000006-0008-0000-0000-000000000006"))
-		(pin "9" (uuid "a0000006-0009-0000-0000-000000000006"))
-		(pin "10" (uuid "a0000006-000a-0000-0000-000000000006"))
-		(pin "11" (uuid "a0000006-000b-0000-0000-000000000006"))
-		(pin "12" (uuid "a0000006-000c-0000-0000-000000000006"))
-		(pin "13" (uuid "a0000006-000d-0000-0000-000000000006"))
-		(pin "14" (uuid "a0000006-000e-0000-0000-000000000006"))
-		(pin "15" (uuid "a0000006-000f-0000-0000-000000000006"))
-		(pin "16" (uuid "a0000006-0010-0000-0000-000000000006"))
-		(pin "17" (uuid "a0000006-0011-0000-0000-000000000006"))
-		(pin "18" (uuid "a0000006-0012-0000-0000-000000000006"))
-		(pin "19" (uuid "a0000006-0013-0000-0000-000000000006"))
-		(pin "20" (uuid "a0000006-0014-0000-0000-000000000006"))
-		(pin "21" (uuid "a0000006-0015-0000-0000-000000000006"))
-		(pin "22" (uuid "a0000006-0016-0000-0000-000000000006"))
-		(pin "23" (uuid "a0000006-0017-0000-0000-000000000006"))
-		(pin "24" (uuid "a0000006-0018-0000-0000-000000000006"))
-		(pin "25" (uuid "a0000006-0019-0000-0000-000000000006"))
-		(pin "26" (uuid "a0000006-001a-0000-0000-000000000006"))
-		(pin "27" (uuid "a0000006-001b-0000-0000-000000000006"))
-		(pin "28" (uuid "a0000006-001c-0000-0000-000000000006"))
-		(pin "29" (uuid "a0000006-001d-0000-0000-000000000006"))
-		(pin "30" (uuid "a0000006-001e-0000-0000-000000000006"))
-		(pin "31" (uuid "a0000006-001f-0000-0000-000000000006"))
-		(pin "32" (uuid "a0000006-0020-0000-0000-000000000006"))
-		(pin "33" (uuid "a0000006-0021-0000-0000-000000000006"))
-		(pin "34" (uuid "a0000006-0022-0000-0000-000000000006"))
-		(pin "35" (uuid "a0000006-0023-0000-0000-000000000006"))
-		(pin "36" (uuid "a0000006-0024-0000-0000-000000000006"))
-		(pin "37" (uuid "a0000006-0025-0000-0000-000000000006"))
-		(pin "38" (uuid "a0000006-0026-0000-0000-000000000006"))
-		(pin "39" (uuid "a0000006-0027-0000-0000-000000000006"))
-		(pin "40" (uuid "a0000006-0028-0000-0000-000000000006"))
-		(pin "41" (uuid "a0000006-0029-0000-0000-000000000006"))
-		(pin "42" (uuid "a0000006-002a-0000-0000-000000000006"))
-		(pin "43" (uuid "a0000006-002b-0000-0000-000000000006"))
-		(pin "44" (uuid "a0000006-002c-0000-0000-000000000006"))
+		(property "Datasheet" ""
+			(at 83.82 149.86 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 83.82 149.86 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "a0000006-0001-0000-0000-000000000006")
+		)
+		(pin "2"
+			(uuid "a0000006-0002-0000-0000-000000000006")
+		)
+		(pin "3"
+			(uuid "a0000006-0003-0000-0000-000000000006")
+		)
+		(pin "4"
+			(uuid "a0000006-0004-0000-0000-000000000006")
+		)
+		(pin "5"
+			(uuid "a0000006-0005-0000-0000-000000000006")
+		)
+		(pin "6"
+			(uuid "a0000006-0006-0000-0000-000000000006")
+		)
+		(pin "7"
+			(uuid "a0000006-0007-0000-0000-000000000006")
+		)
+		(pin "8"
+			(uuid "a0000006-0008-0000-0000-000000000006")
+		)
+		(pin "9"
+			(uuid "a0000006-0009-0000-0000-000000000006")
+		)
+		(pin "10"
+			(uuid "a0000006-000a-0000-0000-000000000006")
+		)
+		(pin "11"
+			(uuid "a0000006-000b-0000-0000-000000000006")
+		)
+		(pin "12"
+			(uuid "a0000006-000c-0000-0000-000000000006")
+		)
+		(pin "13"
+			(uuid "a0000006-000d-0000-0000-000000000006")
+		)
+		(pin "14"
+			(uuid "a0000006-000e-0000-0000-000000000006")
+		)
+		(pin "15"
+			(uuid "a0000006-000f-0000-0000-000000000006")
+		)
+		(pin "16"
+			(uuid "a0000006-0010-0000-0000-000000000006")
+		)
+		(pin "17"
+			(uuid "a0000006-0011-0000-0000-000000000006")
+		)
+		(pin "18"
+			(uuid "a0000006-0012-0000-0000-000000000006")
+		)
+		(pin "19"
+			(uuid "a0000006-0013-0000-0000-000000000006")
+		)
+		(pin "20"
+			(uuid "a0000006-0014-0000-0000-000000000006")
+		)
+		(pin "21"
+			(uuid "a0000006-0015-0000-0000-000000000006")
+		)
+		(pin "22"
+			(uuid "a0000006-0016-0000-0000-000000000006")
+		)
+		(pin "23"
+			(uuid "a0000006-0017-0000-0000-000000000006")
+		)
+		(pin "24"
+			(uuid "a0000006-0018-0000-0000-000000000006")
+		)
+		(pin "25"
+			(uuid "a0000006-0019-0000-0000-000000000006")
+		)
+		(pin "26"
+			(uuid "a0000006-001a-0000-0000-000000000006")
+		)
+		(pin "27"
+			(uuid "a0000006-001b-0000-0000-000000000006")
+		)
+		(pin "28"
+			(uuid "a0000006-001c-0000-0000-000000000006")
+		)
+		(pin "29"
+			(uuid "a0000006-001d-0000-0000-000000000006")
+		)
+		(pin "30"
+			(uuid "a0000006-001e-0000-0000-000000000006")
+		)
+		(pin "31"
+			(uuid "a0000006-001f-0000-0000-000000000006")
+		)
+		(pin "32"
+			(uuid "a0000006-0020-0000-0000-000000000006")
+		)
+		(pin "33"
+			(uuid "a0000006-0021-0000-0000-000000000006")
+		)
+		(pin "34"
+			(uuid "a0000006-0022-0000-0000-000000000006")
+		)
+		(pin "35"
+			(uuid "a0000006-0023-0000-0000-000000000006")
+		)
+		(pin "36"
+			(uuid "a0000006-0024-0000-0000-000000000006")
+		)
+		(pin "37"
+			(uuid "a0000006-0025-0000-0000-000000000006")
+		)
+		(pin "38"
+			(uuid "a0000006-0026-0000-0000-000000000006")
+		)
+		(pin "39"
+			(uuid "a0000006-0027-0000-0000-000000000006")
+		)
+		(pin "40"
+			(uuid "a0000006-0028-0000-0000-000000000006")
+		)
+		(pin "41"
+			(uuid "a0000006-0029-0000-0000-000000000006")
+		)
+		(pin "42"
+			(uuid "a0000006-002a-0000-0000-000000000006")
+		)
+		(pin "43"
+			(uuid "a0000006-002b-0000-0000-000000000006")
+		)
+		(pin "44"
+			(uuid "a0000006-002c-0000-0000-000000000006")
+		)
 		(instances
 			(project "CCTV_NodeV2"
 				(path "/b0c0d0e0-0001-4000-8000-000000000001"
@@ -1123,40 +3935,120 @@
 	)
 	(symbol
 		(lib_id "CCTV2:OV7670")
-		(at 290 220 0)
+		(at 156.21 149.86 0)
 		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
+		(in_pos_files yes)
 		(dnp no)
 		(uuid "a0000007-0000-0000-0000-000000000007")
 		(property "Reference" "U5"
-			(at 290 195 0)
+			(at 156.21 130.81 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
 		)
 		(property "Value" "OV7670"
-			(at 290 250 0)
+			(at 156.464 168.402 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
 		)
 		(property "Footprint" "CCTV_RPi4:OV7670_Module"
-			(at 0 0 0)
+			(at -133.79 -70.14 0)
 			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
 		)
-		(pin "1" (uuid "a0000007-0001-0000-0000-000000000007"))
-		(pin "2" (uuid "a0000007-0002-0000-0000-000000000007"))
-		(pin "3" (uuid "a0000007-0003-0000-0000-000000000007"))
-		(pin "4" (uuid "a0000007-0004-0000-0000-000000000007"))
-		(pin "5" (uuid "a0000007-0005-0000-0000-000000000007"))
-		(pin "6" (uuid "a0000007-0006-0000-0000-000000000007"))
-		(pin "7" (uuid "a0000007-0007-0000-0000-000000000007"))
-		(pin "8" (uuid "a0000007-0008-0000-0000-000000000007"))
-		(pin "9" (uuid "a0000007-0009-0000-0000-000000000007"))
-		(pin "10" (uuid "a0000007-0010-0000-0000-000000000007"))
-		(pin "11" (uuid "a0000007-0011-0000-0000-000000000007"))
-		(pin "12" (uuid "a0000007-0012-0000-0000-000000000007"))
-		(pin "13" (uuid "a0000007-0013-0000-0000-000000000007"))
-		(pin "14" (uuid "a0000007-0014-0000-0000-000000000007"))
-		(pin "15" (uuid "a0000007-0015-0000-0000-000000000007"))
-		(pin "16" (uuid "a0000007-0016-0000-0000-000000000007"))
-		(pin "17" (uuid "a0000007-0017-0000-0000-000000000007"))
-		(pin "18" (uuid "a0000007-0018-0000-0000-000000000007"))
+		(property "Datasheet" ""
+			(at 156.21 149.86 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 156.21 149.86 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "a0000007-0001-0000-0000-000000000007")
+		)
+		(pin "2"
+			(uuid "a0000007-0002-0000-0000-000000000007")
+		)
+		(pin "3"
+			(uuid "a0000007-0003-0000-0000-000000000007")
+		)
+		(pin "4"
+			(uuid "a0000007-0004-0000-0000-000000000007")
+		)
+		(pin "5"
+			(uuid "a0000007-0005-0000-0000-000000000007")
+		)
+		(pin "6"
+			(uuid "a0000007-0006-0000-0000-000000000007")
+		)
+		(pin "7"
+			(uuid "a0000007-0007-0000-0000-000000000007")
+		)
+		(pin "8"
+			(uuid "a0000007-0008-0000-0000-000000000007")
+		)
+		(pin "9"
+			(uuid "a0000007-0009-0000-0000-000000000007")
+		)
+		(pin "10"
+			(uuid "a0000007-0010-0000-0000-000000000007")
+		)
+		(pin "11"
+			(uuid "a0000007-0011-0000-0000-000000000007")
+		)
+		(pin "12"
+			(uuid "a0000007-0012-0000-0000-000000000007")
+		)
+		(pin "13"
+			(uuid "a0000007-0013-0000-0000-000000000007")
+		)
+		(pin "14"
+			(uuid "a0000007-0014-0000-0000-000000000007")
+		)
+		(pin "15"
+			(uuid "a0000007-0015-0000-0000-000000000007")
+		)
+		(pin "16"
+			(uuid "a0000007-0016-0000-0000-000000000007")
+		)
+		(pin "17"
+			(uuid "a0000007-0017-0000-0000-000000000007")
+		)
+		(pin "18"
+			(uuid "a0000007-0018-0000-0000-000000000007")
+		)
 		(instances
 			(project "CCTV_NodeV2"
 				(path "/b0c0d0e0-0001-4000-8000-000000000001"
@@ -1168,24 +4060,72 @@
 	)
 	(symbol
 		(lib_id "CCTV2:R")
-		(at 20 244 0)
+		(at 36.83 168.91 0)
 		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
+		(in_pos_files yes)
 		(dnp no)
 		(uuid "a0000008-0000-0000-0000-000000000008")
 		(property "Reference" "R1"
-			(at 23 244 0)
+			(at 39.83 168.91 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
 		)
 		(property "Value" "4.7k SIOD pull-up"
-			(at 23 247 0)
+			(at 38.928 175.862 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
 		)
 		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal"
-			(at 0 0 0)
+			(at 16.83 -75.09 0)
 			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
 		)
-		(pin "1" (uuid "a0000008-0001-0000-0000-000000000008"))
-		(pin "2" (uuid "a0000008-0002-0000-0000-000000000008"))
+		(property "Datasheet" ""
+			(at 36.83 168.91 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 36.83 168.91 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "a0000008-0001-0000-0000-000000000008")
+		)
+		(pin "2"
+			(uuid "a0000008-0002-0000-0000-000000000008")
+		)
 		(instances
 			(project "CCTV_NodeV2"
 				(path "/b0c0d0e0-0001-4000-8000-000000000001"
@@ -1197,24 +4137,72 @@
 	)
 	(symbol
 		(lib_id "CCTV2:R")
-		(at 25 232 0)
+		(at 36.83 140.97 0)
 		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
+		(in_pos_files yes)
 		(dnp no)
 		(uuid "a0000009-0000-0000-0000-000000000009")
 		(property "Reference" "R2"
-			(at 28 232 0)
+			(at 39.83 140.97 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
 		)
 		(property "Value" "4.7k SIOC pull-up"
-			(at 28 235 0)
+			(at 38.862 150.114 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
 		)
 		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal"
-			(at 0 0 0)
+			(at 11.83 -91.03 0)
 			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
 		)
-		(pin "1" (uuid "a0000009-0001-0000-0000-000000000009"))
-		(pin "2" (uuid "a0000009-0002-0000-0000-000000000009"))
+		(property "Datasheet" ""
+			(at 36.83 140.97 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 36.83 140.97 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "a0000009-0001-0000-0000-000000000009")
+		)
+		(pin "2"
+			(uuid "a0000009-0002-0000-0000-000000000009")
+		)
 		(instances
 			(project "CCTV_NodeV2"
 				(path "/b0c0d0e0-0001-4000-8000-000000000001"
@@ -1228,18 +4216,67 @@
 		(lib_id "CCTV2:+5V")
 		(at 192.7 64.92 0)
 		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
+		(in_pos_files yes)
 		(dnp no)
 		(uuid "a000000a-0000-0000-0000-00000000000a")
 		(property "Reference" "#PWR01"
 			(at 192.7 61.11 0)
 			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
 		)
 		(property "Value" "+5V"
 			(at 192.7 61.36 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
 		)
-		(pin "1" (uuid "a000000a-0001-0000-0000-00000000000a"))
+		(property "Footprint" ""
+			(at 192.7 64.92 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 192.7 64.92 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 192.7 64.92 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "a000000a-0001-0000-0000-00000000000a")
+		)
 		(instances
 			(project "CCTV_NodeV2"
 				(path "/b0c0d0e0-0001-4000-8000-000000000001"
@@ -1251,20 +4288,69 @@
 	)
 	(symbol
 		(lib_id "CCTV2:+5V")
-		(at 42.22 197.14 0)
+		(at 58.73 127.29 0)
 		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
+		(in_pos_files yes)
 		(dnp no)
 		(uuid "a000000b-0000-0000-0000-00000000000b")
 		(property "Reference" "#PWR02"
-			(at 42.22 193.33 0)
+			(at 58.73 123.48 0)
 			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
 		)
 		(property "Value" "+5V"
-			(at 42.22 193.58 0)
+			(at 58.73 123.73 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
 		)
-		(pin "1" (uuid "a000000b-0001-0000-0000-00000000000b"))
+		(property "Footprint" ""
+			(at 58.73 127.29 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 58.73 127.29 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 58.73 127.29 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "a000000b-0001-0000-0000-00000000000b")
+		)
 		(instances
 			(project "CCTV_NodeV2"
 				(path "/b0c0d0e0-0001-4000-8000-000000000001"
@@ -1276,20 +4362,69 @@
 	)
 	(symbol
 		(lib_id "CCTV2:+3V3")
-		(at 42.22 247.94 0)
+		(at 58.73 178.09 0)
 		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
+		(in_pos_files yes)
 		(dnp no)
 		(uuid "a000000c-0000-0000-0000-00000000000c")
 		(property "Reference" "#PWR03"
-			(at 42.22 244.13 0)
+			(at 58.73 174.28 0)
 			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
 		)
 		(property "Value" "+3V3"
-			(at 42.22 244.38 0)
+			(at 58.73 174.53 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
 		)
-		(pin "1" (uuid "a000000c-0001-0000-0000-00000000000c"))
+		(property "Footprint" ""
+			(at 58.73 178.09 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 58.73 178.09 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 58.73 178.09 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "a000000c-0001-0000-0000-00000000000c")
+		)
 		(instances
 			(project "CCTV_NodeV2"
 				(path "/b0c0d0e0-0001-4000-8000-000000000001"
@@ -1301,20 +4436,69 @@
 	)
 	(symbol
 		(lib_id "CCTV2:+3V3")
-		(at 272.22 207.30 0)
+		(at 138.43 137.16 0)
 		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
+		(in_pos_files yes)
 		(dnp no)
 		(uuid "a000000d-0000-0000-0000-00000000000d")
 		(property "Reference" "#PWR04"
-			(at 272.22 203.49 0)
+			(at 138.43 133.35 0)
 			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
 		)
 		(property "Value" "+3V3"
-			(at 272.22 203.74 0)
+			(at 138.43 133.6 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
 		)
-		(pin "1" (uuid "a000000d-0001-0000-0000-00000000000d"))
+		(property "Footprint" ""
+			(at 138.43 137.16 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 138.43 137.16 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 138.43 137.16 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "a000000d-0001-0000-0000-00000000000d")
+		)
 		(instances
 			(project "CCTV_NodeV2"
 				(path "/b0c0d0e0-0001-4000-8000-000000000001"
@@ -1326,20 +4510,69 @@
 	)
 	(symbol
 		(lib_id "CCTV2:+3V3")
-		(at 20 240.19 0)
+		(at 36.83 165.1 0)
 		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
+		(in_pos_files yes)
 		(dnp no)
 		(uuid "a000000e-0000-0000-0000-00000000000e")
 		(property "Reference" "#PWR05"
-			(at 20 236.38 0)
+			(at 36.83 161.29 0)
 			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
 		)
 		(property "Value" "+3V3"
-			(at 20 236.63 0)
+			(at 36.83 161.54 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
 		)
-		(pin "1" (uuid "a000000e-0001-0000-0000-00000000000e"))
+		(property "Footprint" ""
+			(at 36.83 165.1 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 36.83 165.1 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 36.83 165.1 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "a000000e-0001-0000-0000-00000000000e")
+		)
 		(instances
 			(project "CCTV_NodeV2"
 				(path "/b0c0d0e0-0001-4000-8000-000000000001"
@@ -1351,20 +4584,69 @@
 	)
 	(symbol
 		(lib_id "CCTV2:+3V3")
-		(at 25 228.19 0)
+		(at 36.83 135.89 0)
 		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
+		(in_pos_files yes)
 		(dnp no)
 		(uuid "a000000f-0000-0000-0000-00000000000f")
 		(property "Reference" "#PWR06"
-			(at 25 224.38 0)
+			(at 36.83 132.08 0)
 			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
 		)
 		(property "Value" "+3V3"
-			(at 25 224.63 0)
+			(at 37.23 130.458 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
 		)
-		(pin "1" (uuid "a000000f-0001-0000-0000-00000000000f"))
+		(property "Footprint" ""
+			(at 36.83 135.89 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 36.83 135.89 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 36.83 135.89 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "a000000f-0001-0000-0000-00000000000f")
+		)
 		(instances
 			(project "CCTV_NodeV2"
 				(path "/b0c0d0e0-0001-4000-8000-000000000001"
@@ -1378,18 +4660,67 @@
 		(lib_id "CCTV2:BATT+")
 		(at 117.3 64.92 0)
 		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
+		(in_pos_files yes)
 		(dnp no)
 		(uuid "a0000010-0000-0000-0000-000000000010")
 		(property "Reference" "#PWR07"
 			(at 117.3 61.11 0)
 			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
 		)
 		(property "Value" "BATT+"
 			(at 117.3 61.36 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
 		)
-		(pin "1" (uuid "a0000010-0001-0000-0000-000000000010"))
+		(property "Footprint" ""
+			(at 117.3 64.92 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 117.3 64.92 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 117.3 64.92 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "a0000010-0001-0000-0000-000000000010")
+		)
 		(instances
 			(project "CCTV_NodeV2"
 				(path "/b0c0d0e0-0001-4000-8000-000000000001"
@@ -1403,18 +4734,67 @@
 		(lib_id "CCTV2:GND")
 		(at 67.3 76.35 0)
 		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
+		(in_pos_files yes)
 		(dnp no)
 		(uuid "a0000020-0000-0000-0000-000000000020")
 		(property "Reference" "#PWR09"
 			(at 67.3 82.7 0)
 			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
 		)
 		(property "Value" "GND"
 			(at 67.3 80.16 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
 		)
-		(pin "1" (uuid "a0000020-0001-0000-0000-000000000020"))
+		(property "Footprint" ""
+			(at 67.3 76.35 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 67.3 76.35 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 67.3 76.35 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "a0000020-0001-0000-0000-000000000020")
+		)
 		(instances
 			(project "CCTV_NodeV2"
 				(path "/b0c0d0e0-0001-4000-8000-000000000001"
@@ -1428,18 +4808,67 @@
 		(lib_id "CCTV2:GND")
 		(at 117.3 76.35 0)
 		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
+		(in_pos_files yes)
 		(dnp no)
 		(uuid "a0000021-0000-0000-0000-000000000021")
 		(property "Reference" "#PWR10"
 			(at 117.3 82.7 0)
 			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
 		)
 		(property "Value" "GND"
 			(at 117.3 80.16 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
 		)
-		(pin "1" (uuid "a0000021-0001-0000-0000-000000000021"))
+		(property "Footprint" ""
+			(at 117.3 76.35 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 117.3 76.35 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 117.3 76.35 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "a0000021-0001-0000-0000-000000000021")
+		)
 		(instances
 			(project "CCTV_NodeV2"
 				(path "/b0c0d0e0-0001-4000-8000-000000000001"
@@ -1453,18 +4882,67 @@
 		(lib_id "CCTV2:GND")
 		(at 117.3 60.65 0)
 		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
+		(in_pos_files yes)
 		(dnp no)
 		(uuid "a0000021-0000-0002-0000-000000000021")
 		(property "Reference" "#PWR_IN_NEG"
 			(at 117.3 67 0)
 			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
 		)
 		(property "Value" "GND"
 			(at 117.3 65 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
 		)
-		(pin "1" (uuid "a0000021-0001-0002-0000-000000000021"))
+		(property "Footprint" ""
+			(at 117.3 60.65 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 117.3 60.65 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 117.3 60.65 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "a0000021-0001-0002-0000-000000000021")
+		)
 		(instances
 			(project "CCTV_NodeV2"
 				(path "/b0c0d0e0-0001-4000-8000-000000000001"
@@ -1474,26 +4952,71 @@
 			)
 		)
 	)
-	(no_connect
-		(at 117.3 57.3)
-		(uuid "nc000001-0000-0000-0000-000000000002")
-	)
 	(symbol
 		(lib_id "CCTV2:GND")
 		(at 142.7 76.35 0)
 		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
+		(in_pos_files yes)
 		(dnp no)
 		(uuid "a0000022-0000-0000-0000-000000000022")
 		(property "Reference" "#PWR11"
 			(at 142.7 82.7 0)
 			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
 		)
 		(property "Value" "GND"
 			(at 142.7 80.16 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
 		)
-		(pin "1" (uuid "a0000022-0001-0000-0000-000000000022"))
+		(property "Footprint" ""
+			(at 142.7 76.35 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 142.7 76.35 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 142.7 76.35 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "a0000022-0001-0000-0000-000000000022")
+		)
 		(instances
 			(project "CCTV_NodeV2"
 				(path "/b0c0d0e0-0001-4000-8000-000000000001"
@@ -1507,18 +5030,67 @@
 		(lib_id "CCTV2:GND")
 		(at 167.3 76.35 0)
 		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
+		(in_pos_files yes)
 		(dnp no)
 		(uuid "a0000023-0000-0000-0000-000000000023")
 		(property "Reference" "#PWR12"
 			(at 167.3 82.7 0)
 			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
 		)
 		(property "Value" "GND"
 			(at 167.3 80.16 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
 		)
-		(pin "1" (uuid "a0000023-0001-0000-0000-000000000023"))
+		(property "Footprint" ""
+			(at 167.3 76.35 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 167.3 76.35 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 167.3 76.35 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "a0000023-0001-0000-0000-000000000023")
+		)
 		(instances
 			(project "CCTV_NodeV2"
 				(path "/b0c0d0e0-0001-4000-8000-000000000001"
@@ -1528,27 +5100,71 @@
 			)
 		)
 	)
-	(label "PROT-"
-		(at 192.7 75.08 0)
-		(effects (font (size 1.27 1.27)) (justify left top))
-		(uuid "c000000c-new1-0000-0000-000000000001")
-	)
 	(symbol
 		(lib_id "CCTV2:GND")
-		(at 42.22 194.60 0)
+		(at 58.73 124.75 0)
 		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
+		(in_pos_files yes)
 		(dnp no)
 		(uuid "a0000025-0000-0000-0000-000000000025")
 		(property "Reference" "#PWR14"
-			(at 42.22 200.95 0)
+			(at 58.73 131.1 0)
 			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
 		)
 		(property "Value" "GND"
-			(at 42.22 198.41 0)
+			(at 58.73 128.56 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
 		)
-		(pin "1" (uuid "a0000025-0001-0000-0000-000000000025"))
+		(property "Footprint" ""
+			(at 58.73 124.75 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 58.73 124.75 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 58.73 124.75 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "a0000025-0001-0000-0000-000000000025")
+		)
 		(instances
 			(project "CCTV_NodeV2"
 				(path "/b0c0d0e0-0001-4000-8000-000000000001"
@@ -1560,20 +5176,69 @@
 	)
 	(symbol
 		(lib_id "CCTV2:GND")
-		(at 272.22 209.84 0)
+		(at 138.43 139.7 0)
 		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
+		(in_pos_files yes)
 		(dnp no)
 		(uuid "a0000026-0000-0000-0000-000000000026")
 		(property "Reference" "#PWR15"
-			(at 272.22 216.19 0)
+			(at 138.43 146.05 0)
 			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
 		)
 		(property "Value" "GND"
-			(at 272.22 213.65 0)
+			(at 138.43 143.51 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
 		)
-		(pin "1" (uuid "a0000026-0001-0000-0000-000000000026"))
+		(property "Footprint" ""
+			(at 138.43 139.7 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 138.43 139.7 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 138.43 139.7 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "a0000026-0001-0000-0000-000000000026")
+		)
 		(instances
 			(project "CCTV_NodeV2"
 				(path "/b0c0d0e0-0001-4000-8000-000000000001"
@@ -1582,281 +5247,6 @@
 				)
 			)
 		)
-	)
-	(label "SOLAR+"
-		(at 34.92 68.73 0)
-		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "c0000001-0000-0000-0000-000000000001")
-	)
-	(label "SOLAR-"
-		(at 34.92 71.27 0)
-		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "c0000002-0000-0000-0000-000000000002")
-	)
-	(label "SOLAR+"
-		(at 67.3 64.92 0)
-		(effects (font (size 1.27 1.27)) (justify left bottom))
-		(uuid "c0000003-0000-0000-0000-000000000003")
-	)
-	(label "SOLAR-"
-		(at 67.3 75.08 0)
-		(effects (font (size 1.27 1.27)) (justify left top))
-		(uuid "c0000004-0000-0000-0000-000000000004")
-	)
-	(label "BATT+"
-		(at 92.7 64.92 0)
-		(effects (font (size 1.27 1.27)) (justify left bottom))
-		(uuid "c0000005-0000-0000-0000-000000000005")
-	)
-	(label "BATT-"
-		(at 92.7 75.08 0)
-		(effects (font (size 1.27 1.27)) (justify left top))
-		(uuid "c0000006-0000-0000-0000-000000000006")
-	)
-	(label "BATT+"
-		(at 117.3 64.92 0)
-		(effects (font (size 1.27 1.27)) (justify left bottom))
-		(uuid "c0000007-0000-0000-0000-000000000007")
-	)
-	(label "BATT-"
-		(at 117.3 75.08 0)
-		(effects (font (size 1.27 1.27)) (justify left top))
-		(uuid "c0000008-0000-0000-0000-000000000008")
-	)
-	(label "BATT+"
-		(at 124.92 103.73 0)
-		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "c0000009-0000-0000-0000-000000000009")
-	)
-	(label "BATT-"
-		(at 124.92 106.27 0)
-		(effects (font (size 1.27 1.27)) (justify right top))
-		(uuid "c000000a-0000-0000-0000-00000000000a")
-	)
-	(label "+5V"
-		(at 192.7 64.92 0)
-		(effects (font (size 1.27 1.27)) (justify left bottom))
-		(uuid "c000000b-0000-0000-0000-00000000000b")
-	)
-	(label "P+"
-		(at 167.3 64.92 0)
-		(effects (font (size 1.27 1.27)) (justify left bottom))
-		(uuid "c000000d-0000-0000-0000-00000000000d")
-	)
-	(label "PROT-"
-		(at 167.3 75.08 0)
-		(effects (font (size 1.27 1.27)) (justify left top))
-		(uuid "c000000e-0000-0000-0000-00000000000e")
-	)
-	(label "P+"
-		(at 142.7 64.92 0)
-		(effects (font (size 1.27 1.27)) (justify left bottom))
-		(uuid "c0000031-0000-0000-0000-000000000031")
-	)
-	(label "PROT-"
-		(at 142.7 75.08 0)
-		(effects (font (size 1.27 1.27)) (justify left top))
-		(uuid "c0000032-0000-0000-0000-000000000032")
-	)
-	(label "+5V"
-		(at 42.22 197.14 180)
-		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "c000000f-0000-0000-0000-00000000000f")
-	)
-	(label "+3V3"
-		(at 42.22 247.94 180)
-		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "c0000010-0000-0000-0000-000000000010")
-	)
-	(label "SIOD"
-		(at 42.22 240.32 180)
-		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "c0000011-0000-0000-0000-000000000011")
-	)
-	(label "SIOC"
-		(at 42.22 237.78 180)
-		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "c0000012-0000-0000-0000-000000000012")
-	)
-	(label "VSYNC"
-		(at 42.22 235.24 180)
-		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "c0000013-0000-0000-0000-000000000013")
-	)
-	(label "HREF"
-		(at 42.22 232.70 180)
-		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "c0000014-0000-0000-0000-000000000014")
-	)
-	(label "PCLK"
-		(at 42.22 202.22 180)
-		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "c0000015-0000-0000-0000-000000000015")
-	)
-	(label "XCLK"
-		(at 42.22 230.16 180)
-		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "c0000016-0000-0000-0000-000000000016")
-	)
-	(label "CAM_D0"
-		(at 42.22 207.30 180)
-		(effects (font (size 1.27 1.27)) (justify left bottom))
-		(uuid "c0000017-0000-0000-0000-000000000017")
-	)
-	(label "CAM_D1"
-		(at 42.22 212.38 180)
-		(effects (font (size 1.27 1.27)) (justify left bottom))
-		(uuid "c0000018-0000-0000-0000-000000000018")
-	)
-	(label "CAM_D2"
-		(at 42.22 220.00 180)
-		(effects (font (size 1.27 1.27)) (justify left bottom))
-		(uuid "c0000019-0000-0000-0000-000000000019")
-	)
-	(label "CAM_D3"
-		(at 42.22 209.84 180)
-		(effects (font (size 1.27 1.27)) (justify left bottom))
-		(uuid "c000001a-0000-0000-0000-00000000001a")
-	)
-	(label "CAM_D4"
-		(at 42.22 204.76 180)
-		(effects (font (size 1.27 1.27)) (justify left bottom))
-		(uuid "c000001b-0000-0000-0000-00000000001b")
-	)
-	(label "CAM_D5"
-		(at 42.22 222.54 180)
-		(effects (font (size 1.27 1.27)) (justify left bottom))
-		(uuid "c000001c-0000-0000-0000-00000000001c")
-	)
-	(label "CAM_D6"
-		(at 42.22 225.08 180)
-		(effects (font (size 1.27 1.27)) (justify left bottom))
-		(uuid "c000001d-0000-0000-0000-00000000001d")
-	)
-	(label "CAM_D7"
-		(at 42.22 227.62 180)
-		(effects (font (size 1.27 1.27)) (justify left bottom))
-		(uuid "c000001e-0000-0000-0000-00000000001e")
-	)
-	(label "+3V3"
-		(at 272.22 207.30 180)
-		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "c000001f-0000-0000-0000-00000000001f")
-	)
-	(label "SIOC"
-		(at 272.22 220.00 180)
-		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "c0000020-0000-0000-0000-000000000020")
-	)
-	(label "SIOD"
-		(at 272.22 222.54 180)
-		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "c0000021-0000-0000-0000-000000000021")
-	)
-	(label "VSYNC"
-		(at 272.22 225.08 180)
-		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "c0000022-0000-0000-0000-000000000022")
-	)
-	(label "HREF"
-		(at 272.22 227.62 180)
-		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "c0000023-0000-0000-0000-000000000023")
-	)
-	(label "PCLK"
-		(at 272.22 230.16 180)
-		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "c0000024-0000-0000-0000-000000000024")
-	)
-	(label "XCLK"
-		(at 272.22 232.70 180)
-		(effects (font (size 1.27 1.27)) (justify right bottom))
-		(uuid "c0000025-0000-0000-0000-000000000025")
-	)
-	(label "CAM_D7"
-		(at 307.78 209.84 0)
-		(effects (font (size 1.27 1.27)) (justify left bottom))
-		(uuid "c0000027-0000-0000-0000-000000000027")
-	)
-	(label "CAM_D6"
-		(at 307.78 212.38 0)
-		(effects (font (size 1.27 1.27)) (justify left bottom))
-		(uuid "c0000028-0000-0000-0000-000000000028")
-	)
-	(label "CAM_D5"
-		(at 307.78 214.92 0)
-		(effects (font (size 1.27 1.27)) (justify left bottom))
-		(uuid "c0000029-0000-0000-0000-000000000029")
-	)
-	(label "CAM_D4"
-		(at 307.78 217.46 0)
-		(effects (font (size 1.27 1.27)) (justify left bottom))
-		(uuid "c000002a-0000-0000-0000-00000000002a")
-	)
-	(label "CAM_D3"
-		(at 307.78 220.00 0)
-		(effects (font (size 1.27 1.27)) (justify left bottom))
-		(uuid "c000002b-0000-0000-0000-00000000002b")
-	)
-	(label "CAM_D2"
-		(at 307.78 222.54 0)
-		(effects (font (size 1.27 1.27)) (justify left bottom))
-		(uuid "c000002c-0000-0000-0000-00000000002c")
-	)
-	(label "CAM_D1"
-		(at 307.78 225.08 0)
-		(effects (font (size 1.27 1.27)) (justify left bottom))
-		(uuid "c000002d-0000-0000-0000-00000000002d")
-	)
-	(label "CAM_D0"
-		(at 307.78 227.62 0)
-		(effects (font (size 1.27 1.27)) (justify left bottom))
-		(uuid "c000002e-0000-0000-0000-00000000002e")
-	)
-	(label "SIOD"
-		(at 20 247.81 0)
-		(effects (font (size 1.27 1.27)) (justify left top))
-		(uuid "c000002f-0000-0000-0000-00000000002f")
-	)
-	(label "SIOC"
-		(at 25 235.81 0)
-		(effects (font (size 1.27 1.27)) (justify left top))
-		(uuid "c0000030-0000-0000-0000-000000000030")
-	)
-	(text "Power chain"
-		(at 105 50 0)
-		(effects (font (size 2.5 2.5) (bold yes)))
-		(uuid "d0000001-0000-0000-0000-000000000001")
-	)
-	(text "Solar 6V/10W → CN3791 MPPT → 1S BMS → 2× 18650 (parallel) → MT3608 boost → +5V"
-		(at 105 56 0)
-		(effects (font (size 1.27 1.27)))
-		(uuid "d0000002-0000-0000-0000-000000000002")
-	)
-	(text "MCU + camera"
-		(at 175 185 0)
-		(effects (font (size 2.5 2.5) (bold yes)))
-		(uuid "d0000003-0000-0000-0000-000000000003")
-	)
-	(text "ESP32-S3-DevKitC-1 (N16R8) drives OV7670 over DVP. SIOC/SIOD pulled up to 3V3 with 4.7k."
-		(at 175 191 0)
-		(effects (font (size 1.27 1.27)))
-		(uuid "d0000004-0000-0000-0000-000000000004")
-	)
-	(text "Set MT3608 OUT = 5.00 V with no load BEFORE wiring to U4."
-		(at 195 90 0)
-		(effects (font (size 1.27 1.27) (italic yes)))
-		(uuid "d0000005-0000-0000-0000-000000000005")
-	)
-	(text "BMS over-discharge trip ≈ 2.4 V (last resort). Implement software cutoff at 3.3 V in firmware."
-		(at 130 90 0)
-		(effects (font (size 1.27 1.27) (italic yes)))
-		(uuid "d0000006-0000-0000-0000-000000000006")
-	)
-	(text "OV7670 outputs RGB565/YUV422 (no JPEG). Encode JPEG in software via frame2jpg() in stream handler."
-		(at 290 265 0)
-		(effects (font (size 1.27 1.27) (italic yes)))
-		(uuid "d0000007-0000-0000-0000-000000000007")
 	)
 	(sheet_instances
 		(path "/"
