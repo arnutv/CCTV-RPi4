@@ -1528,30 +1528,10 @@
 			)
 		)
 	)
-	(symbol
-		(lib_id "CCTV2:GND")
-		(at 192.7 76.35 0)
-		(unit 1)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "a0000024-0000-0000-0000-000000000024")
-		(property "Reference" "#PWR13"
-			(at 192.7 82.7 0)
-			(hide yes)
-		)
-		(property "Value" "GND"
-			(at 192.7 80.16 0)
-		)
-		(pin "1" (uuid "a0000024-0001-0000-0000-000000000024"))
-		(instances
-			(project "CCTV_NodeV2"
-				(path "/b0c0d0e0-0001-4000-8000-000000000001"
-					(reference "#PWR13")
-					(unit 1)
-				)
-			)
-		)
+	(label "PROT-"
+		(at 192.7 75.08 0)
+		(effects (font (size 1.27 1.27)) (justify left top))
+		(uuid "c000000c-new1-0000-0000-000000000001")
 	)
 	(symbol
 		(lib_id "CCTV2:GND")
