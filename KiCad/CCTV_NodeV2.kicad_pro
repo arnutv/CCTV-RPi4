@@ -140,12 +140,12 @@
         "min_microvia_drill": 0.2,
         "min_resolved_spokes": 2,
         "min_silk_clearance": 0.0,
-        "min_text_height": 0.8,
+        "min_text_height": 0.5,
         "min_text_thickness": 0.08,
         "min_through_hole_diameter": 0.3,
         "min_track_width": 1.0,
         "min_via_annular_width": 0.1,
-        "min_via_diameter": 1.0,
+        "min_via_diameter": 0.6,
         "solder_mask_to_copper_clearance": 0.0,
         "use_height_for_length_calcs": true
       },
@@ -657,7 +657,7 @@
         "uuid": "b0c0d0e0-0001-4000-8000-000000000001"
       }
     ],
-    "used_designators": "#PWR_IN_NEG1",
+    "used_designators": "#PWR_IN_NEG1,#PWR_RESET1,#PWR_PWDN1",
     "variants": []
   },
   "sheets": [

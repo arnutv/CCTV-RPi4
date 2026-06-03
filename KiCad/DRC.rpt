@@ -1,332 +1,218 @@
-** Drc report for CCTV_Power.kicad_pcb **
-** Created on 2026-05-24T16:06:37 **
-** Report includes: Errors, Warnings **
+** Drc report for CCTV_NodeV2.kicad_pcb **
+** Created on 2026-06-03T15:04:51 **
+** Report includes: Errors, Warnings, Exclusions **
 
-** Found 81 DRC violations **
-[shorting_items]: Items shorting two nets (nets SENSE and )
-    Local override; error
-    @(57.0700 mm, 20.0000 mm): Track [SENSE] on F.Cu, length 7.7300 mm
-    @(57.0700 mm, 25.1900 mm): PTH pad 3 [<no net>] of U3
-[shorting_items]: Items shorting two nets (nets GND and )
-    Local override; error
-    @(57.0700 mm, 47.0000 mm): Track [GND] on B.Cu, length 26.8900 mm
-    @(57.0700 mm, 25.1900 mm): PTH pad 3 [<no net>] of U3
-[shorting_items]: Items shorting two nets (nets BATT+ and +5V)
-    Local override; error
-    @(41.4300 mm, 18.7300 mm): PTH pad 3 [BATT+] of U1
-    @(79.9300 mm, 18.0000 mm): Track [+5V] on F.Cu, length 46.9300 mm
-[shorting_items]: Items shorting two nets (nets BATT+ and +5V)
-    Local override; error
-    @(41.4300 mm, 18.7300 mm): PTH pad 3 [BATT+] of U1
-    @(33.0000 mm, 18.0000 mm): Track [+5V] on F.Cu, length 28.0000 mm
-[shorting_items]: Items shorting two nets (nets GND and SOLAR+)
-    Local override; error
-    @(5.5000 mm, 15.0000 mm): PTH pad 2 [GND] of J1
-    @(5.5000 mm, 18.7300 mm): Track [SOLAR+] on F.Cu, length 6.2700 mm
-[shorting_items]: Items shorting two nets (nets GND and BATT+)
-    Local override; error
-    @(18.5700 mm, 47.0000 mm): Track [GND] on B.Cu, length 25.7300 mm
-    @(18.0000 mm, 42.4600 mm): PTH pad 1 [BATT+] of U2
-[tracks_crossing]: Tracks crossing
-    Local override; error
-    @(49.0000 mm, 25.0000 mm): Track [+5V] on F.Cu, length 16.0000 mm
-    @(35.0000 mm, 20.0000 mm): Track [BATT+] on F.Cu, length 14.0000 mm
-[shorting_items]: Items shorting two nets (nets  and SENSE)
-    Local override; error
-    @(57.0700 mm, 30.2700 mm): PTH pad 5 [<no net>] of U3
-    @(57.0700 mm, 27.7300 mm): Track [SENSE] on F.Cu, length 7.2700 mm
-[shorting_items]: Items shorting two nets (nets GND and BATT+)
-    Local override; error
-    @(18.5700 mm, 21.2700 mm): Track [GND] on B.Cu, length 25.7300 mm
-    @(18.0000 mm, 42.4600 mm): PTH pad 1 [BATT+] of U2
-[tracks_crossing]: Tracks crossing
-    Local override; error
-    @(33.0000 mm, 25.0000 mm): Track [+5V] on F.Cu, length 16.0000 mm
-    @(35.0000 mm, 20.0000 mm): Track [BATT+] on F.Cu, length 14.0000 mm
-[shorting_items]: Items shorting two nets (nets +5V and GND)
-    Local override; error
-    @(61.0000 mm, 40.5000 mm): Track [+5V] on F.Cu, length 15.1527 mm
-    @(49.3473 mm, 40.5000 mm): PTH pad 2 [GND] of C1
-[shorting_items]: Items shorting two nets (nets GND and )
-    Local override; error
-    @(57.0700 mm, 20.1100 mm): Track [GND] on B.Cu, length 26.8900 mm
-    @(57.0700 mm, 25.1900 mm): PTH pad 3 [<no net>] of U3
-[shorting_items]: Items shorting two nets (nets BATT+ and GND)
-    Local override; error
-    @(5.5000 mm, 34.7250 mm): PTH pad 1 [BATT+] of J2
-    @(5.5000 mm, 47.0000 mm): Track [GND] on B.Cu, length 32.0000 mm
-[tracks_crossing]: Tracks crossing
-    Local override; error
-    @(49.0000 mm, 25.0000 mm): Track [+5V] on F.Cu, length 16.0000 mm
-    @(41.4300 mm, 34.0000 mm): Track [BATT+] on F.Cu, length 15.2700 mm
-[shorting_items]: Items shorting two nets (nets SENSE and BATT+)
-    Local override; error
-    @(35.0000 mm, 35.0000 mm): PTH pad 1 [SENSE] of R2
-    @(35.0000 mm, 34.0000 mm): Track [BATT+] on F.Cu, length 6.4300 mm
-[shorting_items]: Items shorting two nets (nets SENSE and )
-    Local override; error
-    @(57.0700 mm, 35.0000 mm): Track [SENSE] on F.Cu, length 22.0700 mm
-    @(57.0700 mm, 35.3500 mm): PTH pad 7 [<no net>] of U3
-[tracks_crossing]: Tracks crossing
-    Local override; error
-    @(33.0000 mm, 25.0000 mm): Track [+5V] on F.Cu, length 16.0000 mm
-    @(41.4300 mm, 34.0000 mm): Track [BATT+] on F.Cu, length 15.2700 mm
-[shorting_items]: Items shorting two nets (nets GND and )
-    Local override; error
-    @(79.9300 mm, 47.0000 mm): Track [GND] on B.Cu, length 24.3500 mm
-    @(79.9300 mm, 35.3500 mm): PTH pad 15 [<no net>] of U3
-[tracks_crossing]: Tracks crossing
-    Local override; error
-    @(41.4300 mm, 18.7300 mm): Track [BATT+] on F.Cu, length 15.2700 mm
-    @(33.0000 mm, 25.0000 mm): Track [+5V] on F.Cu, length 16.0000 mm
-[shorting_items]: Items shorting two nets (nets GND and )
-    Local override; error
-    @(79.9300 mm, 22.6500 mm): Track [GND] on B.Cu, length 24.3500 mm
-    @(79.9300 mm, 35.3500 mm): PTH pad 15 [<no net>] of U3
-[shorting_items]: Items shorting two nets (nets SENSE and BATT+)
-    Local override; error
-    @(35.0000 mm, 35.0000 mm): PTH pad 1 [SENSE] of R2
-    @(41.4300 mm, 34.0000 mm): Track [BATT+] on F.Cu, length 23.4300 mm
-[shorting_items]: Items shorting two nets (nets SENSE and GND)
-    Local override; error
-    @(42.6200 mm, 20.0000 mm): Track [SENSE] on F.Cu, length 14.4500 mm
-    @(57.0700 mm, 20.1100 mm): PTH pad 1 [GND] of U3
-[shorting_items]: Items shorting two nets (nets BATT+ and GND)
-    Local override; error
-    @(5.5000 mm, 34.7250 mm): PTH pad 1 [BATT+] of J2
-    @(5.5000 mm, 15.0000 mm): Track [GND] on B.Cu, length 32.0000 mm
-[clearance]: Clearance violation ( clearance 0.2000 mm; actual 0.0404 mm)
-    Local override; error
-    @(42.6200 mm, 20.0000 mm): PTH pad 2 [SENSE] of R1
-    @(41.4300 mm, 18.7300 mm): PTH pad 3 [BATT+] of U1
-[clearance]: Clearance violation ( clearance 0.2000 mm; actual 0.0404 mm)
-    Local override; error
-    @(42.6200 mm, 20.0000 mm): PTH pad 2 [SENSE] of R1
-    @(41.4300 mm, 21.2700 mm): PTH pad 4 [GND] of U1
-[clearance]: Clearance violation ( clearance 0.2000 mm; actual 0.0404 mm)
-    Local override; error
-    @(41.4300 mm, 18.7300 mm): PTH pad 3 [BATT+] of U1
-    @(42.6200 mm, 20.0000 mm): PTH pad 2 [SENSE] of R1
-[courtyards_overlap]: Courtyards overlap
-    Rule: board setup constraints courtyard; error
-    @(35.0000 mm, 20.0000 mm): Footprint R1
-    @(30.0000 mm, 20.0000 mm): Footprint U1
-[pth_inside_courtyard]: PTH inside courtyard
-    Local override; error
-    @(41.4300 mm, 18.7300 mm): PTH pad 3 [BATT+] of U1
-    @(35.0000 mm, 20.0000 mm): Footprint R1
-[pth_inside_courtyard]: PTH inside courtyard
-    Local override; error
-    @(41.4300 mm, 21.2700 mm): PTH pad 4 [GND] of U1
-    @(35.0000 mm, 20.0000 mm): Footprint R1
-[pth_inside_courtyard]: PTH inside courtyard
-    Local override; error
-    @(35.0000 mm, 20.0000 mm): PTH pad 1 [BATT+] of R1
-    @(30.0000 mm, 20.0000 mm): Footprint U1
-[pth_inside_courtyard]: PTH inside courtyard
-    Local override; error
-    @(42.6200 mm, 20.0000 mm): PTH pad 2 [SENSE] of R1
-    @(30.0000 mm, 20.0000 mm): Footprint U1
-[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
-    Rule: board setup solder mask min width; error
-    @(79.9300 mm, 18.0000 mm): Track [+5V] on F.Cu, length 46.9300 mm
-    @(41.4300 mm, 18.7300 mm): PTH pad 3 [BATT+] of U1
-[solder_mask_bridge]: Rear solder mask aperture bridges items with different nets
-    Rule: board setup solder mask min width; error
-    @(18.5700 mm, 47.0000 mm): Track [GND] on B.Cu, length 25.7300 mm
-    @(18.0000 mm, 42.4600 mm): PTH pad 1 [BATT+] of U2
-[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
-    Rule: board setup solder mask min width; error
-    @(33.0000 mm, 18.0000 mm): Track [+5V] on F.Cu, length 28.0000 mm
-    @(41.4300 mm, 18.7300 mm): PTH pad 3 [BATT+] of U1
-[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
-    Rule: board setup solder mask min width; error
-    @(57.0700 mm, 27.7300 mm): Track [SENSE] on F.Cu, length 7.2700 mm
-    @(57.0700 mm, 35.3500 mm): PTH pad 7 [<no net>] of U3
-[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
-    Rule: board setup solder mask min width; error
-    @(5.5000 mm, 18.7300 mm): Track [SOLAR+] on F.Cu, length 6.2700 mm
-    @(5.5000 mm, 15.0000 mm): PTH pad 2 [GND] of J1
-[solder_mask_bridge]: Rear solder mask aperture bridges items with different nets
-    Rule: board setup solder mask min width; error
-    @(57.0700 mm, 47.0000 mm): Track [GND] on B.Cu, length 26.8900 mm
-    @(57.0700 mm, 35.3500 mm): PTH pad 7 [<no net>] of U3
-[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
-    Rule: board setup solder mask min width; error
-    @(61.0000 mm, 40.5000 mm): Track [+5V] on F.Cu, length 15.1527 mm
-    @(49.3473 mm, 40.5000 mm): PTH pad 2 [GND] of C1
-[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
-    Rule: board setup solder mask min width; error
-    @(35.0000 mm, 20.0000 mm): Track [BATT+] on F.Cu, length 14.0000 mm
-    @(35.0000 mm, 35.0000 mm): PTH pad 1 [SENSE] of R2
-[solder_mask_bridge]: Rear solder mask aperture bridges items with different nets
-    Rule: board setup solder mask min width; error
-    @(57.0700 mm, 47.0000 mm): Track [GND] on B.Cu, length 26.8900 mm
-    @(57.0700 mm, 37.8900 mm): PTH pad 8 [<no net>] of U3
-[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
-    Rule: board setup solder mask min width; error
-    @(57.0700 mm, 27.7300 mm): Track [SENSE] on F.Cu, length 7.2700 mm
-    @(57.0700 mm, 30.2700 mm): PTH pad 5 [<no net>] of U3
-[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
-    Rule: board setup solder mask min width; error
-    @(35.0000 mm, 34.0000 mm): Track [BATT+] on F.Cu, length 6.4300 mm
-    @(35.0000 mm, 35.0000 mm): PTH pad 1 [SENSE] of R2
-[solder_mask_bridge]: Rear solder mask aperture bridges items with different nets
-    Rule: board setup solder mask min width; error
-    @(18.5700 mm, 21.2700 mm): Track [GND] on B.Cu, length 25.7300 mm
-    @(18.0000 mm, 42.4600 mm): PTH pad 1 [BATT+] of U2
-[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
-    Rule: board setup solder mask min width; error
-    @(57.0700 mm, 27.7300 mm): Track [SENSE] on F.Cu, length 7.2700 mm
-    @(57.0700 mm, 32.8100 mm): PTH pad 6 [<no net>] of U3
-[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
-    Rule: board setup solder mask min width; error
-    @(41.4300 mm, 34.0000 mm): Track [BATT+] on F.Cu, length 15.2700 mm
-    @(41.4300 mm, 21.2700 mm): PTH pad 4 [GND] of U1
-[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
-    Rule: board setup solder mask min width; error
-    @(42.6200 mm, 20.0000 mm): Track [SENSE] on F.Cu, length 14.4500 mm
-    @(57.0700 mm, 20.1100 mm): PTH pad 1 [GND] of U3
-[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
-    Rule: board setup solder mask min width; error
-    @(57.0700 mm, 35.0000 mm): Track [SENSE] on F.Cu, length 22.0700 mm
-    @(57.0700 mm, 35.3500 mm): PTH pad 7 [<no net>] of U3
-[solder_mask_bridge]: Rear solder mask aperture bridges items with different nets
-    Rule: board setup solder mask min width; error
-    @(57.0700 mm, 47.0000 mm): Track [GND] on B.Cu, length 26.8900 mm
-    @(57.0700 mm, 22.6500 mm): PTH pad 2 [<no net>] of U3
-[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
-    Rule: board setup solder mask min width; error
-    @(57.0700 mm, 20.0000 mm): Track [SENSE] on F.Cu, length 7.7300 mm
-    @(57.0700 mm, 20.1100 mm): PTH pad 1 [GND] of U3
-[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
-    Rule: board setup solder mask min width; error
-    @(41.4300 mm, 18.7300 mm): Track [BATT+] on F.Cu, length 15.2700 mm
-    @(41.4300 mm, 21.2700 mm): PTH pad 4 [GND] of U1
-[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
-    Rule: board setup solder mask min width; error
-    @(57.0700 mm, 35.0000 mm): Track [SENSE] on F.Cu, length 22.0700 mm
-    @(42.6200 mm, 35.0000 mm): PTH pad 2 [GND] of R2
-[solder_mask_bridge]: Rear solder mask aperture bridges items with different nets
-    Rule: board setup solder mask min width; error
-    @(5.5000 mm, 47.0000 mm): Track [GND] on B.Cu, length 32.0000 mm
-    @(5.5000 mm, 34.7250 mm): PTH pad 1 [BATT+] of J2
-[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
-    Rule: board setup solder mask min width; error
-    @(57.0700 mm, 20.0000 mm): Track [SENSE] on F.Cu, length 7.7300 mm
-    @(57.0700 mm, 22.6500 mm): PTH pad 2 [<no net>] of U3
-[solder_mask_bridge]: Rear solder mask aperture bridges items with different nets
-    Rule: board setup solder mask min width; error
-    @(57.0700 mm, 47.0000 mm): Track [GND] on B.Cu, length 26.8900 mm
-    @(57.0700 mm, 25.1900 mm): PTH pad 3 [<no net>] of U3
-[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
-    Rule: board setup solder mask min width; error
-    @(41.4300 mm, 34.0000 mm): Track [BATT+] on F.Cu, length 23.4300 mm
-    @(35.0000 mm, 35.0000 mm): PTH pad 1 [SENSE] of R2
-[solder_mask_bridge]: Front solder mask aperture bridges items with different nets
-    Rule: board setup solder mask min width; error
-    @(57.0700 mm, 20.0000 mm): Track [SENSE] on F.Cu, length 7.7300 mm
-    @(57.0700 mm, 25.1900 mm): PTH pad 3 [<no net>] of U3
-[solder_mask_bridge]: Rear solder mask aperture bridges items with different nets
-    Rule: board setup solder mask min width; error
-    @(5.5000 mm, 15.0000 mm): Track [GND] on B.Cu, length 32.0000 mm
-    @(5.5000 mm, 34.7250 mm): PTH pad 1 [BATT+] of J2
-[solder_mask_bridge]: Rear solder mask aperture bridges items with different nets
-    Rule: board setup solder mask min width; error
-    @(57.0700 mm, 47.0000 mm): Track [GND] on B.Cu, length 26.8900 mm
-    @(57.0700 mm, 27.7300 mm): PTH pad 4 [SENSE] of U3
-[solder_mask_bridge]: Rear solder mask aperture bridges items with different nets
-    Rule: board setup solder mask min width; error
-    @(57.0700 mm, 47.0000 mm): Track [GND] on B.Cu, length 26.8900 mm
-    @(57.0700 mm, 30.2700 mm): PTH pad 5 [<no net>] of U3
-[solder_mask_bridge]: Rear solder mask aperture bridges items with different nets
-    Rule: board setup solder mask min width; error
-    @(57.0700 mm, 47.0000 mm): Track [GND] on B.Cu, length 26.8900 mm
-    @(57.0700 mm, 32.8100 mm): PTH pad 6 [<no net>] of U3
-[solder_mask_bridge]: Rear solder mask aperture bridges items with different nets
-    Rule: board setup solder mask min width; error
-    @(57.0700 mm, 20.1100 mm): Track [GND] on B.Cu, length 26.8900 mm
-    @(57.0700 mm, 35.3500 mm): PTH pad 7 [<no net>] of U3
-[solder_mask_bridge]: Rear solder mask aperture bridges items with different nets
-    Rule: board setup solder mask min width; error
-    @(57.0700 mm, 20.1100 mm): Track [GND] on B.Cu, length 26.8900 mm
-    @(57.0700 mm, 37.8900 mm): PTH pad 8 [<no net>] of U3
-[solder_mask_bridge]: Rear solder mask aperture bridges items with different nets
-    Rule: board setup solder mask min width; error
-    @(57.0700 mm, 20.1100 mm): Track [GND] on B.Cu, length 26.8900 mm
-    @(57.0700 mm, 22.6500 mm): PTH pad 2 [<no net>] of U3
-[solder_mask_bridge]: Rear solder mask aperture bridges items with different nets
-    Rule: board setup solder mask min width; error
-    @(57.0700 mm, 20.1100 mm): Track [GND] on B.Cu, length 26.8900 mm
-    @(57.0700 mm, 25.1900 mm): PTH pad 3 [<no net>] of U3
-[solder_mask_bridge]: Rear solder mask aperture bridges items with different nets
-    Rule: board setup solder mask min width; error
-    @(57.0700 mm, 20.1100 mm): Track [GND] on B.Cu, length 26.8900 mm
-    @(57.0700 mm, 27.7300 mm): PTH pad 4 [SENSE] of U3
-[solder_mask_bridge]: Rear solder mask aperture bridges items with different nets
-    Rule: board setup solder mask min width; error
-    @(57.0700 mm, 20.1100 mm): Track [GND] on B.Cu, length 26.8900 mm
-    @(57.0700 mm, 30.2700 mm): PTH pad 5 [<no net>] of U3
-[solder_mask_bridge]: Rear solder mask aperture bridges items with different nets
-    Rule: board setup solder mask min width; error
-    @(57.0700 mm, 20.1100 mm): Track [GND] on B.Cu, length 26.8900 mm
-    @(57.0700 mm, 32.8100 mm): PTH pad 6 [<no net>] of U3
-[solder_mask_bridge]: Rear solder mask aperture bridges items with different nets
-    Rule: board setup solder mask min width; error
-    @(79.9300 mm, 47.0000 mm): Track [GND] on B.Cu, length 24.3500 mm
-    @(79.9300 mm, 25.1900 mm): PTH pad 11 [<no net>] of U3
-[solder_mask_bridge]: Rear solder mask aperture bridges items with different nets
-    Rule: board setup solder mask min width; error
-    @(79.9300 mm, 47.0000 mm): Track [GND] on B.Cu, length 24.3500 mm
-    @(79.9300 mm, 27.7300 mm): PTH pad 12 [<no net>] of U3
-[solder_mask_bridge]: Rear solder mask aperture bridges items with different nets
-    Rule: board setup solder mask min width; error
-    @(79.9300 mm, 47.0000 mm): Track [GND] on B.Cu, length 24.3500 mm
-    @(79.9300 mm, 30.2700 mm): PTH pad 13 [<no net>] of U3
-[solder_mask_bridge]: Rear solder mask aperture bridges items with different nets
-    Rule: board setup solder mask min width; error
-    @(79.9300 mm, 47.0000 mm): Track [GND] on B.Cu, length 24.3500 mm
-    @(79.9300 mm, 32.8100 mm): PTH pad 14 [<no net>] of U3
-[solder_mask_bridge]: Rear solder mask aperture bridges items with different nets
-    Rule: board setup solder mask min width; error
-    @(79.9300 mm, 47.0000 mm): Track [GND] on B.Cu, length 24.3500 mm
-    @(79.9300 mm, 35.3500 mm): PTH pad 15 [<no net>] of U3
-[solder_mask_bridge]: Rear solder mask aperture bridges items with different nets
-    Rule: board setup solder mask min width; error
-    @(79.9300 mm, 22.6500 mm): Track [GND] on B.Cu, length 24.3500 mm
-    @(79.9300 mm, 25.1900 mm): PTH pad 11 [<no net>] of U3
-[solder_mask_bridge]: Rear solder mask aperture bridges items with different nets
-    Rule: board setup solder mask min width; error
-    @(79.9300 mm, 22.6500 mm): Track [GND] on B.Cu, length 24.3500 mm
-    @(79.9300 mm, 27.7300 mm): PTH pad 12 [<no net>] of U3
-[solder_mask_bridge]: Rear solder mask aperture bridges items with different nets
-    Rule: board setup solder mask min width; error
-    @(79.9300 mm, 22.6500 mm): Track [GND] on B.Cu, length 24.3500 mm
-    @(79.9300 mm, 30.2700 mm): PTH pad 13 [<no net>] of U3
-[solder_mask_bridge]: Rear solder mask aperture bridges items with different nets
-    Rule: board setup solder mask min width; error
-    @(79.9300 mm, 22.6500 mm): Track [GND] on B.Cu, length 24.3500 mm
-    @(79.9300 mm, 32.8100 mm): PTH pad 14 [<no net>] of U3
-[solder_mask_bridge]: Rear solder mask aperture bridges items with different nets
-    Rule: board setup solder mask min width; error
-    @(79.9300 mm, 22.6500 mm): Track [GND] on B.Cu, length 24.3500 mm
-    @(79.9300 mm, 35.3500 mm): PTH pad 15 [<no net>] of U3
+** Found 66 DRC violations **
+[text_height]: Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.7000 mm)
+    Rule: board setup constraints silk text height; warning
+    @(64.5000 mm, 49.5000 mm): Footprint text of U5 (1)
+[text_thickness]: Text thickness out of range (board setup constraints silk text thickness min thickness 0.0800 mm; actual 0.0003 mm)
+    Rule: board setup constraints silk text thickness; warning
+    @(66.0250 mm, 48.3650 mm): Footprint text of U5 (GND)
+[text_height]: Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.0010 mm)
+    Rule: board setup constraints silk text height; warning
+    @(66.0250 mm, 48.3650 mm): Footprint text of U5 (GND)
+[text_height]: Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.6000 mm)
+    Rule: board setup constraints silk text height; warning
+    @(106.7750 mm, 115.2750 mm): Footprint text of U2 (IN+)
+[text_height]: Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.6000 mm)
+    Rule: board setup constraints silk text height; warning
+    @(106.7750 mm, 104.2750 mm): Footprint text of U2 (IN-)
+[text_height]: Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.6000 mm)
+    Rule: board setup constraints silk text height; warning
+    @(65.2750 mm, 113.5850 mm): Footprint text of U2 (OUT+)
+[text_height]: Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.6000 mm)
+    Rule: board setup constraints silk text height; warning
+    @(65.2750 mm, 111.0450 mm): Footprint text of U2 (B+)
+[text_height]: Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.6000 mm)
+    Rule: board setup constraints silk text height; warning
+    @(65.2750 mm, 108.5050 mm): Footprint text of U2 (B-)
+[text_height]: Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.6000 mm)
+    Rule: board setup constraints silk text height; warning
+    @(65.2750 mm, 105.9650 mm): Footprint text of U2 (OUT-)
+[text_height]: Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.6000 mm)
+    Rule: board setup constraints silk text height; warning
+    @(104.2750 mm, 116.7750 mm): Footprint text of U2 (1)
+[text_height]: Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.5500 mm)
+    Rule: board setup constraints silk text height; warning
+    @(76.0250 mm, 38.2850 mm): Footprint text of U4 (3V3)
+[text_height]: Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.5500 mm)
+    Rule: board setup constraints silk text height; warning
+    @(76.0250 mm, 40.8250 mm): Footprint text of U4 (3V3)
+[text_height]: Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.5500 mm)
+    Rule: board setup constraints silk text height; warning
+    @(76.0250 mm, 43.3650 mm): Footprint text of U4 (RST)
+[text_height]: Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.5500 mm)
+    Rule: board setup constraints silk text height; warning
+    @(76.0250 mm, 45.9050 mm): Footprint text of U4 (IO4)
+[text_height]: Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.5500 mm)
+    Rule: board setup constraints silk text height; warning
+    @(76.0250 mm, 48.4450 mm): Footprint text of U4 (IO5)
+[text_height]: Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.5500 mm)
+    Rule: board setup constraints silk text height; warning
+    @(76.0250 mm, 50.9850 mm): Footprint text of U4 (IO6)
+[text_height]: Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.5500 mm)
+    Rule: board setup constraints silk text height; warning
+    @(76.0250 mm, 53.5250 mm): Footprint text of U4 (IO7)
+[text_height]: Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.5500 mm)
+    Rule: board setup constraints silk text height; warning
+    @(76.0250 mm, 56.0650 mm): Footprint text of U4 (IO15)
+[text_height]: Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.5500 mm)
+    Rule: board setup constraints silk text height; warning
+    @(76.0250 mm, 58.6050 mm): Footprint text of U4 (IO16)
+[text_height]: Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.5500 mm)
+    Rule: board setup constraints silk text height; warning
+    @(76.0250 mm, 61.1450 mm): Footprint text of U4 (IO17)
+[text_height]: Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.5500 mm)
+    Rule: board setup constraints silk text height; warning
+    @(76.0250 mm, 63.6850 mm): Footprint text of U4 (IO18)
+[text_height]: Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.5500 mm)
+    Rule: board setup constraints silk text height; warning
+    @(76.0250 mm, 66.2250 mm): Footprint text of U4 (IO8)
+[text_height]: Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.5500 mm)
+    Rule: board setup constraints silk text height; warning
+    @(76.0250 mm, 68.7650 mm): Footprint text of U4 (IO3)
+[text_height]: Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.5500 mm)
+    Rule: board setup constraints silk text height; warning
+    @(76.0250 mm, 71.3050 mm): Footprint text of U4 (IO46)
+[text_height]: Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.5500 mm)
+    Rule: board setup constraints silk text height; warning
+    @(76.0250 mm, 73.8450 mm): Footprint text of U4 (IO9)
+[text_height]: Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.5500 mm)
+    Rule: board setup constraints silk text height; warning
+    @(76.0250 mm, 76.3850 mm): Footprint text of U4 (IO10)
+[text_height]: Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.5500 mm)
+    Rule: board setup constraints silk text height; warning
+    @(76.0250 mm, 78.9250 mm): Footprint text of U4 (IO11)
+[text_height]: Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.5500 mm)
+    Rule: board setup constraints silk text height; warning
+    @(76.0250 mm, 81.4650 mm): Footprint text of U4 (IO12)
+[text_height]: Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.5500 mm)
+    Rule: board setup constraints silk text height; warning
+    @(76.0250 mm, 84.0050 mm): Footprint text of U4 (IO13)
+[text_height]: Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.5500 mm)
+    Rule: board setup constraints silk text height; warning
+    @(76.0250 mm, 86.5450 mm): Footprint text of U4 (IO14)
+[text_height]: Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.5500 mm)
+    Rule: board setup constraints silk text height; warning
+    @(76.0250 mm, 89.0850 mm): Footprint text of U4 (5V0)
+[text_height]: Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.5500 mm)
+    Rule: board setup constraints silk text height; warning
+    @(76.0250 mm, 91.6250 mm): Footprint text of U4 (GND)
+[text_height]: Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.5500 mm)
+    Rule: board setup constraints silk text height; warning
+    @(94.0250 mm, 38.2850 mm): Footprint text of U4 (GND)
+[text_height]: Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.5500 mm)
+    Rule: board setup constraints silk text height; warning
+    @(94.0250 mm, 40.8250 mm): Footprint text of U4 (TX0)
+[text_height]: Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.5500 mm)
+    Rule: board setup constraints silk text height; warning
+    @(94.0250 mm, 43.3650 mm): Footprint text of U4 (RX0)
+[text_height]: Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.5500 mm)
+    Rule: board setup constraints silk text height; warning
+    @(94.0250 mm, 45.9050 mm): Footprint text of U4 (IO1)
+[text_height]: Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.5500 mm)
+    Rule: board setup constraints silk text height; warning
+    @(94.0250 mm, 48.4450 mm): Footprint text of U4 (IO2)
+[text_height]: Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.5500 mm)
+    Rule: board setup constraints silk text height; warning
+    @(94.0250 mm, 50.9850 mm): Footprint text of U4 (IO42)
+[text_height]: Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.5500 mm)
+    Rule: board setup constraints silk text height; warning
+    @(94.0250 mm, 53.5250 mm): Footprint text of U4 (IO41)
+[text_height]: Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.5500 mm)
+    Rule: board setup constraints silk text height; warning
+    @(94.0250 mm, 56.0650 mm): Footprint text of U4 (IO40)
+[text_height]: Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.5500 mm)
+    Rule: board setup constraints silk text height; warning
+    @(94.0250 mm, 58.6050 mm): Footprint text of U4 (IO39)
+[text_height]: Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.5500 mm)
+    Rule: board setup constraints silk text height; warning
+    @(94.0250 mm, 61.1450 mm): Footprint text of U4 (IO38)
+[text_height]: Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.5500 mm)
+    Rule: board setup constraints silk text height; warning
+    @(94.0250 mm, 63.6850 mm): Footprint text of U4 (IO37)
+[text_height]: Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.5500 mm)
+    Rule: board setup constraints silk text height; warning
+    @(94.0250 mm, 66.2250 mm): Footprint text of U4 (IO36)
+[text_height]: Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.5500 mm)
+    Rule: board setup constraints silk text height; warning
+    @(94.0250 mm, 68.7650 mm): Footprint text of U4 (IO35)
+[text_height]: Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.5500 mm)
+    Rule: board setup constraints silk text height; warning
+    @(94.0250 mm, 71.3050 mm): Footprint text of U4 (BOOT)
+[text_height]: Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.5500 mm)
+    Rule: board setup constraints silk text height; warning
+    @(94.0250 mm, 73.8450 mm): Footprint text of U4 (IO45)
+[text_height]: Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.5500 mm)
+    Rule: board setup constraints silk text height; warning
+    @(94.0250 mm, 76.3850 mm): Footprint text of U4 (IO48)
+[text_height]: Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.5500 mm)
+    Rule: board setup constraints silk text height; warning
+    @(94.0250 mm, 78.9250 mm): Footprint text of U4 (IO47)
+[text_height]: Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.5500 mm)
+    Rule: board setup constraints silk text height; warning
+    @(94.0250 mm, 81.4650 mm): Footprint text of U4 (IO21)
+[text_height]: Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.5500 mm)
+    Rule: board setup constraints silk text height; warning
+    @(94.0250 mm, 84.0050 mm): Footprint text of U4 (IO20)
+[text_height]: Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.5500 mm)
+    Rule: board setup constraints silk text height; warning
+    @(94.0250 mm, 86.5450 mm): Footprint text of U4 (IO19)
+[text_height]: Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.5500 mm)
+    Rule: board setup constraints silk text height; warning
+    @(94.0250 mm, 89.0850 mm): Footprint text of U4 (GND)
+[text_height]: Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.5500 mm)
+    Rule: board setup constraints silk text height; warning
+    @(94.0250 mm, 91.6250 mm): Footprint text of U4 (GND)
+[silk_overlap]: Silkscreen clearance
+    Rule: board setup constraints silk; warning
+    @(104.2750 mm, 116.7750 mm): Footprint text of U2 (1)
+    @(104.2750 mm, 120.7750 mm): Rectangle of U2 on F.Silkscreen
+[silk_overlap]: Silkscreen clearance
+    Rule: board setup constraints silk; warning
+    @(104.2750 mm, 116.7750 mm): Footprint text of U2 (1)
+    @(104.2750 mm, 120.7750 mm): Segment of U2 on F.Silkscreen
+[silk_overlap]: Silkscreen clearance
+    Rule: board setup constraints silk; warning
+    @(65.2750 mm, 113.5850 mm): Footprint text of U2 (OUT+)
+    @(28.5600 mm, 103.0600 mm): Rectangle of U3 on F.Silkscreen
+[silk_overlap]: Silkscreen clearance
+    Rule: board setup constraints silk; warning
+    @(65.2750 mm, 105.9650 mm): Footprint text of U2 (OUT-)
+    @(28.5600 mm, 103.0600 mm): Rectangle of U3 on F.Silkscreen
 [silk_over_copper]: Silkscreen clipped by solder mask
     Local override; warning
-    @(35.5400 mm, 18.6300 mm): Segment of R1 on F.Silkscreen
-    @(41.4300 mm, 18.7300 mm): PTH pad 3 [BATT+] of U1
+    @(104.2750 mm, 120.7750 mm): Rectangle of U2 on F.Silkscreen
+    @(103.2750 mm, 115.2750 mm): PTH pad 1 [unconnected-(U2-IN+-Pad1)] of U2
 [silk_over_copper]: Silkscreen clipped by solder mask
     Local override; warning
-    @(35.5400 mm, 21.3700 mm): Segment of R1 on F.Silkscreen
-    @(41.4300 mm, 21.2700 mm): PTH pad 4 [GND] of U1
+    @(104.2750 mm, 120.7750 mm): Rectangle of U2 on F.Silkscreen
+    @(103.2750 mm, 104.2750 mm): PTH pad 2 [unconnected-(U2-IN--Pad2)] of U2
 [silk_over_copper]: Silkscreen clipped by solder mask
     Local override; warning
-    @(42.0800 mm, 18.6300 mm): Segment of R1 on F.Silkscreen
-    @(41.4300 mm, 18.7300 mm): PTH pad 3 [BATT+] of U1
+    @(104.2750 mm, 120.7750 mm): Rectangle of U2 on F.Silkscreen
+    @(69.2750 mm, 105.9650 mm): PTH pad 6 [/PROT-] of U2
 [silk_over_copper]: Silkscreen clipped by solder mask
     Local override; warning
-    @(42.0800 mm, 21.3700 mm): Segment of R1 on F.Silkscreen
-    @(41.4300 mm, 21.2700 mm): PTH pad 4 [GND] of U1
+    @(104.2750 mm, 120.7750 mm): Rectangle of U2 on F.Silkscreen
+    @(69.2750 mm, 113.5850 mm): PTH pad 3 [/P+] of U2
+[silk_over_copper]: Silkscreen clipped by solder mask
+    Local override; warning
+    @(104.2750 mm, 120.7750 mm): Rectangle of U2 on F.Silkscreen
+    @(69.2750 mm, 111.0450 mm): PTH pad 4 [BATT+] of U2
+[silk_over_copper]: Silkscreen clipped by solder mask
+    Local override; warning
+    @(104.2750 mm, 120.7750 mm): Rectangle of U2 on F.Silkscreen
+    @(69.2750 mm, 108.5050 mm): PTH pad 5 [/BATT-] of U2
+[silk_over_copper]: Silkscreen clipped by solder mask
+    Local override; warning
+    @(72.3250 mm, 37.7250 mm): Rectangle of U4 on F.Silkscreen
+    @(73.5950 mm, 38.2850 mm): PTH pad 1 [+3V3] of U4
+[silk_over_copper]: Silkscreen clipped by solder mask
+    Local override; warning
+    @(72.3250 mm, 37.7250 mm): Rectangle of U4 on F.Silkscreen
+    @(96.4550 mm, 38.2850 mm): PTH pad 23 [GND] of U4
 
 ** Found 0 unconnected pads **
 
