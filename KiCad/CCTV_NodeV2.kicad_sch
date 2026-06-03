@@ -5248,6 +5248,74 @@
 			)
 		)
 	)
+	(symbol
+		(lib_id "CCTV2:+3V3")
+		(at 138.43 144.78 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "a000ffff-0001-0000-0000-000000000001")
+		(property "Reference" "#PWR_RESET"
+			(at 138.43 140.97 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Value" "+3V3"
+			(at 138.43 141.22 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects (font (size 1.27 1.27)))
+		)
+		(pin "1" (uuid "a000ffff-0001-0001-0000-000000000001"))
+		(instances
+			(project "CCTV_NodeV2"
+				(path "/b0c0d0e0-0001-4000-8000-000000000001"
+					(reference "#PWR_RESET")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "CCTV2:GND")
+		(at 138.43 147.32 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "a000ffff-0002-0000-0000-000000000002")
+		(property "Reference" "#PWR_PWDN"
+			(at 138.43 153.67 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Value" "GND"
+			(at 138.43 151.13 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects (font (size 1.27 1.27)))
+		)
+		(pin "1" (uuid "a000ffff-0002-0001-0000-000000000002"))
+		(instances
+			(project "CCTV_NodeV2"
+				(path "/b0c0d0e0-0001-4000-8000-000000000001"
+					(reference "#PWR_PWDN")
+					(unit 1)
+				)
+			)
+		)
+	)
 	(sheet_instances
 		(path "/"
 			(page "1")
