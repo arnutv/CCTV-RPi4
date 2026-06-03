@@ -5316,6 +5316,108 @@
 			)
 		)
 	)
+	(symbol
+		(lib_id "CCTV2:GND")
+		(at 101.6 177.8 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "gnd0u4r-0023-0000-0000-000000000001")
+		(property "Reference" "#PWR_U4_R23"
+			(at 101.6 184.15 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Value" "GND"
+			(at 101.6 181.61 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects (font (size 1.27 1.27)))
+		)
+		(pin "1" (uuid "gnd0u4r-0023-0001-0000-000000000001"))
+		(instances
+			(project "CCTV_NodeV2"
+				(path "/b0c0d0e0-0001-4000-8000-000000000001"
+					(reference "#PWR_U4_R23")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "CCTV2:GND")
+		(at 101.6 127.0 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "gnd0u4r-0043-0000-0000-000000000001")
+		(property "Reference" "#PWR_U4_R43"
+			(at 101.6 133.35 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Value" "GND"
+			(at 101.6 130.81 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects (font (size 1.27 1.27)))
+		)
+		(pin "1" (uuid "gnd0u4r-0043-0001-0000-000000000001"))
+		(instances
+			(project "CCTV_NodeV2"
+				(path "/b0c0d0e0-0001-4000-8000-000000000001"
+					(reference "#PWR_U4_R43")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "CCTV2:GND")
+		(at 101.6 124.46 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "gnd0u4r-0044-0000-0000-000000000001")
+		(property "Reference" "#PWR_U4_R44"
+			(at 101.6 130.81 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Value" "GND"
+			(at 101.6 128.27 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects (font (size 1.27 1.27)))
+		)
+		(pin "1" (uuid "gnd0u4r-0044-0001-0000-000000000001"))
+		(instances
+			(project "CCTV_NodeV2"
+				(path "/b0c0d0e0-0001-4000-8000-000000000001"
+					(reference "#PWR_U4_R44")
+					(unit 1)
+				)
+			)
+		)
+	)
 	(sheet_instances
 		(path "/"
 			(page "1")
