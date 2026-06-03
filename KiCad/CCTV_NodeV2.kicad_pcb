@@ -1003,37 +1003,6 @@
 		)
 		(attr through_hole)
 		(duplicate_pad_numbers_are_jumpers no)
-		(fp_line
-			(start -18 -11)
-			(end -14 -11)
-			(stroke
-				(width 0.4)
-				(type solid)
-			)
-			(layer "F.SilkS")
-			(uuid "c8b0f5d6-7639-4730-a73b-3a0ec4310311")
-		)
-		(fp_line
-			(start -18 -11)
-			(end -18 -7)
-			(stroke
-				(width 0.4)
-				(type solid)
-			)
-			(layer "F.SilkS")
-			(uuid "c52c0170-df3f-4019-9e17-e97d52d0b3ca")
-		)
-		(fp_rect
-			(start -18 -11)
-			(end 18 11)
-			(stroke
-				(width 0.12)
-				(type solid)
-			)
-			(fill no)
-			(layer "F.SilkS")
-			(uuid "a80475d9-c276-4453-8697-b800d145ace3")
-		)
 		(fp_rect
 			(start -18.7 -11.7)
 			(end 18.7 11.7)
@@ -1110,83 +1079,6 @@
 			(fill no)
 			(layer "F.Fab")
 			(uuid "a3e42c43-2690-4b77-8291-82ed9c8a31d5")
-		)
-		(fp_text user "OUT-"
-			(at 21 3.81 0)
-			(layer "F.SilkS")
-			(uuid "2f1f1ee2-8d5a-4a5e-99b3-04043b45ed3e")
-			(effects
-				(font
-					(size 0.6 0.6)
-					(thickness 0.1)
-				)
-			)
-		)
-		(fp_text user "B-"
-			(at 21 1.27 0)
-			(layer "F.SilkS")
-			(uuid "ef67bd93-7ab7-4807-9b8e-bc6ec6bd0432")
-			(effects
-				(font
-					(size 0.6 0.6)
-					(thickness 0.1)
-				)
-			)
-		)
-		(fp_text user "B+"
-			(at 21 -1.27 0)
-			(layer "F.SilkS")
-			(uuid "e18876d9-ab36-41a5-914e-cfb1db3f4926")
-			(effects
-				(font
-					(size 0.6 0.6)
-					(thickness 0.1)
-				)
-			)
-		)
-		(fp_text user "OUT+"
-			(at 21 -3.81 0)
-			(layer "F.SilkS")
-			(uuid "56f15de4-872e-42bd-923e-8b57e5d52453")
-			(effects
-				(font
-					(size 0.6 0.6)
-					(thickness 0.1)
-				)
-			)
-		)
-		(fp_text user "1"
-			(at -18 -7 0)
-			(layer "F.SilkS")
-			(uuid "0c580d99-302d-4622-9fe5-123c8723b2fb")
-			(effects
-				(font
-					(size 0.6 0.6)
-					(thickness 0.1)
-				)
-			)
-		)
-		(fp_text user "IN-"
-			(at -20.5 5.5 0)
-			(layer "F.SilkS")
-			(uuid "16e8d41c-d2af-490d-885d-6b1c5916154c")
-			(effects
-				(font
-					(size 0.6 0.6)
-					(thickness 0.1)
-				)
-			)
-		)
-		(fp_text user "IN+"
-			(at -20.5 -5.5 0)
-			(layer "F.SilkS")
-			(uuid "2c995838-20a8-48c6-8c60-b3a67c269580")
-			(effects
-				(font
-					(size 0.6 0.6)
-					(thickness 0.1)
-				)
-			)
 		)
 		(fp_text user "BMS"
 			(at 8 0 0)
