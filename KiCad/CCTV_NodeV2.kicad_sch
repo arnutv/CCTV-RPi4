@@ -759,7 +759,7 @@
 						)
 					)
 				)
-				(pin no_connect line
+				(pin passive line
 					(at -17.78 -25.4 0)
 					(length 2.54)
 					(name "3V3_2"
@@ -5413,6 +5413,40 @@
 			(project "CCTV_NodeV2"
 				(path "/b0c0d0e0-0001-4000-8000-000000000001"
 					(reference "#PWR_U4_R44")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "CCTV2:+3V3")
+		(at 66.04 175.26 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "pwr3v3u4-0002-0000-0000-000000000001")
+		(property "Reference" "#PWR_U4_3V3_2"
+			(at 66.04 171.45 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects (font (size 1.27 1.27)))
+		)
+		(property "Value" "+3V3"
+			(at 66.04 171.70 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects (font (size 1.27 1.27)))
+		)
+		(pin "1" (uuid "pwr3v3u4-0002-0001-0000-000000000001"))
+		(instances
+			(project "CCTV_NodeV2"
+				(path "/b0c0d0e0-0001-4000-8000-000000000001"
+					(reference "#PWR_U4_3V3_2")
 					(unit 1)
 				)
 			)
