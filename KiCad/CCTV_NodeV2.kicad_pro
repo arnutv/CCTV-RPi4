@@ -657,7 +657,7 @@
         "uuid": "b0c0d0e0-0001-4000-8000-000000000001"
       }
     ],
-    "used_designators": "",
+    "used_designators": "#PWR_IN_NEG1",
     "variants": []
   },
   "sheets": [
