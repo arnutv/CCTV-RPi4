@@ -12,6 +12,14 @@ desktop.ini
 .idea/
 *.code-workspace
 
+# ── KiCad local history (auto-snapshots, has its own .git) ───────────────
+KiCad/.history/
+
+# ── KiCad runtime files (lock files, local prefs, auto-backups) ──────────
+~*.lck
+*.kicad_prl
+*-backups/
+
 # ── Claude Code workspace ─────────────────────────────────────────────────
 .claude/
 

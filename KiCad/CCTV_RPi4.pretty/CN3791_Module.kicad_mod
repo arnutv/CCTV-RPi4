@@ -1,0 +1,109 @@
+(footprint "CN3791_Module"
+	(version 20260206)
+	(generator "pcbnew")
+	(generator_version "10.0")
+	(layer "F.Cu")
+	(descr "CN3791 MPPT Solar Charger Module. Single-row 4-hole layout, 2.54mm pitch. Left to right: pad1=VIN/IN+, pad2=GND, pad3=GND, pad4=BAT/BAT+. Both GND pads share the common ground net. Module PCB approx 35x17mm.")
+	(tags "CN3791 MPPT solar charger 4pin single row module")
+	(property "Reference" "U?"
+		(at 4 -10.5 0)
+		(layer "F.SilkS")
+		(uuid "083119b6-2d48-4323-9533-bd0a1c6a50e7")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "CN3791_MPPT"
+		(at 3 11.5 0)
+		(layer "F.Fab")
+		(uuid "151e4392-e0fe-4804-9bab-5c516a972f80")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "4af282f3-b49f-41c4-aee5-17bd60f3e56c")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "a2d96e93-7720-4f84-99cf-9496ec4beb9b")
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+	)
+	(attr through_hole)
+	(duplicate_pad_numbers_are_jumpers no)
+	(fp_rect
+		(start -17.5 -8.179008)
+		(end 27.397911 8.930119)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.SilkS")
+		(uuid "3ad6c9a4-0531-41f6-b376-28fabba98b8c")
+	)
+	(fp_rect
+		(start -4.786582 5.892012)
+		(end 7.326583 9.107988)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.Fab")
+		(uuid "3c174764-74f9-4ea1-810b-92e96d2930c8")
+	)
+	(pad "1" thru_hole rect
+		(at -2.54 7.5)
+		(size 2 2)
+		(drill 1.2)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "5bd7b254-1adb-449d-b8c5-84ca6d8c096d")
+	)
+	(pad "2" thru_hole circle
+		(at 0 7.5)
+		(size 2 2)
+		(drill 1.2)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "450a80a2-4f14-48d6-98c3-a035a54a0865")
+	)
+	(pad "3" thru_hole circle
+		(at 2.54 7.5)
+		(size 2 2)
+		(drill 1.2)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "92fb70d2-fddb-43e2-9e78-7234ee5ff860")
+	)
+	(pad "4" thru_hole circle
+		(at 5.08 7.5)
+		(size 2 2)
+		(drill 1.2)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "64c7cd84-dccf-41af-94dc-934f9c9dc7db")
+	)
+	(embedded_fonts no)
+)

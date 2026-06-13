@@ -1,0 +1,5 @@
+(fp_lib_table
+	(version 7)
+	(lib (name "CCTV_RPi4") (type "KiCad") (uri "${KIPRJMOD}/CCTV_RPi4.pretty") (options "") (descr "CCTV RPi4 custom footprints: ESP32-S3, OV7670, CN3791, MT3608, TC4056A_BMS, BMS-1S, 18650"))
+	(lib (name "ESP32_CAM") (type "KiCad") (uri "${KIPRJMOD}/ESP32_CAM.pretty") (options "") (descr ""))
+)
